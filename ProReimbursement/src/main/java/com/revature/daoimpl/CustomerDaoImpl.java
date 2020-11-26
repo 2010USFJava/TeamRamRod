@@ -11,6 +11,8 @@ import com.revature.util.ConnFactory;
 
 public class CustomerDaoImpl implements CustomerDao{
 	public static ConnFactory cf = ConnFactory.getInstance();
+	public static int employee_id = 1;
+	public static String colToUpdate;
 	
 	@Override
 	public void createCustomer(Customer c) throws SQLException {
