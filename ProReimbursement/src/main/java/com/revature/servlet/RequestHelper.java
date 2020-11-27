@@ -10,13 +10,14 @@ public class RequestHelper {
 	public static String process(HttpServletRequest req) {
 		System.out.println(req.getRequestURI()); //URI: what resource am I going to get from this domain
 		switch(req.getRequestURI()) {
-		case "/ProReimbursement/login.change":
+		case "/ProReimbursement/customer.change":
 			System.out.println("in login rhelper");
 			return CusLoginController.login(req);
 		
 		case "/ProReimbursement/home.change":
 			System.out.println("in home rhelper");
 			return HomeController.home(req); //home controller takes us to home.html (view back to us)
+			
 		default:
 			System.out.println("in default case");
 			return "resources/html/unsuccessfullogin.html";
