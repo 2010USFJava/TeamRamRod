@@ -43,3 +43,12 @@ event_num serial primary key,
 event_name varchar(20)
 );
 
+create table approval_dates(
+form_ID int primary key,
+date_entered date,
+direct_supervisor_approval_date date,
+dept_head_approval_date date,
+benco_approval_date date,
+approval_time time,
+is_approved boolean
+);
