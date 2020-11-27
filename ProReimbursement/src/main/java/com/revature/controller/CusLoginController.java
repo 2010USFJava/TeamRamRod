@@ -20,7 +20,7 @@ public class CusLoginController {
 		Customer cus = cServ.logGetCustomer(email, password);
 		System.out.println("CUS: " + cus);
 		if(cus == null) {
-			return "home.change";
+			return "invalid.change";
 		} else {
 			req.getSession().setAttribute("currentcus", cus);
 			return "home.change";
