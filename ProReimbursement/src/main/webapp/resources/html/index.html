@@ -8,7 +8,17 @@
 
 <div class="login-container">
 	<h3>Customer Login</h3>
-	<form method="post" action="/ProReimbursement/login.change">
+	<form method="post" action="/ProReimbursement/customer.change">
+		<p>Please login </p>
+		<input placeholder="Enter email" name="email">
+		<input placeholder="Enter password" name="password">
+		<input type="submit" value="login">
+	</form>
+</div>
+
+<div class="login-container">
+	<h3>Admin Login</h3>
+	<form method="post" action="/ProReimbursement/admin.change">
 		<p>Please login </p>
 		<input placeholder="Enter email" name="email">
 		<input placeholder="Enter password" name="password">

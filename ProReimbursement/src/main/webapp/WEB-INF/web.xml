@@ -5,13 +5,29 @@
     <welcome-file>index.html</welcome-file>
   </welcome-file-list>
   <servlet>
+        <servlet-name>MasterServlet</servlet-name>
+        <servlet-class>com.revature.servlet.MasterServlet</servlet-class>
+    </servlet>
+  <servlet-mapping>
+  		<servlet-name>MasterServlet</servlet-name>
+  		<url-pattern>*.change</url-pattern>
+  		<url-pattern>/api/*</url-pattern>
+  </servlet-mapping>
+    <servlet>
         <servlet-name>CustomerServlet</servlet-name>
         <servlet-class>com.revature.servlet.CustomerServlet</servlet-class>
     </servlet>
   <servlet-mapping>
   		<servlet-name>CustomerServlet</servlet-name>
-  		<url-pattern>*.change</url-pattern>
-  		<url-pattern>/api/*</url-pattern>
+  		<url-pattern>*.customer</url-pattern>
+  </servlet-mapping>
+   <servlet>
+        <servlet-name>AdminServlet</servlet-name>
+        <servlet-class>com.revature.servlet.AdminServlet</servlet-class>
+    </servlet>
+  <servlet-mapping>
+  		<servlet-name>AdminServlet</servlet-name>
+  		<url-pattern>*.admin</url-pattern>
   </servlet-mapping>
 </web-app>
 
