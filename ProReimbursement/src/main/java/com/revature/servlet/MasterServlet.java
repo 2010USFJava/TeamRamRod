@@ -22,7 +22,7 @@ public class MasterServlet extends HttpServlet{
 		String nextServlet = "";
 		
 		if(req.getRequestURI().contains("customer")) {
-			nextServlet = ".customer";			
+			nextServlet = "login.customer";			
 		} else {
 			nextServlet = ".admin";
 		}

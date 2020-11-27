@@ -23,7 +23,7 @@ public class CusLoginController {
 			return "invalid.change";
 		} else {
 			req.getSession().setAttribute("currentcus", cus);
-			return "home.change";
+			return "home.customer";
 		}
 	}
 }
