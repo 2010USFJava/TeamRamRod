@@ -16,15 +16,14 @@ public class MasterServlet extends HttpServlet{
 	}
 	
 	protected void doPost(HttpServletRequest req, HttpServletResponse res) throws IOException, ServletException{
-		// gets called first
 		System.out.println("in Master doPost");
-		System.out.println("URI " + req.getRequestURI());
+		System.out.println("URI: " + req.getRequestURI());
 		String nextServlet = "";
 		
 		if(req.getRequestURI().contains("customer")) {
 			nextServlet = "login.customer";			
 		} else {
-			nextServlet = ".admin";
+			nextServlet = "login.admin";
 		}
 		System.out.println("Next servlet: " + nextServlet);
 		RequestDispatcher rd = req.getRequestDispatcher(nextServlet);

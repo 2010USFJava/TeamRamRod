@@ -15,9 +15,8 @@ public class CustomerServlet extends HttpServlet{
 	}
 	
 	protected void doPost(HttpServletRequest req, HttpServletResponse res) throws IOException, ServletException{
-		// gets called first
 		System.out.println("in Customer doPost");
-		req.getRequestDispatcher(RequestHelper.process(req)).forward(req,res); //what response I need
+		req.getRequestDispatcher(RequestHelper.process(req)).forward(req,res);
 	}
 	
 	

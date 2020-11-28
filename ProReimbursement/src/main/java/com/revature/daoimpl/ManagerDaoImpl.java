@@ -1,43 +1,84 @@
 package com.revature.daoimpl;
 
 import java.sql.Connection;
+import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 import com.revature.beans.Manager;
 import com.revature.dao.ManagerDao;
 import com.revature.util.ConnFactory;
 
 public class ManagerDaoImpl implements ManagerDao{
+	static {
+		try {
+			Class.forName("org.postgresql.Driver");
+		}catch(ClassNotFoundException e) {
+			e.printStackTrace();
+		}
+	}
+	
 	public static ConnFactory cf = ConnFactory.getInstance();
+	private String url = "jdbc:postgresql://postgres.cyxh07df0zfy.us-west-2.rds.amazonaws.com:5432/postgres?currentSchema=reimbursement";
+	private String username = "aquamiguel";
+	private String password = "3tyme4be!";
 	
 	@Override
-	public void createManager(Manager m) throws SQLException {
-		Connection conn = cf.getConnection();
+	public void createAdmin(Manager a) throws SQLException {
+		Connection conn = DriverManager.getConnection(this.url, this.username, this.password);
 		String sql = "insert into manager values(?,?,?,?,?,?)";
 		PreparedStatement ps = conn.prepareStatement(sql);
-		ps.setInt(1, m.getEmployee_ID());
-		ps.setString(2, m.getfName());
-		ps.setString(3, m.getlName());
-		ps.setString(4, m.getEmail());
-		ps.setString(5, m.getPassword());
-		ps.setString(6, m.getTitle());
+		ps.setInt(1, a.getEmployee_ID());
+		ps.setString(2, a.getfName());
+		ps.setString(3, a.getlName());
+		ps.setString(4, a.getEmail());
+		ps.setString(5, a.getPassword());
+		ps.setString(6, a.getTitle());
 		ps.executeUpdate();	
 	}
 
 	@Override
-	public Manager findManagerById(int employeeID) throws SQLException {
-		Connection conn = cf.getConnection();
+	public Manager findAdminById(int employeeID) throws SQLException {
+		Connection conn = DriverManager.getConnection(this.url, this.username, this.password);
 		String sql = "select * from manager where employee_id=?";
 		PreparedStatement ps = conn.prepareStatement(sql);
 		ps.setInt(1, employeeID);
 		ResultSet rs = ps.executeQuery();
-		Manager m = null;
+		Manager a = null;
 		while(rs.next()) {
-			m = new Manager(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5), rs.getString(6));
+			a = new Manager(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5), rs.getString(6));
 		}
-		return m;
+		return a;
+	}
+
+	@Override
+	public Manager getAdminByEmail(String email) throws SQLException {
+		Connection conn = DriverManager.getConnection(this.url, this.username, this.password);
+		String sql = "select * from manager where email=?";
+		PreparedStatement ps = conn.prepareStatement(sql);
+		ps.setString(1, email);
+		ResultSet rs = ps.executeQuery();
+		Manager a = null;
+		while(rs.next()) {
+			a = new Manager(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5), rs.getString(6));
+		}
+		return a;
+	}
+
+	@Override
+	public List<Manager> getAllAdmins() throws SQLException {
+		List<Manager> aList = new ArrayList<Manager>();
+		Connection conn = DriverManager.getConnection(this.url, this.username, this.password);
+		String sql = "select * from manager";
+		PreparedStatement ps = conn.prepareStatement(sql);
+		ResultSet rs = ps.executeQuery();
+		while(rs.next()) {
+			aList.add(new Manager(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5), rs.getString(6)));
+		}
+		return aList;
 	}
 
 }
