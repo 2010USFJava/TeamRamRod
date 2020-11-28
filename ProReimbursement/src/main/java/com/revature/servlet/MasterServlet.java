@@ -22,8 +22,10 @@ public class MasterServlet extends HttpServlet{
 		
 		if(req.getRequestURI().contains("customer")) {
 			nextServlet = "login.customer";			
-		} else {
+		} else if(req.getRequestURI().contains("admin")) {
 			nextServlet = "login.admin";
+		} else if(req.getRequestURI().contains("form")) {
+			nextServlet = "info.form";
 		}
 		System.out.println("Next servlet: " + nextServlet);
 		RequestDispatcher rd = req.getRequestDispatcher(nextServlet);

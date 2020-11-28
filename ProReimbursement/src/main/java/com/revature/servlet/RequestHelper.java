@@ -4,6 +4,7 @@ import javax.servlet.http.HttpServletRequest;
 
 import com.revature.controller.AdminLoginController;
 import com.revature.controller.CusLoginController;
+import com.revature.controller.FormController;
 import com.revature.controller.HomeController;
 
 public class RequestHelper {
@@ -18,7 +19,7 @@ public class RequestHelper {
 		
 		case "/ProReimbursement/home.customer":
 			System.out.println("in customer home rhelper");
-			return HomeController.customerHome(req); //home controller takes us to home.html (view back to us)
+			return HomeController.customerHome(req);
 		
 		case "/ProReimbursement/login.admin":
 			System.out.println("in admin login rhelper");
@@ -26,7 +27,15 @@ public class RequestHelper {
 			
 		case "/ProReimbursement/home.admin":
 			System.out.println("in admin home rhelper");
-			return HomeController.adminHome(req); //home controller takes us to home.html (view back to us)
+			return HomeController.adminHome(req); 
+			
+		case "/ProReimbursement/fill.form":
+			System.out.println("in form rhelper");
+			return FormController.fillOutForm(req); 
+			
+		case "/ProReimbursement/info.form":
+			System.out.println("in customer form rhelper");
+			return FormController.customerForm(req); 
 			
 		default:
 			System.out.println("in default case");
