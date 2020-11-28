@@ -17,7 +17,7 @@ public class AdminLoginController {
 		String password = req.getParameter("password");
 		Manager ad = aServ.logGetAdmin(email, password);
 		if(ad == null) {
-			return "invalid.change";
+			return "invalid.admin";
 		} else {
 			req.getSession().setAttribute("currentad", ad);
 			return "home.admin";
