@@ -49,6 +49,5 @@ date_entered date,
 direct_supervisor_approval_date date,
 dept_head_approval_date date,
 benco_approval_date date,
-approval_time time,
 is_approved boolean
 );
