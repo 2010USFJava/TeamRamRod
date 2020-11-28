@@ -1,15 +1,17 @@
 package com.revature.beans;
 
+import java.sql.Date;
+
 public class Form {
 
 	private int formID;
-	// private date
-	// time
+	private Date date;
+	private String time;
 	private String location;
 	private String description;
 	private double cost;
 	private String gradeFormat;
-	private String eventType;
+	private int eventNum;
 	private String justification;
 	private String dialogBox;
 	private boolean isAttached;
@@ -17,18 +19,32 @@ public class Form {
 	public Form() {
 		super();
 	}
-	public Form(int formID, String location, String description, double cost, String gradeFormat, String eventType,
+	public Form(int formID, Date date, String time, String location, String description, double cost, String gradeFormat, int eventNum,
 			String justification, String dialogBox, boolean isAttached) {
 		super();
+		this.date = date;
+		this.time = time;
 		this.formID = formID;
 		this.location = location;
 		this.description = description;
 		this.cost = cost;
 		this.gradeFormat = gradeFormat;
-		this.eventType = eventType;
+		this.eventNum = eventNum;
 		this.justification = justification;
 		this.dialogBox = dialogBox;
 		this.isAttached = isAttached;
+	}
+	public Date getDate() {
+		return date;
+	}
+	public void setDate(Date date) {
+		this.date = date;
+	}
+	public String getTime() {
+		return time;
+	}
+	public void setTime(String time) {
+		this.time = time;
 	}
 	public int getFormID() {
 		return formID;
@@ -60,11 +76,11 @@ public class Form {
 	public void setGradeFormat(String gradeFormat) {
 		this.gradeFormat = gradeFormat;
 	}
-	public String getEventType() {
-		return eventType;
+	public int getEventNum() {
+		return eventNum;
 	}
-	public void setEventType(String eventType) {
-		this.eventType = eventType;
+	public void setEventNum(int eventNum) {
+		this.eventNum = eventNum;
 	}
 	public String getJustification() {
 		return justification;
@@ -86,10 +102,13 @@ public class Form {
 	}
 	@Override
 	public String toString() {
-		return "Form [formID=" + formID + ", location=" + location + ", description=" + description + ", cost=" + cost
-				+ ", gradeFormat=" + gradeFormat + ", eventType=" + eventType + ", justification=" + justification
-				+ ", dialogBox=" + dialogBox + ", isAttached=" + isAttached + "]";
+		return "Form [formID=" + formID + ", date=" + date + ", time=" + time + ", location=" + location
+				+ ", description=" + description + ", cost=" + cost + ", gradeFormat=" + gradeFormat + ", eventNum="
+				+ eventNum + ", justification=" + justification + ", dialogBox=" + dialogBox + ", isAttached="
+				+ isAttached + "]";
 	}
+	
+	
 	
 	
 }
