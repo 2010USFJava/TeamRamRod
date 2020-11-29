@@ -44,7 +44,7 @@ public class FormDaoImpl implements FormDao {
 	}
 
 	@Override
-	public Form findFormbyID(int formID) throws SQLException {
+	public Form findFormByID(int formID) throws SQLException {
 		Connection conn = DriverManager.getConnection(this.url, this.username, this.password);
 		String sql = "select * from form where form_id=?";
 		PreparedStatement ps = conn.prepareStatement(sql);

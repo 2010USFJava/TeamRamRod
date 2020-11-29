@@ -29,13 +29,17 @@ public class RequestHelper {
 			System.out.println("in admin home rhelper");
 			return HomeController.adminHome(req); 
 			
+		case "/ProReimbursement/info.form":
+			System.out.println("in customer form rhelper");
+			return FormController.customerForm(req); 
+			
 		case "/ProReimbursement/fill.form":
 			System.out.println("in form rhelper");
 			return FormController.fillOutForm(req); 
 			
-		case "/ProReimbursement/info.form":
+		case "/ProReimbursement/received.form":
 			System.out.println("in customer form rhelper");
-			return FormController.customerForm(req); 
+			return FormController.enterNewForm(req); 
 			
 		default:
 			System.out.println("in default case");

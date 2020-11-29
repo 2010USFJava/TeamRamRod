@@ -9,6 +9,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.revature.beans.Customer;
+import com.revature.controller.CusLoginController;
 import com.revature.dao.CustomerDao;
 import com.revature.util.ConnFactory;
 
@@ -29,13 +30,14 @@ public class CustomerDaoImpl implements CustomerDao{
 	@Override
 	public void createCustomer(Customer c) throws SQLException {
 		Connection conn = DriverManager.getConnection(this.url, this.username, this.password);
-		String sql = "insert into customer values(?,?,?,?,?)";
+		String sql = "insert into customer values(?,?,?,?,?,?)";
 		PreparedStatement ps = conn.prepareStatement(sql);
 		ps.setInt(1, c.getEmployeeID());
 		ps.setString(2, c.getfName());
 		ps.setString(3, c.getlName());
 		ps.setString(4, c.getEmail());
 		ps.setString(5, c.getPassword());
+		ps.setDouble(6, c.getTuition());
 		ps.executeUpdate();		
 	}
 	
@@ -48,7 +50,7 @@ public class CustomerDaoImpl implements CustomerDao{
 		ResultSet rs = ps.executeQuery();
 		Customer c = null;
 		while(rs.next()) {
-			c = new Customer(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5));
+			c = new Customer(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5), rs.getDouble(6));
 		}
 		return c;
 	}
@@ -62,7 +64,7 @@ public class CustomerDaoImpl implements CustomerDao{
 		ResultSet rs = ps.executeQuery();
 		Customer c = null;
 		while(rs.next()) {
-			c = new Customer(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5));
+			c = new Customer(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5), rs.getDouble(6));
 		}
 		return c;
 	}
@@ -76,9 +78,19 @@ public class CustomerDaoImpl implements CustomerDao{
 		PreparedStatement ps = conn.prepareStatement(sql);
 		ResultSet rs = ps.executeQuery();
 		while (rs.next()) {
-			cList.add(new Customer(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5)));
+			cList.add(new Customer(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5), rs.getDouble(6)));
 		}
 		return cList;
+	}
+
+	@Override
+	public void updateTuition(Customer c) throws SQLException {
+		Connection conn = DriverManager.getConnection(this.url, this.username, this.password);
+		String sql = "update customer set tuition=? where customer_id=?";
+		PreparedStatement ps = conn.prepareStatement(sql);
+		ps.setDouble(1, c.getTuition());
+		ps.setInt(2, c.getEmployeeID());
+		ps.executeUpdate();
 	}
 
 }

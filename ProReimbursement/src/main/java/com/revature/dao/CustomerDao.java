@@ -13,4 +13,6 @@ public interface CustomerDao {
 	public Customer getCustomerByEmail(String email) throws SQLException;
 	
 	public List<Customer> getAllCustomers() throws SQLException;
+	
+	public void updateTuition(Customer c) throws SQLException;
 }
