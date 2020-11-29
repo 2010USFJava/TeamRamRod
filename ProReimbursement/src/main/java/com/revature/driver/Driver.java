@@ -1,33 +1,42 @@
 package com.revature.driver;
 
 import java.sql.SQLException;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.sql.Date;
 
-import com.revature.beans.Form;
-import com.revature.dao.FormDao;
-import com.revature.daoimpl.FormDaoImpl;
+import com.revature.controller.CusLoginController;
+import com.revature.dao.CustomerDao;
+import com.revature.daoimpl.CustomerDaoImpl;
+import com.revature.util.Calculate;
 
 public class Driver {
 
 	public static void main(String[] args) {
+		Calculate cal = new Calculate();
+		CustomerDao c = new CustomerDaoImpl();
+		try {
+			CusLoginController.currentCustomer = c.getCustomerById(1234);
+			cal.setModifyTuition(200);
+			System.out.println(CusLoginController.currentCustomer);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		
+	}
 //		CustomerDao c = new CustomerDaoImpl();
 //		ManagerDao m = new ManagerDaoImpl();
-		FormDao f = new FormDaoImpl();
+//		FormDao f = new FormDaoImpl();
+//		FormService fServ = new FormService();
 //		
-		Date sqlDate = Date.valueOf("2020-11-30");
-		System.out.println(sqlDate);
-//		try {
-			try {
-				f.createForm(new Form(1,sqlDate,"5pm","Los Angeles","Network+ Cert", 
-						200.0,"1000 point, 750 pass", 5,"Need it","", true));
-				System.out.println();
-			} catch (SQLException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-	}
+//		Date sqlDate = Date.valueOf("2020-11-30");
+//		System.out.println(sqlDate);
+//			Form newForm = new Form(1,sqlDate,"1pm","Los Angeles","Network+ Cert", 
+//							200.0,"1000 point, 750 pass", 5,"Need it","", true);
+//			
+//			fServ.insertNewForm(newForm);
+//			System.out.println(newForm);
+//			System.out.println(fServ.getForm(3));
+//	}
 //			System.out.println(CustomerService.logGetCustomer("email1", "password1"));
 //			//c.createCustomer(new Customer(2, "Mike", "Garcia", "email1", "password1"));
 //			//System.out.println(c.getCustomerByEmail("email1"));

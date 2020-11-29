@@ -1,6 +1,5 @@
 package com.revature.dao;
 
-import java.sql.SQLClientInfoException;
 import java.sql.SQLException;
 
 import com.revature.beans.Form;

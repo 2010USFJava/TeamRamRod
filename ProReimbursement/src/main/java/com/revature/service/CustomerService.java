@@ -53,6 +53,15 @@ public class CustomerService {
 			e.printStackTrace();
 		}
 	}
+	
+	public double getTuition(Customer cus) {
+		try {
+			return cusdao.getCustomerById(cus.getEmployeeID()).getTuition();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return 0.0;
+	}
 
 }
 

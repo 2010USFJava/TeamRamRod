@@ -38,4 +38,14 @@
     <servlet-name>FormServlet</servlet-name>
     <url-pattern>*.form</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>ApprovalDatesServlet</display-name>
+    <servlet-name>ApprovalDatesServlet</servlet-name>
+    <servlet-class>com.revature.servlet.ApprovalDatesServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ApprovalDatesServlet</servlet-name>
+    <url-pattern>*.approval</url-pattern>
+  </servlet-mapping>
 </web-app>

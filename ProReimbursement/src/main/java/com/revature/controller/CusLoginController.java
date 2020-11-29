@@ -7,6 +7,7 @@ import com.revature.service.CustomerService;
 
 public class CusLoginController {
 	static CustomerService cServ = new CustomerService();
+	public static Customer currentCustomer;
 	
 	public static String login(HttpServletRequest req) {
 		if(!req.getMethod().equals("POST")) {
@@ -22,6 +23,7 @@ public class CusLoginController {
 		if(cus == null) {
 			return "invalid.customer";
 		} else {
+			currentCustomer = cus;
 			req.getSession().setAttribute("currentcus", cus);
 			return "home.customer";
 		}
