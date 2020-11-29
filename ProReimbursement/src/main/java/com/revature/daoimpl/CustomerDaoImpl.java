@@ -93,4 +93,13 @@ public class CustomerDaoImpl implements CustomerDao{
 		ps.executeUpdate();
 	}
 
+	@Override
+	public void insertIdCustomerLookUp(Customer c) throws SQLException {
+		Connection conn = DriverManager.getConnection(this.url, this.username, this.password);
+		String sql = "insert into customer_lookup(customer_id) values(?)";
+		PreparedStatement ps = conn.prepareStatement(sql);
+		ps.setInt(1, c.getEmployeeID());
+		ps.executeUpdate();		
+	}
+
 }

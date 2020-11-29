@@ -62,6 +62,14 @@ public class CustomerService {
 		}
 		return 0.0;
 	}
+	
+	public void insertCustomerIdLookUp(Customer c) {
+		try {
+			cusdao.insertIdCustomerLookUp(c);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}
 
 }
 

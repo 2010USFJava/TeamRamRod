@@ -15,4 +15,6 @@ public interface CustomerDao {
 	public List<Customer> getAllCustomers() throws SQLException;
 	
 	public void updateTuition(Customer c) throws SQLException;
+	
+	public void insertIdCustomerLookUp(Customer c) throws SQLException;
 }

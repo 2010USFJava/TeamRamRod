@@ -6,12 +6,14 @@ import javax.servlet.http.HttpServletRequest;
 
 import com.revature.beans.Customer;
 import com.revature.beans.Form;
+import com.revature.service.ApprovalDatesService;
 import com.revature.service.CustomerService;
 import com.revature.service.FormService;
 
 public class FormController {
 	static CustomerService cServ = new CustomerService();
 	static FormService fServ = new FormService();
+	static ApprovalDatesService aServ = new ApprovalDatesService();
 	
 	public static String fillOutForm(HttpServletRequest req) {
 		int employeeNum = Integer.parseInt(req.getParameter("employeeID"));
@@ -21,6 +23,7 @@ public class FormController {
 		
 		cServ.insertNewCustomer(cus);
 		System.out.println(cus);
+		cServ.insertCustomerIdLookUp(cus);
 		return "resources/html/form.html";		
 	}
 	
@@ -35,7 +38,7 @@ public class FormController {
 		Form form = new Form(1, eventDate, req.getParameter("eventtime"), req.getParameter("eventlocation"),
 				req.getParameter("description"), eventCost, req.getParameter("gradingformat"), 
 				eventNum, req.getParameter("justification"), "", hasFiles);
-		
+		//
 		fServ.insertNewForm(form);
 		return "resources/html/applicationReceived.html";
 	}

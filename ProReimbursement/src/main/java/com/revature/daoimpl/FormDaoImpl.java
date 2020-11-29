@@ -9,6 +9,7 @@ import java.sql.Date;
 
 import com.revature.beans.Customer;
 import com.revature.beans.Form;
+import com.revature.controller.CusLoginController;
 import com.revature.dao.FormDao;
 
 public class FormDaoImpl implements FormDao {
@@ -59,5 +60,14 @@ public class FormDaoImpl implements FormDao {
 		return f;
 	}
 	
+	@Override
+	public void insertFormIdCustomerLookUp(Form f) throws SQLException {
+		Connection conn = DriverManager.getConnection(this.url, this.username, this.password);
+		String sql = "insert into customer_lookup(form_id) values(?) where customer_id=?";
+		PreparedStatement ps = conn.prepareStatement(sql);
+		ps.setInt(1, f.getFormID());
+		ps.setInt(2, CusLoginController.currentCustomer.getEmployeeID());
+		ps.executeUpdate();		
+	}
 
 }

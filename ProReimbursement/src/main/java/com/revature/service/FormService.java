@@ -7,7 +7,6 @@ import com.revature.dao.FormDao;
 import com.revature.daoimpl.FormDaoImpl;
 
 public class FormService {
-	
 	FormDao form = new FormDaoImpl();
 	
 	public Form getForm(int formID) {
@@ -27,5 +26,7 @@ public class FormService {
 			e.printStackTrace();
 		}
 	}
+	
+
 
 }

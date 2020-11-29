@@ -16,10 +16,10 @@ public class CusLoginController {
 		
 		String email = req.getParameter("email");
 		String password = req.getParameter("password");
-		System.out.println("EMAIL: " + email);
-		System.out.println("PASSWORD: " + password);
+		//System.out.println("EMAIL: " + email);
+		//System.out.println("PASSWORD: " + password);
 		Customer cus = cServ.logGetCustomer(email, password);
-		System.out.println("CUS: " + cus);
+		//System.out.println("CUS: " + cus);
 		if(cus == null) {
 			return "invalid.customer";
 		} else {
