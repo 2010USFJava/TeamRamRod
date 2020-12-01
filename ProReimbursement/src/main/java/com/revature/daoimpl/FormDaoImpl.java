@@ -70,4 +70,18 @@ public class FormDaoImpl implements FormDao {
 		ps.executeUpdate();		
 	}
 
+	@Override
+	public int findFormIDByCustomerIDLookUp(int customerID) throws SQLException {
+		Connection conn = DriverManager.getConnection(this.url, this.username, this.password);
+		String sql = "select form_num from customer_lookup where customer_id=?";
+		PreparedStatement ps = conn.prepareStatement(sql);
+		ps.setInt(1, customerID);
+		ResultSet rs = ps.executeQuery();
+		int formNum = 0;
+		while(rs.next()) {
+			formNum = rs.getInt(1);
+		}
+		return formNum;
+	}
+
 }

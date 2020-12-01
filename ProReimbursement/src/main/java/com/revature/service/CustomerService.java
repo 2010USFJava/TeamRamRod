@@ -7,11 +7,14 @@ import java.util.List;
 import com.revature.beans.Customer;
 import com.revature.controller.CusLoginController;
 import com.revature.dao.CustomerDao;
+import com.revature.dao.FormDao;
 import com.revature.daoimpl.CustomerDaoImpl;
+import com.revature.daoimpl.FormDaoImpl;
 
 public class CustomerService {
 	
 	CustomerDao cusdao = new CustomerDaoImpl();
+	FormDao fdao = new FormDaoImpl();
 	
 	public CustomerService() {}
 	
@@ -67,6 +70,15 @@ public class CustomerService {
 	public void insertCustomerIdLookUp(Customer c) {
 		try {
 			cusdao.insertIdCustomerLookUp(c);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}
+	
+	public void getCurrentForm(Customer c) {
+		try {
+			int formNum = fdao.findFormIDByCustomerIDLookUp(c.getEmployeeID());
+			CusLoginController.currentForm = fdao.findFormByID(formNum);
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}

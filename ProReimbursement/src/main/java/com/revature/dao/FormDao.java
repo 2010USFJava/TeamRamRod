@@ -12,5 +12,7 @@ public interface FormDao {
 	public Form findFormByID(int formID) throws SQLException;
 	
 	public void insertFormIdCustomerLookUp(Form f) throws SQLException;
+	
+	public int findFormIDByCustomerIDLookUp(int customerID) throws SQLException;
 
 }
