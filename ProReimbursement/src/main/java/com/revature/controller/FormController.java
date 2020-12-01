@@ -21,9 +21,8 @@ public class FormController {
 		Customer cus = new Customer(employeeNum, req.getParameter("firstname"), 
 				req.getParameter("lastname"), req.getParameter("email"), req.getParameter("password"), tuition);
 		
-		cServ.insertNewCustomer(cus);
+		CusLoginController.currentCustomer = cus;
 		System.out.println(cus);
-		cServ.insertCustomerIdLookUp(cus);
 		return "resources/html/form.html";		
 	}
 	
@@ -38,8 +37,11 @@ public class FormController {
 		Form form = new Form(1, eventDate, req.getParameter("eventtime"), req.getParameter("eventlocation"),
 				req.getParameter("description"), eventCost, req.getParameter("gradingformat"), 
 				eventNum, req.getParameter("justification"), "", hasFiles);
-		//
+	
 		fServ.insertNewForm(form);
+		fServ.insertFormIdLookUp(form);
+		cServ.insertNewCustomer(CusLoginController.currentCustomer);
+		cServ.insertCustomerIdLookUp(CusLoginController.currentCustomer);
 		return "resources/html/applicationReceived.html";
 	}
 	

@@ -51,3 +51,4 @@ dept_head_approval_date date,
 benco_approval_date date,
 is_approved boolean
 );
+

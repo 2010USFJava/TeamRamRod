@@ -63,7 +63,7 @@ public class FormDaoImpl implements FormDao {
 	@Override
 	public void insertFormIdCustomerLookUp(Form f) throws SQLException {
 		Connection conn = DriverManager.getConnection(this.url, this.username, this.password);
-		String sql = "insert into customer_lookup(form_id) values(?) where customer_id=?";
+		String sql = "update customer_lookup set form_num=? where customer_id=?";
 		PreparedStatement ps = conn.prepareStatement(sql);
 		ps.setInt(1, f.getFormID());
 		ps.setInt(2, CusLoginController.currentCustomer.getEmployeeID());

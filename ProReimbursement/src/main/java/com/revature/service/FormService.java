@@ -2,6 +2,7 @@ package com.revature.service;
 
 import java.sql.SQLException;
 
+import com.revature.beans.Customer;
 import com.revature.beans.Form;
 import com.revature.dao.FormDao;
 import com.revature.daoimpl.FormDaoImpl;
@@ -27,6 +28,12 @@ public class FormService {
 		}
 	}
 	
-
+	public void insertFormIdLookUp(Form f) {
+		try {
+			form.insertFormIdCustomerLookUp(f);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}
 
 }
