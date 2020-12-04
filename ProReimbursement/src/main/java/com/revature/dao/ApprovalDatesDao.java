@@ -9,6 +9,6 @@ public interface ApprovalDatesDao {
 	
 	public ApprovalDates getApprovalDate(int formID) throws SQLException;
 	
-	
+	public void updateApprovalDate(int formID) throws SQLException;
 
 }

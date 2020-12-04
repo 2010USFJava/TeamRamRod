@@ -3,11 +3,19 @@ package com.revature.service;
 import java.sql.SQLException;
 
 import com.revature.beans.ApprovalDates;
+import com.revature.controller.CusLoginController;
 import com.revature.dao.ApprovalDatesDao;
+import com.revature.dao.CustomerDao;
+import com.revature.dao.FormDao;
 import com.revature.daoimpl.ApprovalDatesDaoImpl;
+import com.revature.daoimpl.CustomerDaoImpl;
+import com.revature.daoimpl.FormDaoImpl;
 
 public class ApprovalDatesService {
 	ApprovalDatesDao addao = new ApprovalDatesDaoImpl();
+	FormDao fdao = new FormDaoImpl();
+	CustomerService cServ = new CustomerService();
+	CustomerDao cdao = new CustomerDaoImpl();
 	
 	public void newApprovalDate(ApprovalDates ad) {
 		try {
@@ -24,6 +32,18 @@ public class ApprovalDatesService {
 			e.printStackTrace();
 		}
 		return null;
+	}
+	
+	public void updateInitialDate(int formID) {
+		try {
+			addao.updateApprovalDate(formID);
+			CusLoginController.currentForm = fdao.findFormByID(formID);
+			int employeeID = fdao.findCustomerIDByFormIDLookUp(formID);
+			CusLoginController.currentCustomer = cdao.getCustomerById(employeeID);
+			cServ.updateTuition(CusLoginController.currentCustomer.getEmployeeID());
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
 	}
 
 }

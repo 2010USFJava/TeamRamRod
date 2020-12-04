@@ -6,13 +6,13 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.time.LocalDateTime;
 
 import com.revature.beans.ApprovalDates;
-import com.revature.beans.Customer;
 import com.revature.dao.ApprovalDatesDao;
 
 public class ApprovalDatesDaoImpl implements ApprovalDatesDao {
-
+	
 	static {
 		try {
 			Class.forName("org.postgresql.Driver");
@@ -20,6 +20,8 @@ public class ApprovalDatesDaoImpl implements ApprovalDatesDao {
 			e.printStackTrace();
 		}
 	}
+	
+	//public static LocalDateTime now(); 
 	
 	private String url = "jdbc:postgresql://postgres.cyxh07df0zfy.us-west-2.rds.amazonaws.com:5432/postgres?currentSchema=reimbursement";
 	private String username = "aquamiguel";
@@ -51,6 +53,17 @@ public class ApprovalDatesDaoImpl implements ApprovalDatesDao {
 			ad = new ApprovalDates(rs.getInt(1), rs.getDate(2), rs.getDate(3), rs.getDate(4), rs.getDate(5), rs.getBoolean(6));
 		}
 		return ad;
+	}
+
+	@Override
+	public void updateApprovalDate(int formID) throws SQLException {
+		Connection conn = DriverManager.getConnection(this.url, this.username, this.password);
+		String sql = "update approval_dates set benco_approval_date=? where form_id=?";
+		PreparedStatement ps = conn.prepareStatement(sql);
+		ps.setDate(1, (Date) todaysDate);
+		ps.setInt(2, formID);
+		ps.executeUpdate();	
+		
 	}
 
 }

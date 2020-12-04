@@ -3,6 +3,7 @@ package com.revature.servlet;
 import javax.servlet.http.HttpServletRequest;
 
 import com.revature.controller.AdminLoginController;
+import com.revature.controller.ApprovalDatesController;
 import com.revature.controller.CusLoginController;
 import com.revature.controller.FormController;
 import com.revature.controller.HomeController;
@@ -40,6 +41,10 @@ public class RequestHelper {
 		case "/ProReimbursement/received.form":
 			System.out.println("in customer form rhelper");
 			return FormController.enterNewForm(req); 
+		
+		case "/ProReimbursement/initialApproval.form":
+			System.out.println("in initial approval form rhelper");
+			return ApprovalDatesController.initialDate(req);
 			
 		default:
 			System.out.println("in default case");

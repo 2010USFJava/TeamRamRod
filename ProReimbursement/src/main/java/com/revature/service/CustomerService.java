@@ -83,6 +83,12 @@ public class CustomerService {
 			e.printStackTrace();
 		}
 	}
+	
+	public void updateTuition(int employeeID) {
+		CusLoginController.currentForm.getFormID();
+		CusLoginController.currentForm.getCost();
+		CusLoginController.currentForm.getEventNum();
+	}
 
 }
 
