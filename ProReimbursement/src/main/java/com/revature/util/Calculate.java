@@ -15,7 +15,9 @@ public class Calculate {
 	
 	//after the third approval, the tuition is subtracted by calculated reimbursement
 	public double calculateTuitionRemaining(double reimbursementAmount) {
+		System.out.println("reimbursementAmount: " + reimbursementAmount);
 		double newTuition = cServ.getTuition(CusLoginController.currentCustomer) - reimbursementAmount;
+		System.out.println("new tuition: " + newTuition);
 		return newTuition;
 	}
 	
@@ -35,13 +37,14 @@ public class Calculate {
 			}
 			return temp;
 		} else {
-			CusLoginController.currentCustomer.setTuition(calculateTuitionRemaining(reimbursementAmount));
+			double newTuition = calculateTuitionRemaining(reimbursementAmount);
+			CusLoginController.currentCustomer.setTuition(newTuition);
 			try {
 				cdao.updateTuition(CusLoginController.currentCustomer);
 			} catch (SQLException e) {
 				e.printStackTrace();
 			}
-			return calculateTuitionRemaining(reimbursementAmount);
+			return newTuition;
 		}
 	}
 

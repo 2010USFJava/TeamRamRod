@@ -34,6 +34,7 @@ public class ApprovalDatesService {
 		return null;
 	}
 	
+	// updates initial date and tuition
 	public void updateInitialDate(int formID) {
 		try {
 			addao.updateApprovalDate(formID);

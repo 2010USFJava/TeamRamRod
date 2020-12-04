@@ -1,6 +1,7 @@
 package com.revature.controller;
 
-import java.sql.Date;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -28,8 +29,8 @@ public class FormController {
 	
 	public static String enterNewForm(HttpServletRequest req) {
 		int eventNum = Integer.parseInt(req.getParameter("event"));
-		double eventCost = Double.parseDouble(req.getParameter("eventcost"));
-		Date eventDate = Date.valueOf(req.getParameter("eventdate"));
+		double eventCost = Double.parseDouble(req.getParameter("eventcost"));		
+		LocalDate eventDate = LocalDate.parse(req.getParameter("eventdate"));
 		boolean hasFiles = false;
 		if(req.getParameter("box").equals("yes")) {
 			hasFiles = true;

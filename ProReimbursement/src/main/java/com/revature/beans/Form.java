@@ -1,11 +1,11 @@
 package com.revature.beans;
 
-import java.sql.Date;
+import java.time.LocalDate;
 
 public class Form {
 
 	private int formID;
-	private Date date;
+	private LocalDate date;
 	private String time;
 	private String location;
 	private String description;
@@ -19,7 +19,7 @@ public class Form {
 	public Form() {
 		super();
 	}
-	public Form(int formID, Date date, String time, String location, String description, double cost, String gradeFormat, int eventNum,
+	public Form(int formID, LocalDate date, String time, String location, String description, double cost, String gradeFormat, int eventNum,
 			String justification, String dialogBox, boolean isAttached) {
 		super();
 		this.date = date;
@@ -34,10 +34,10 @@ public class Form {
 		this.dialogBox = dialogBox;
 		this.isAttached = isAttached;
 	}
-	public Date getDate() {
+	public LocalDate getDate() {
 		return date;
 	}
-	public void setDate(Date date) {
+	public void setDate(LocalDate date) {
 		this.date = date;
 	}
 	public String getTime() {

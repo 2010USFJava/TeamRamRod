@@ -1,20 +1,21 @@
 package com.revature.beans;
 
+import java.time.LocalDate;
 import java.util.Date;
 
 public class ApprovalDates {
 	private int formID;
-	private Date dateEntered;
-	private Date dSuperApproval;
-	private Date dHeadApproval;
-	private Date benCoApproval;
+	private LocalDate dateEntered;
+	private LocalDate dSuperApproval;
+	private LocalDate dHeadApproval;
+	private LocalDate benCoApproval;
 	private boolean isApproved;
 	
 	public ApprovalDates() {
 		super();
 	}
 
-	public ApprovalDates(int formID, Date dateEntered, Date dSuperApproval, Date dHeadApproval, Date benCoApproval,
+	public ApprovalDates(int formID, LocalDate dateEntered, LocalDate dSuperApproval, LocalDate dHeadApproval, LocalDate benCoApproval,
 			boolean isApproved) {
 		super();
 		this.formID = formID;
@@ -33,35 +34,35 @@ public class ApprovalDates {
 		this.formID = formID;
 	}
 
-	public Date getDateEntered() {
+	public LocalDate getDateEntered() {
 		return dateEntered;
 	}
 
-	public void setDateEntered(Date dateEntered) {
+	public void setDateEntered(LocalDate dateEntered) {
 		this.dateEntered = dateEntered;
 	}
 
-	public Date getdSuperApproval() {
+	public LocalDate getdSuperApproval() {
 		return dSuperApproval;
 	}
 
-	public void setdSuperApproval(Date dSuperApproval) {
+	public void setdSuperApproval(LocalDate dSuperApproval) {
 		this.dSuperApproval = dSuperApproval;
 	}
 
-	public Date getdHeadApproval() {
+	public LocalDate getdHeadApproval() {
 		return dHeadApproval;
 	}
 
-	public void setdHeadApproval(Date dHeadApproval) {
+	public void setdHeadApproval(LocalDate dHeadApproval) {
 		this.dHeadApproval = dHeadApproval;
 	}
 
-	public Date getBenCoApproval() {
+	public LocalDate getBenCoApproval() {
 		return benCoApproval;
 	}
 
-	public void setBenCoApproval(Date benCoApproval) {
+	public void setBenCoApproval(LocalDate benCoApproval) {
 		this.benCoApproval = benCoApproval;
 	}
 

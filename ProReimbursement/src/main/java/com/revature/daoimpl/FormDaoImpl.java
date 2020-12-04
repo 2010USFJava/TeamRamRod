@@ -5,6 +5,7 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.time.LocalDate;
 import java.sql.Date;
 
 import com.revature.beans.Customer;
@@ -32,7 +33,7 @@ public class FormDaoImpl implements FormDao {
 		String sql = "insert into form values(default,?,?,?,?,?,?,?,?,?)";
 		PreparedStatement ps = conn.prepareStatement(sql);
 			
-		ps.setDate(1, f.getDate());
+		ps.setObject(1, f.getDate());
 		ps.setString(2, f.getTime());
 		ps.setString(3,f.getLocation());
 		ps.setString(4, f.getDescription());
@@ -43,7 +44,7 @@ public class FormDaoImpl implements FormDao {
 		ps.setBoolean(9, f.isAttached());
 		ps.executeUpdate();		
 	}
-
+ 
 	@Override
 	public Form findFormByID(int formID) throws SQLException {
 		Connection conn = DriverManager.getConnection(this.url, this.username, this.password);
@@ -53,8 +54,8 @@ public class FormDaoImpl implements FormDao {
 		ResultSet rs = ps.executeQuery();
 		Form f = null;
 		while(rs.next()) {
-			f = new Form (rs.getInt(1), rs.getDate(2), rs.getString(3), rs.getString(4),
-						rs.getString(5),rs.getInt(6),rs.getString(7),rs.getInt(8),rs.getString(9),
+			f = new Form (rs.getInt(1), rs.getObject(2, LocalDate.class), rs.getString(3), rs.getString(4),
+						rs.getString(5),rs.getDouble(6),rs.getString(7),rs.getInt(8),rs.getString(9),
 						rs.getString(10),rs.getBoolean(11));
 		}
 		return f;

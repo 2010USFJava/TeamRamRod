@@ -10,11 +10,13 @@ import com.revature.dao.CustomerDao;
 import com.revature.dao.FormDao;
 import com.revature.daoimpl.CustomerDaoImpl;
 import com.revature.daoimpl.FormDaoImpl;
+import com.revature.util.Calculate;
 
 public class CustomerService {
 	
 	CustomerDao cusdao = new CustomerDaoImpl();
 	FormDao fdao = new FormDaoImpl();
+	static Calculate calc = new Calculate();
 	
 	public CustomerService() {}
 	
@@ -85,9 +87,50 @@ public class CustomerService {
 	}
 	
 	public void updateTuition(int employeeID) {
-		CusLoginController.currentForm.getFormID();
-		CusLoginController.currentForm.getCost();
-		CusLoginController.currentForm.getEventNum();
+		int formID = CusLoginController.currentForm.getFormID(); //1010
+		double cost = CusLoginController.currentForm.getCost(); //222
+		int eventNum = CusLoginController.currentForm.getEventNum(); //4
+		double finalReimbursement = calc.setModifyTuition(calculateReimbursementByEventNum(cost, eventNum));
+		CusLoginController.currentCustomer.setTuition(finalReimbursement);
+		try {
+			cusdao.updateTuition(CusLoginController.currentCustomer);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}
+	
+	public double calculateReimbursementByEventNum(double cost, int eventNum) {
+		double reimbursement = 0;
+		switch(eventNum) {
+			case 1:
+				System.out.println("University course: 80%");
+				reimbursement = cost*.8;
+				break;
+			case 2:
+				System.out.println("Seminar: 60%");
+				reimbursement = cost*.6;
+				break;
+			case 3:
+				System.out.println("Certification Prep class: 75%");
+				reimbursement = cost*.75;
+				break;
+			case 4:
+				System.out.println("Certification: 100%");
+				reimbursement = cost;
+				break;
+			case 5: 
+				System.out.println("Technical Training: 90%");
+				reimbursement = cost*.9;
+				break;
+			case 6: 
+				System.out.println("Other: 30%");
+				reimbursement = cost*.3;
+				break;
+			default: 
+				System.out.println("in default case, incorrect event num");
+				break;
+		}
+		return reimbursement;
 	}
 
 }
