@@ -18,6 +18,7 @@ public class FormController {
 	
 	public static String fillOutForm(HttpServletRequest req) {
 		int employeeNum = Integer.parseInt(req.getParameter("employeeID"));
+		
 		double tuition = 1000.0;
 		Customer cus = new Customer(employeeNum, req.getParameter("firstname"), 
 				req.getParameter("lastname"), req.getParameter("email"), req.getParameter("password"), tuition);
@@ -48,5 +49,9 @@ public class FormController {
 	
 	public static String customerForm(HttpServletRequest req) {
 		return "resources/html/customerInfo.html";		
+	}
+	
+	public static String fillOptional(HttpServletRequest req) {
+		return "resources/html/filesAndGrades.html";
 	}
 }

@@ -38,6 +38,10 @@ public class RequestHelper {
 			System.out.println("in form rhelper");
 			return FormController.fillOutForm(req); 
 			
+		case "/ProReimbursement/optional.form":
+			System.out.println("in form optional rhelper");
+			return FormController.fillOptional(req);
+			
 		case "/ProReimbursement/received.form":
 			System.out.println("in customer form rhelper");
 			return FormController.enterNewForm(req); 

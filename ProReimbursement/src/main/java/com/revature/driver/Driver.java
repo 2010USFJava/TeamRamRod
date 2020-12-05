@@ -1,9 +1,12 @@
 package com.revature.driver;
 
+import java.sql.SQLException;
+
 import com.revature.controller.CusLoginController;
 import com.revature.dao.CustomerDao;
 import com.revature.daoimpl.CustomerDaoImpl;
 import com.revature.service.ApprovalDatesService;
+import com.revature.service.CustomerService;
 import com.revature.util.Calculate;
 
 public class Driver {
@@ -12,10 +15,20 @@ public class Driver {
 		Calculate cal = new Calculate();
 		CustomerDao c = new CustomerDaoImpl();
 		ApprovalDatesService apServ = new ApprovalDatesService();
-		apServ.updateInitialDate(100);
-		System.out.println(CusLoginController.currentCustomer.getTuition());
-		System.out.println(CusLoginController.currentCustomer);
-	
+		CustomerService cServ = new CustomerService();
+		
+		try {
+			cServ.getCurrentForm(c.getCustomerById(1010), 101);
+			System.out.println(CusLoginController.currentForm);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+//		apServ.updateInitialDate(100);
+//		System.out.println(CusLoginController.currentCustomer.getTuition());
+//		System.out.println(CusLoginController.currentCustomer);
+//	
 //		try {
 //			
 ////			CusLoginController.currentCustomer = c.getCustomerById(1234);

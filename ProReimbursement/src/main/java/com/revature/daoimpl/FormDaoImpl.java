@@ -6,9 +6,9 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.time.LocalDate;
-import java.sql.Date;
+import java.util.ArrayList;
+import java.util.List;
 
-import com.revature.beans.Customer;
 import com.revature.beans.Form;
 import com.revature.controller.CusLoginController;
 import com.revature.dao.FormDao;
@@ -72,17 +72,17 @@ public class FormDaoImpl implements FormDao {
 	}
 
 	@Override
-	public int findFormIDByCustomerIDLookUp(int customerID) throws SQLException {
+	public List<Integer> findAllFormIDsLookUp(int customerID) throws SQLException {
+		List<Integer> fList = new ArrayList<Integer>();
 		Connection conn = DriverManager.getConnection(this.url, this.username, this.password);
 		String sql = "select form_num from customer_lookup where customer_id=?";
 		PreparedStatement ps = conn.prepareStatement(sql);
 		ps.setInt(1, customerID);
 		ResultSet rs = ps.executeQuery();
-		int formNum = 0;
 		while(rs.next()) {
-			formNum = rs.getInt(1);
+			fList.add(rs.getInt(1));
 		}
-		return formNum;
+		return fList;
 	}
 	
 	public int findCustomerIDByFormIDLookUp(int formID) throws SQLException {

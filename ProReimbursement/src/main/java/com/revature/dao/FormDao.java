@@ -1,8 +1,8 @@
 package com.revature.dao;
 
 import java.sql.SQLException;
+import java.util.List;
 
-import com.revature.beans.Customer;
 import com.revature.beans.Form;
 
 public interface FormDao {
@@ -13,7 +13,7 @@ public interface FormDao {
 	
 	public void insertFormIdCustomerLookUp(Form f) throws SQLException;
 	
-	public int findFormIDByCustomerIDLookUp(int customerID) throws SQLException;
+	public List<Integer> findAllFormIDsLookUp(int customerID) throws SQLException;
 	
 	public int findCustomerIDByFormIDLookUp(int formID) throws SQLException;
 

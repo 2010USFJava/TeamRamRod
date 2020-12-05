@@ -7,9 +7,17 @@
 
 <div class="login-controller">
 	<h4>Welcome Home, Customer!</h4>
-	<input method="get" action="/ProReimbursement/read.form">
+<!-- 	<input method="get" action="/ProReimbursement/read.form"> -->
+
+	<form method="post" action="/ProReimbursement/fill.form">
+	<!-- Pass in employeeID of the current customer -->
+	<input value="1010" name="employeeID">
+	<input type="submit" value="Create New Request">
+	</form>
 </div>
 
-<script type="text/javascript" src="resources/js/customerHome.js" ></script>
+<script type="text/javascript" src="resources/js/customerHome.js" >
+	let 
+</script>
 </body>
 </html>

@@ -2,6 +2,8 @@ window.onload=function(){
 	console.log("window");
 	getCustomerForm();
 }
+	
+	let cusNum = 1010;
 
 function getCustomerForm(){
 	let xhttp = new XMLHttpRequest();

@@ -77,19 +77,25 @@ public class CustomerService {
 		}
 	}
 	
-	public void getCurrentForm(Customer c) {
+	public void getCurrentForm(Customer c, int formNum) {
+		List<Integer> cfList = new ArrayList<Integer>();
 		try {
-			int formNum = fdao.findFormIDByCustomerIDLookUp(c.getEmployeeID());
-			CusLoginController.currentForm = fdao.findFormByID(formNum);
+			cfList = fdao.findAllFormIDsLookUp(c.getEmployeeID());
+			for(Integer x: cfList) {
+				if(x == formNum) {
+					System.out.println("inside if stmt");
+					CusLoginController.currentForm = fdao.findFormByID(formNum);
+				} 
+			}
+			
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
 	}
 	
-	public void updateTuition(int employeeID) {
-		int formID = CusLoginController.currentForm.getFormID(); //1010
-		double cost = CusLoginController.currentForm.getCost(); //222
-		int eventNum = CusLoginController.currentForm.getEventNum(); //4
+	public void updateTuition() {
+		double cost = CusLoginController.currentForm.getCost(); 
+		int eventNum = CusLoginController.currentForm.getEventNum();
 		double finalReimbursement = calc.setModifyTuition(calculateReimbursementByEventNum(cost, eventNum));
 		CusLoginController.currentCustomer.setTuition(finalReimbursement);
 		try {

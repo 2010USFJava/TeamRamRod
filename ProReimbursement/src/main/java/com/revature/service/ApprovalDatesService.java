@@ -41,7 +41,7 @@ public class ApprovalDatesService {
 			CusLoginController.currentForm = fdao.findFormByID(formID);
 			int employeeID = fdao.findCustomerIDByFormIDLookUp(formID);
 			CusLoginController.currentCustomer = cdao.getCustomerById(employeeID);
-			cServ.updateTuition(CusLoginController.currentCustomer.getEmployeeID());
+			cServ.updateTuition();
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}

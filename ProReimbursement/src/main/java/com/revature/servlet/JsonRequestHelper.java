@@ -24,7 +24,7 @@ public class JsonRequestHelper {
 		case "/ProReimbursement/customerHome.json":
 			System.out.println("in customerHome Json rhelper");
 			HomeController.customerHome(req);
-			cServ.getCurrentForm(CusLoginController.currentCustomer);
+			//cServ.reportAllForms(CusLoginController.currentCustomer);
 			res.getWriter().write(new ObjectMapper().writeValueAsString(CusLoginController.currentForm));
 			System.out.println(res.toString());
 			
