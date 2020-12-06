@@ -1,3 +1,4 @@
+<!DOCTYPE html>
 <html>
 <head>
 <meta charset="ISO-8859-1">
@@ -7,7 +8,15 @@
 
 <div class="login-controller">
 	<h4>Submit Files and Optional Information Here</h4>
-<!-- 	<input method="get" action="/ProReimbursement/read.form"> -->
+
+ 	<form method="post" action="/ProReimbursement/received.form">
+         Enter optional information here.
+         <br>
+         <textarea rows = "6" cols = "60" name = "description">
+            
+         </textarea><br>
+         <input type = "submit" value = "submit" />
+     </form>
 
 </div>
 

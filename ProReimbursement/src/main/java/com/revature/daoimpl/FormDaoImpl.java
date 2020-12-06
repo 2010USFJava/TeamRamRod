@@ -22,9 +22,9 @@ public class FormDaoImpl implements FormDao {
 		}
 	}
 	
-	private String url = "jdbc:postgresql://postgres.cyxh07df0zfy.us-west-2.rds.amazonaws.com:5432/postgres?currentSchema=reimbursement";
-	private String username = "aquamiguel";
-	private String password = "3tyme4be!";
+	private String url= "jdbc:postgresql://java2010usf.cgdcd13do7zd.us-east-2.rds.amazonaws.com:5432/postgres?currentSchema=reimbursement";
+	private String username = "sukanya";
+	private String password = "sukanya14";
 	
 	
 	@Override

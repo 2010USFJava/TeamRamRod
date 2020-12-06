@@ -47,5 +47,13 @@ public class AdminService {
 			e.printStackTrace();
 		}
 	}
+	
+	public void addDepartment(int customerID, String department) {
+		try {
+			addao.insertDeptLookUp(customerID, department);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}
 
 }

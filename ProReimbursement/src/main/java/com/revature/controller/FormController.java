@@ -1,12 +1,12 @@
 package com.revature.controller;
 
 import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
 
 import javax.servlet.http.HttpServletRequest;
 
 import com.revature.beans.Customer;
 import com.revature.beans.Form;
+import com.revature.service.AdminService;
 import com.revature.service.ApprovalDatesService;
 import com.revature.service.CustomerService;
 import com.revature.service.FormService;
@@ -15,9 +15,11 @@ public class FormController {
 	static CustomerService cServ = new CustomerService();
 	static FormService fServ = new FormService();
 	static ApprovalDatesService aServ = new ApprovalDatesService();
+	static AdminService adServ = new AdminService();
 	
 	public static String fillOutForm(HttpServletRequest req) {
 		int employeeNum = Integer.parseInt(req.getParameter("employeeID"));
+		String dept = req.getParameter("department");
 		
 		double tuition = 1000.0;
 		Customer cus = new Customer(employeeNum, req.getParameter("firstname"), 
@@ -25,6 +27,7 @@ public class FormController {
 		
 		CusLoginController.currentCustomer = cus;
 		System.out.println(cus);
+		adServ.addDepartment(employeeNum, dept);
 		return "resources/html/form.html";		
 	}
 	

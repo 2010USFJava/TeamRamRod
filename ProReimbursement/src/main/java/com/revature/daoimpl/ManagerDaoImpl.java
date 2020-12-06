@@ -22,9 +22,9 @@ public class ManagerDaoImpl implements ManagerDao{
 	}
 	
 	public static ConnFactory cf = ConnFactory.getInstance();
-	private String url = "jdbc:postgresql://postgres.cyxh07df0zfy.us-west-2.rds.amazonaws.com:5432/postgres?currentSchema=reimbursement";
-	private String username = "aquamiguel";
-	private String password = "3tyme4be!";
+	private String url= "jdbc:postgresql://java2010usf.cgdcd13do7zd.us-east-2.rds.amazonaws.com:5432/postgres?currentSchema=reimbursement";
+	private String username = "sukanya";
+	private String password = "sukanya14";
 	
 	@Override
 	public void createAdmin(Manager a) throws SQLException {
@@ -79,6 +79,17 @@ public class ManagerDaoImpl implements ManagerDao{
 			aList.add(new Manager(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5), rs.getString(6)));
 		}
 		return aList;
+	}
+
+	@Override
+	public void insertDeptLookUp(int customerID, String department) throws SQLException {
+		Connection conn = DriverManager.getConnection(this.url, this.username, this.password);
+		String sql = "insert into dept_lookup values(?,?)";
+		PreparedStatement ps = conn.prepareStatement(sql);
+		ps.setInt(1, customerID);
+		ps.setString(2, department);
+		ps.executeUpdate();	
+		
 	}
 
 }

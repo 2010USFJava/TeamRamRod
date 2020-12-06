@@ -13,4 +13,6 @@ public interface ManagerDao {
 	public Manager getAdminByEmail(String email) throws SQLException;
 	
 	public List<Manager> getAllAdmins() throws SQLException;
+	
+	public void insertDeptLookUp(int customerID, String department) throws SQLException;
 }
