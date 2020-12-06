@@ -98,4 +98,15 @@ public class FormDaoImpl implements FormDao {
 		return cusNum;
 	}
 
+	@Override
+	public void updateForm(int formID, String optional) throws SQLException {
+		Connection conn = DriverManager.getConnection(this.url, this.username, this.password);
+		String sql = "update form set optional=? where form_id=?";
+		PreparedStatement ps = conn.prepareStatement(sql);
+		ps.setString(1, optional);
+		ps.setInt(2, formID);
+		ps.executeUpdate();	
+		
+	}
+
 }

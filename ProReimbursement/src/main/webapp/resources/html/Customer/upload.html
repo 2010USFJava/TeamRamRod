@@ -8,16 +8,16 @@
 <div id="app">
     <h1>S3 Uploader Test - Questions? Ask James @jbesw</h1>
 
-    <div v-if="!image">
-      <h2>Select an image</h2>
+    <div>
+      <h2>Select an file</h2>
       <input type="file" @change="onFileChange">
     </div>
-    <div v-else>
-      <img :src="image" />
-      <button v-if="!uploadURL" @click="removeImage">Remove image</button>
-      <button v-if="!uploadURL" @click="uploadImage">Upload image</button>
+    <div>
+      
+      <button v-if="!uploadURL" @click="removeFile">Remove File</button>
+      <button v-if="!uploadURL" @click="uploadFile">Upload File</button>
     </div>
-    <h2 v-if="uploadURL">Success! Image uploaded to bucket.</h2>
+    <h2 v-if="uploadURL">Success! File uploaded to bucket.</h2>
 </div>
 <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>

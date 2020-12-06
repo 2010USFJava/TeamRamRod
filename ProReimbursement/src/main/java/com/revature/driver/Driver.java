@@ -3,6 +3,7 @@ package com.revature.driver;
 import java.sql.SQLException;
 
 import com.revature.controller.CusLoginController;
+import com.revature.controller.FormController;
 import com.revature.dao.CustomerDao;
 import com.revature.daoimpl.CustomerDaoImpl;
 import com.revature.service.ApprovalDatesService;
@@ -17,12 +18,17 @@ public class Driver {
 		ApprovalDatesService apServ = new ApprovalDatesService();
 		CustomerService cServ = new CustomerService();
 		
-		try {
-			cServ.getCurrentForm(c.getCustomerById(1010), 101);
-			System.out.println(CusLoginController.currentForm);
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+		System.out.println("in driver");
+		String newString = FormController.fixDate("12/05/2020");
+		
+		System.out.println("new: "+newString);
+		
+//		try {
+//			cServ.getCurrentForm(c.getCustomerById(1010), 101);
+//			System.out.println(CusLoginController.currentForm);
+//		} catch (SQLException e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
 		}
 		
 //		apServ.updateInitialDate(100);
@@ -64,6 +70,6 @@ public class Driver {
 //			e.printStackTrace();
 //		}
 
-	}
+
 
 

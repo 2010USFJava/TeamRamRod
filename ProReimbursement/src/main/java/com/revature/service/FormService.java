@@ -1,9 +1,10 @@
 package com.revature.service;
 
 import java.sql.SQLException;
+import java.util.List;
 
-import com.revature.beans.Customer;
 import com.revature.beans.Form;
+import com.revature.controller.CusLoginController;
 import com.revature.dao.FormDao;
 import com.revature.daoimpl.FormDaoImpl;
 
@@ -36,6 +37,21 @@ public class FormService {
 		}
 	}
 	
-	//public void getAllForms(int )
+	public void updateForm(String optional) {
+		try {
+			int customerID = CusLoginController.currentCustomer.getEmployeeID();
+			List<Integer> fList = form.findAllFormIDsLookUp(customerID);
+			int temp = 0;
+			for(int i: fList) {
+				if(i > temp) {
+					temp = i;
+				}
+			}
+			System.out.println("temp: " + temp);
+			form.updateForm(temp, optional);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}
 
 }
