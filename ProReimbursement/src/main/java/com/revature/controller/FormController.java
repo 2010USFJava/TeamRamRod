@@ -85,8 +85,13 @@ public class FormController {
 	
 	public static String fillOptional(HttpServletRequest req) {
 		String text = req.getParameter("optional");
-		System.out.println(text);
-		fServ.updateForm(text);
+		String email = req.getParameter("email");
+		boolean hasEmail = false;
+		if (email.equals("yes"))
+			hasEmail=true;
+		fServ.updateOptional(text);
+		fServ.updateEmail(hasEmail);
+		System.out.println("Inside has email- untested");
 		return "resources/html/applicationReceived.html";
 	}
 }

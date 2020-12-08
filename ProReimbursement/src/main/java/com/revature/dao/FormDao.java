@@ -17,6 +17,10 @@ public interface FormDao {
 	
 	public int findCustomerIDByFormIDLookUp(int formID) throws SQLException;
 	
-	public void updateForm(int formID, String optional) throws SQLException;
+	public void updateOptional(int formID, String optional) throws SQLException;
+	
+	public void updateEmail(int formID, boolean email) throws SQLException;
+	
+	//public List<Form> findAllForms(int customerID) throws SQLException;
 
 }

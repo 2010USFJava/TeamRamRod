@@ -1,6 +1,7 @@
 package com.revature.service;
 
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 
 import com.revature.beans.Form;
@@ -37,7 +38,7 @@ public class FormService {
 		}
 	}
 	
-	public void updateForm(String optional) {
+	public void updateOptional(String optional) {
 		try {
 			int customerID = CusLoginController.currentCustomer.getEmployeeID();
 			List<Integer> fList = form.findAllFormIDsLookUp(customerID);
@@ -47,11 +48,39 @@ public class FormService {
 					temp = i;
 				}
 			}
-			System.out.println("temp: " + temp);
-			form.updateForm(temp, optional);
+			form.updateOptional(temp, optional);
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
+	}
+	
+	public void updateEmail(boolean email) {
+		try {
+			int customerID = CusLoginController.currentCustomer.getEmployeeID();
+			List<Integer> fList = form.findAllFormIDsLookUp(customerID);
+			int temp = 0;
+			for(int i: fList) {
+				if(i > temp) {
+					temp = i;
+				}
+			}
+			form.updateEmail(temp, email);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}
+	
+	public List<Form> getAllForm(int customerID){
+		List<Form> forms = new ArrayList<Form>();
+		try {
+			List<Integer> formIDs = form.findAllFormIDsLookUp(customerID);
+			for(int id: formIDs) {
+				forms.add(form.findFormByID(id));
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return forms;
 	}
 
 }

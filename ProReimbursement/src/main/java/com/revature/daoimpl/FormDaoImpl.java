@@ -99,7 +99,7 @@ public class FormDaoImpl implements FormDao {
 	}
 
 	@Override
-	public void updateForm(int formID, String optional) throws SQLException {
+	public void updateOptional(int formID, String optional) throws SQLException {
 		Connection conn = DriverManager.getConnection(this.url, this.username, this.password);
 		String sql = "update form set optional=? where form_id=?";
 		PreparedStatement ps = conn.prepareStatement(sql);
@@ -108,5 +108,32 @@ public class FormDaoImpl implements FormDao {
 		ps.executeUpdate();	
 		
 	}
+
+	@Override
+	public void updateEmail(int formID, boolean email) throws SQLException {
+		Connection conn = DriverManager.getConnection(this.url, this.username, this.password);
+		String sql = "update form set has_email=? where form_id=?";
+		PreparedStatement ps = conn.prepareStatement(sql);
+		ps.setBoolean(1, email);
+		ps.setInt(2, formID);
+		ps.executeUpdate();	
+		
+	}
+
+//	@Override
+//	public List<Form> findAllForms(int customerID) throws SQLException {
+//		List<Form> fList = new ArrayList<Form>();
+//		Connection conn = DriverManager.getConnection(this.url, this.username, this.password);
+//		List<Integer> formIDs = findAllFormIDsLookUp(customerID);
+//		String sql = "select * from form where form_id=?";
+//		PreparedStatement ps = conn.prepareStatement(sql);
+//		ps.setInt(1, customerID);
+//		ResultSet rs = ps.executeQuery();
+//		while(rs.next()) {
+//			fList.add(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4));
+//		}
+//		return fList;
+//		
+//	}
 
 }

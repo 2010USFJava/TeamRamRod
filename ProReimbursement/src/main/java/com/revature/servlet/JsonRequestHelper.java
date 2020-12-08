@@ -11,9 +11,11 @@ import com.revature.controller.CusLoginController;
 import com.revature.controller.CustomerController;
 import com.revature.controller.HomeController;
 import com.revature.service.CustomerService;
+import com.revature.service.FormService;
 
 public class JsonRequestHelper {
 	static CustomerService cServ = new CustomerService();
+	static FormService fServ = new FormService();
 	
 	public static void process(HttpServletRequest req, HttpServletResponse res) throws JsonProcessingException, IOException{
 		switch(req.getRequestURI()) {
@@ -24,13 +26,11 @@ public class JsonRequestHelper {
 		case "/ProReimbursement/customerHome.json":
 			System.out.println("in customerHome Json rhelper");
 			HomeController.customerHome(req);
-			//cServ.reportAllForms(CusLoginController.currentCustomer);
-			res.getWriter().write(new ObjectMapper().writeValueAsString(CusLoginController.currentForm));
-			System.out.println(res.toString());
-			
+			res.getWriter().write(new ObjectMapper().writeValueAsString(fServ.getAllForm(CusLoginController.currentCustomer.getEmployeeID())));
+			System.out.println("after getting forms");
+			break;
 		default:
 			System.out.println("in default case");
-			//SuperVillain vill = new SuperVillain("?","?", 0);
 			//res.getWriter().write(new ObjectMapper().writeValueAsString(vill));
 		}
 		
