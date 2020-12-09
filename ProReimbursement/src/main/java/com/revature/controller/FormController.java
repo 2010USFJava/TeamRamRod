@@ -63,7 +63,7 @@ public class FormController {
 		String dept = req.getParameter("department");
 		
 		boolean hasFiles = false;
-		if(req.getParameter("box").equals("yes")) {
+		if(req.getParameter("files").equals("yes")) {
 			hasFiles = true;
 		}
 		Form form = new Form(1, eventDate, req.getParameter("eventtime"), req.getParameter("eventlocation"),
@@ -73,7 +73,9 @@ public class FormController {
 		CusLoginController.currentForm = form;
 		fServ.insertNewForm(form);
 		fServ.insertFormIdLookUp(form);
-		cServ.insertNewCustomer(CusLoginController.currentCustomer);
+		if(!cServ.checkForCustomer(CusLoginController.currentCustomer.getEmployeeID())) {
+			cServ.insertNewCustomer(CusLoginController.currentCustomer);
+		}
 		cServ.insertCustomerIdLookUp(CusLoginController.currentCustomer);
 		adServ.addDepartment(CusLoginController.currentCustomer.getEmployeeID(), dept);
 		return "resources/html/filesAndGrades.html";
@@ -93,5 +95,15 @@ public class FormController {
 		fServ.updateEmail(hasEmail);
 		System.out.println("Inside has email- untested");
 		return "resources/html/applicationReceived.html";
+	}
+	
+	public static String submitGrade(HttpServletRequest req) {
+		int formNum = Integer.parseInt(req.getParameter("formNum"));
+		CusLoginController.currentForm = fServ.getForm(formNum);
+		return "resources/html/filesAndGrades.html";		
+	}
+	
+	public static String newRequest(HttpServletRequest req) {
+		return "resources/html/form.html";		
 	}
 }

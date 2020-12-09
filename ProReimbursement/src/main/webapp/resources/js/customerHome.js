@@ -1,11 +1,8 @@
-var formContainer = document.getElementById("form-info");
-
 window.onload=function(){
 	console.log("window");
 	getCustomerForm();
 }
 
-let cusNum = 1010;
 
 function getCustomerForm() {
 	let xhttp = new XMLHttpRequest();
@@ -14,8 +11,11 @@ function getCustomerForm() {
 		console.log("the ready state has changed");
 		if (xhttp.readyState == 4 && xhttp.status== 200) {
 			let form = JSON.parse(xhttp.responseText);
-			console.log('Description: '+ form[0].description);
-			console.log('FormID: ' + form[0].formID);
+			let test = xhttp.responseText;
+			console.log(test);
+			console.log('this is test');
+			//console.log('Description: '+ form[0].description);
+			//console.log('FormID: ' + form[0].formID);
 			tableFromJson(form);
 		}
 	}
@@ -26,14 +26,19 @@ function getCustomerForm() {
 
 function tableFromJson(form) {
 	console.log('inside tableFromJson: ' + form);
-	var htmlString = [];
+	var myBooks =[];
+	var formNum = [];
 	for(i = 0; i < form.length; i++){
-		//htmlString += form[i].formID + form[i].time + form[i].cost + form[i].gradeFormat;
-		htmlString = [form[i].formID + form[i].time + form[i].cost + form[i].gradeFormat];
+		myBooks[i] = form[i];
+		formNum[i] = form[i].formID;
+		
+
+		
 	}
-	formContainer.insertAdjacentHTML('beforeend', htmlString);
+	
 	// the json data. (you can change the values for output.)
-	var myBooks = [];
+	
+		console.log('mybooks: '+myBooks);
 
 
 	// Extract value from table header. 
@@ -41,11 +46,15 @@ function tableFromJson(form) {
 	var col = [];
 	for (var i = 0; i < myBooks.length; i++) {
 		for (var key in myBooks[i]) {
-			if (col.indexOf(key) === -1) {
-				col.push(key);
-			}
+				if (key !== 'date' && col.indexOf(key) === -1){
+					 	console.log(key)
+						col.push(key);
+					}
+			
 		}
-	}
+			
+		}
+	
 
 	// Create a table.
 	var table = document.createElement("table");
@@ -53,20 +62,28 @@ function tableFromJson(form) {
 	// Create table header row using the extracted headers above.
 	var tr = table.insertRow(-1);                   // table row.
 
-	for (var i = 0; i < col.length; i++) {
-		var th = document.createElement("th");      // table header.
-		th.innerHTML = col[i];
-		tr.appendChild(th);
+	for (var i = 0; i < col.length-2; i++) {
+			
+		
+				var th = document.createElement("th");      // table header.
+				th.innerHTML = col[i];
+				tr.appendChild(th);
+			
 	}
 
 	// add json data to the table as rows.
 	for (var i = 0; i < myBooks.length; i++) {
+		
+			tr = table.insertRow(-1);
 
-		tr = table.insertRow(-1);
-
-		for (var j = 0; j < col.length; j++) {
-			var tabCell = tr.insertCell(-1);
-			tabCell.innerHTML = myBooks[i][col[j]];
+			for (var j = 0; j < col.length-2; j++) {
+				var tabCell = tr.insertCell(-1);
+				tabCell.innerHTML = myBooks[i][col[j]];
+				
+				if (j == col.length-3){
+					var tabCell = tr.insertCell(-1);
+					tabCell.innerHTML = 'link';
+				}
 		}
 	}
 
@@ -75,5 +92,5 @@ function tableFromJson(form) {
 	divShowData.innerHTML = "";
 	divShowData.appendChild(table);
 
-	document.getElementById('msg').innerHTML = '<br />You can later <a href="https://www.encodedna.com/javascript/dynamically-add-remove-rows-to-html-table-using-javascript-and-save-data.htm" target="_blank" style="color:#1464f4;text-decoration:none;">get all the data from table and save it in a database.</a>';
+	
 }

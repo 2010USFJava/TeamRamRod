@@ -138,6 +138,16 @@ public class CustomerService {
 		}
 		return reimbursement;
 	}
-
+	
+	public boolean checkForCustomer(int customerID) {
+		try {
+			if(cusdao.getCustomerById(customerID) != null) {
+				return true;
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return false;
+	}
 }
 

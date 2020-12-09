@@ -1,6 +1,8 @@
 package com.revature.beans;
 
-public class Customer {
+import java.io.Serializable;
+
+public class Customer implements Serializable {
 	private int employeeID;
 	private String fName;
 	private String lName;

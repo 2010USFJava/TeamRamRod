@@ -1,6 +1,8 @@
 package com.revature.beans;
 
-public class Manager {
+import java.io.Serializable;
+
+public class Manager implements Serializable {
 	public int employee_ID;
 	public String fName;
 	public String lName;

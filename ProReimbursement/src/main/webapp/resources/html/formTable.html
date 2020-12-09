@@ -1,0 +1,40 @@
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link rel="STYLESHEET" type="text/css" href="dba_style/buttons.css" />
+<title>Untitled Document</title>
+</head>
+<script type="text/javascript">
+function do_change(){
+document.getElementById("save").style.display = "block";
+document.getElementById("change").style.display = "block";
+document.getElementById("cancel").style.display = "block";
+}
+</script>
+<body>
+<form name="form1" method="post" action="">
+<div class="buttons">
+
+<button type="button" class="regular" name="edit" id="edit" onclick="do_change(); return false;">
+    <img src="dba_images/textfield_key.png" alt=""/>
+    Edit
+</button>
+
+<button type="submit" class="positive" name="save" id="save" style="display:none;">
+    <img src="dba_images/apply2.png" alt=""/>
+    Save
+</button>
+
+<button class="regular" name="change" id="change" style="display:none;">
+    <img src="dba_images/textfield_key.png" alt=""/>
+    change
+</button>
+
+    <button class="negative" name="cancel" id="cancel" style="display:none;">
+        <img src="dba_images/cross.png" alt=""/>
+        Cancel
+    </button>
+</div>
+</form>
+</body>
+</html>

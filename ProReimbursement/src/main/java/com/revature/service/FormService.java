@@ -74,12 +74,15 @@ public class FormService {
 		List<Form> forms = new ArrayList<Form>();
 		try {
 			List<Integer> formIDs = form.findAllFormIDsLookUp(customerID);
+			System.out.println(formIDs);
 			for(int id: formIDs) {
 				forms.add(form.findFormByID(id));
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
+		System.out.println(forms);
+		
 		return forms;
 	}
 

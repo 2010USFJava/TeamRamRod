@@ -52,7 +52,7 @@ public class AdminService {
 		try {
 			addao.insertDeptLookUp(customerID, department);
 		} catch (SQLException e) {
-			e.printStackTrace();
+			//e.printStackTrace();
 		}
 	}
 

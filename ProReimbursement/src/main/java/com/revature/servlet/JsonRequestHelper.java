@@ -29,6 +29,12 @@ public class JsonRequestHelper {
 			res.getWriter().write(new ObjectMapper().writeValueAsString(fServ.getAllForm(CusLoginController.currentCustomer.getEmployeeID())));
 			System.out.println("after getting forms");
 			break;
+		
+		case "/ProReimbursement/logout.json":
+			System.out.println("in logout json rhelper");
+			CustomerController.logoutSession(req, res);
+			break;
+		
 		default:
 			System.out.println("in default case");
 			//res.getWriter().write(new ObjectMapper().writeValueAsString(vill));

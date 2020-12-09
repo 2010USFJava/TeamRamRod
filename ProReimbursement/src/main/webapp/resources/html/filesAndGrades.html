@@ -15,7 +15,6 @@
          <textarea rows = "6" cols = "60" name = "optional">
             
          </textarea><br>
-         
         
          <label for="email">Will you attach an approval email?</label>
  		<select name="email" id="email">
@@ -23,16 +22,23 @@
     	<option value="no">No</option>
     	</select>
     	<br>
-    	 <input type = "submit" value = "submit" />
+    	<label for="grade" id="gradeText" style="display:none;">Click here if you are submitting a grade. Don't forget to attach your files! </label>
+    	<input type="checkbox" value = "submit" id = "grade" style="display:none;"> 
+   
+    	<br><br>
+  
      </form>
-     
+     <button onclick="change()" value = "submit">Submit</button>
      <br>
 	<a href= "https://47q0hbdvdj.execute-api.us-west-1.amazonaws.com/Prod" 
-	target="_blank">Enter files here, Must include your employee number, or will be invalid</a>
+	target="_blank">Enter files here, File name MUST include your employee number, or will be invalid</a>
 
 </div>
 
-<script> 
+<script type="text/javascript" src="resources/js/submitGrades.js"> 
+</script>
+<script src="https://smtpjs.com/v3/smtp.js"></script>  
+<script type="text/javascript" src="resources/js/email.js"> 
 </script>
 </body>
 </html>
