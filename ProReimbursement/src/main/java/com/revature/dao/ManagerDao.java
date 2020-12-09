@@ -15,4 +15,10 @@ public interface ManagerDao {
 	public List<Manager> getAllAdmins() throws SQLException;
 	
 	public void insertDeptLookUp(int customerID, String department) throws SQLException;
+	
+	public String getDepartment(int employeeID) throws SQLException;
+	
+	public List<Integer> departmentListLookUp(String department) throws SQLException;
+	
+	public List<Integer> findBlankInApprovalDate(int formID) throws SQLException;
 }

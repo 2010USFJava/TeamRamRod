@@ -1,0 +1,36 @@
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Admin Home</title>
+
+<div class="login-controller">
+	<h4>Welcome Home, Admin!</h4>
+
+
+	<form method="post" action="/ProReimbursement/submitGrade.form">
+	<!-- Pass in employeeID of the current customer -->
+	<input placeholder="Enter form number" name="formNum">
+	<input type="submit" value="Enter Form Options/Submit Grade">
+	</form>
+	<h3>Submitted Forms:</h3>
+	
+</div>
+</head>
+
+<body>
+    <p id='showData'></p>
+    <br>
+    <form method="post" action="/ProReimbursement/newRequest.form">
+	<input type="submit" value="Create New Request">
+	</form>
+	<br>
+	<form method="post" action="/ProReimbursement/logout.json">
+	 <button value = "logout">Logout</button>
+	 </form>
+</body>
+
+<script type="text/javascript" src="resources/js/customerHome.js">
+</script>
+
+</body>
+</html>

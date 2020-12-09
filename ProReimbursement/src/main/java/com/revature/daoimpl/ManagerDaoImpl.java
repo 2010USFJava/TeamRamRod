@@ -92,4 +92,32 @@ public class ManagerDaoImpl implements ManagerDao{
 		
 	}
 
+	@Override
+	public String getDepartment(int employeeID) throws SQLException {
+		Connection conn = DriverManager.getConnection(this.url, this.username, this.password);
+		String sql = "select department from manager where employee_id=?";
+		PreparedStatement ps = conn.prepareStatement(sql);
+		ps.setInt(1, employeeID);
+		ResultSet rs = ps.executeQuery();
+		String dept = null;
+		while(rs.next()) {
+			dept = rs.getString(7);
+		}
+		return dept;
+	}
+
+	@Override
+	public List<Integer> departmentListLookUp(String department) throws SQLException {
+		List<Integer> aList = new ArrayList<Integer>();
+		Connection conn = DriverManager.getConnection(this.url, this.username, this.password);
+		String sql = "select customer_id from dept_lookup where department=?";
+		PreparedStatement ps = conn.prepareStatement(sql);
+		ps.setString(1, department);
+		ResultSet rs = ps.executeQuery();
+		while(rs.next()) {
+			aList.add(rs.getInt(1));
+		}
+		return aList;
+	}
+
 }
