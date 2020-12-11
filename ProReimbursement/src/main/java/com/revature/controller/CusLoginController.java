@@ -28,4 +28,9 @@ public class CusLoginController {
 			return "home.customer";
 		}
 	}
+	
+	public static String index(HttpServletRequest req) {
+		return "resources/html/index.html";
+	}
+	
 }

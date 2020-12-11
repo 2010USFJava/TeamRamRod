@@ -2,10 +2,10 @@ package com.revature.driver;
 
 import java.sql.SQLException;
 
-import com.revature.controller.CusLoginController;
-import com.revature.controller.FormController;
 import com.revature.dao.CustomerDao;
+import com.revature.dao.ManagerDao;
 import com.revature.daoimpl.CustomerDaoImpl;
+import com.revature.daoimpl.ManagerDaoImpl;
 import com.revature.service.ApprovalDatesService;
 import com.revature.service.CustomerService;
 import com.revature.util.Calculate;
@@ -17,11 +17,23 @@ public class Driver {
 		CustomerDao c = new CustomerDaoImpl();
 		ApprovalDatesService apServ = new ApprovalDatesService();
 		CustomerService cServ = new CustomerService();
-		
-		System.out.println("in driver");
-		String newString = FormController.fixDate("12/05/2020");
-		
-		System.out.println("new: "+newString);
+		ManagerDao m = new ManagerDaoImpl();
+		try {
+			System.out.println(m.findBlankInApprovalDate(3333, "direct supervisor"));
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+//		try {
+//			System.out.println(c.getCustomerById(0));
+//		} catch (SQLException e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		}
+//		System.out.println("in driver");
+//		String newString = FormController.fixDate("12/05/2020");
+//		
+//		System.out.println("new: "+newString);
 		
 //		try {
 //			cServ.getCurrentForm(c.getCustomerById(1010), 101);

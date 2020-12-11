@@ -85,5 +85,17 @@ public class FormService {
 		
 		return forms;
 	}
-
+	
+	public List<String> formDateStrings(List<Integer> formIds){
+		List<String> returnDates = new ArrayList<String>();
+	
+		try {
+			for(int fid: formIds) {
+				returnDates.add(form.getDate(fid).toString());
+			}
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		return returnDates;
+	}
 }

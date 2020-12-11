@@ -3,6 +3,7 @@ package com.revature.service;
 import java.sql.SQLException;
 
 import com.revature.beans.ApprovalDates;
+import com.revature.beans.Form;
 import com.revature.controller.CusLoginController;
 import com.revature.dao.ApprovalDatesDao;
 import com.revature.dao.CustomerDao;
@@ -23,6 +24,14 @@ public class ApprovalDatesService {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
+	}
+	
+	public ApprovalDates createApprovalBean(Form f) {
+		ApprovalDates appdate = new ApprovalDates();
+		appdate.setFormID(f.getFormID());
+		appdate.setDateEntered(f.getDate());
+		appdate.setReimbursement(cServ.calculateReimbursementByEventNum(f.getCost(), f.getEventNum()));
+		return appdate;
 	}
 	
 	public ApprovalDates getApprovalDate(int formID) {

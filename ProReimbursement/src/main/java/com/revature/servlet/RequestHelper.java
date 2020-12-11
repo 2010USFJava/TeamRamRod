@@ -14,6 +14,10 @@ public class RequestHelper {
 		System.out.println(req.getRequestURI()); //URI: what resource am I going to get from this domain
 		
 		switch(req.getRequestURI()) {
+		case "/ProReimbursement/index.customer":
+			System.out.println("in index customer rhelper");
+			return CusLoginController.index(req);
+			
 		case "/ProReimbursement/login.customer":
 			System.out.println("in customer login rhelper");
 			return CusLoginController.login(req);

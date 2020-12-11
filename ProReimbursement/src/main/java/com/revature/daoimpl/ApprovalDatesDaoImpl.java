@@ -9,7 +9,9 @@ import java.time.LocalDate;
 import java.time.ZoneId;
 
 import com.revature.beans.ApprovalDates;
+import com.revature.controller.CusLoginController;
 import com.revature.dao.ApprovalDatesDao;
+import com.revature.service.CustomerService;
 
 public class ApprovalDatesDaoImpl implements ApprovalDatesDao {
 	
@@ -27,17 +29,20 @@ public class ApprovalDatesDaoImpl implements ApprovalDatesDao {
 	private String username = "sukanya";
 	private String password = "sukanya14";
 	
+	CustomerService cServ = new CustomerService();
+	
 	@Override
 	public void createApprovalDate(ApprovalDates ad) throws SQLException {
 		Connection conn = DriverManager.getConnection(this.url, this.username, this.password);
-		String sql = "insert into approval_dates values(?,?,?,?,?,?)";
+		String sql = "insert into approval_dates values(default,?,?,?,?,?,?)";
+		double reimbursement = cServ.calculateReimbursementByEventNum(CusLoginController.currentForm.getCost(), CusLoginController.currentForm.getEventNum());
 		PreparedStatement ps = conn.prepareStatement(sql);
-		ps.setInt(1, ad.getFormID());
-		ps.setObject(2,todayLocalDate);
-		ps.setObject(3, ad.getdSuperApproval());
-		ps.setObject(4, ad.getdHeadApproval());
-		ps.setObject(5, ad.getBenCoApproval());
-		ps.setBoolean(6, ad.isApproved());
+		ps.setObject(1,todayLocalDate);
+		ps.setObject(2, ad.getdSuperApproval());
+		ps.setObject(3, ad.getdHeadApproval());
+		ps.setObject(4, ad.getBenCoApproval());
+		ps.setBoolean(5, ad.isApproved());
+		ps.setDouble(6, reimbursement);
 		ps.executeUpdate();		
 	}
 
@@ -50,7 +55,7 @@ public class ApprovalDatesDaoImpl implements ApprovalDatesDao {
 		ResultSet rs = ps.executeQuery();
 		ApprovalDates ad = null;
 		while(rs.next()) {
-			ad = new ApprovalDates(rs.getInt(1), rs.getObject(2, LocalDate.class), rs.getObject(3, LocalDate.class), rs.getObject(4, LocalDate.class), rs.getObject(5, LocalDate.class), rs.getBoolean(6));
+			ad = new ApprovalDates(rs.getInt(1), rs.getObject(2, LocalDate.class), rs.getObject(3, LocalDate.class), rs.getObject(4, LocalDate.class), rs.getObject(5, LocalDate.class), rs.getBoolean(6), rs.getDouble(7));
 		}
 		return ad;
 	}
@@ -65,5 +70,7 @@ public class ApprovalDatesDaoImpl implements ApprovalDatesDao {
 		ps.executeUpdate();	
 		
 	}
+
+
 
 }

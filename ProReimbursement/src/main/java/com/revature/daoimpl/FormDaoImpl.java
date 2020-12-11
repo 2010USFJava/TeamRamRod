@@ -120,20 +120,18 @@ public class FormDaoImpl implements FormDao {
 		
 	}
 
-//	@Override
-//	public List<Form> findAllForms(int customerID) throws SQLException {
-//		List<Form> fList = new ArrayList<Form>();
-//		Connection conn = DriverManager.getConnection(this.url, this.username, this.password);
-//		List<Integer> formIDs = findAllFormIDsLookUp(customerID);
-//		String sql = "select * from form where form_id=?";
-//		PreparedStatement ps = conn.prepareStatement(sql);
-//		ps.setInt(1, customerID);
-//		ResultSet rs = ps.executeQuery();
-//		while(rs.next()) {
-//			fList.add(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4));
-//		}
-//		return fList;
-//		
-//	}
+	@Override
+	public LocalDate getDate(int formID) throws SQLException {
+		Connection conn = DriverManager.getConnection(this.url, this.username, this.password);
+		String sql = "select event_date from form where form_id=?";
+		PreparedStatement ps = conn.prepareStatement(sql);
+		ps.setInt(1, formID);
+		ResultSet rs = ps.executeQuery();
+		LocalDate date = null;
+		while(rs.next()) {
+			date = rs.getObject(1, LocalDate.class);
+		}
+		return date;
+	}
 
 }

@@ -78,6 +78,7 @@ public class FormController {
 		}
 		cServ.insertCustomerIdLookUp(CusLoginController.currentCustomer);
 		adServ.addDepartment(CusLoginController.currentCustomer.getEmployeeID(), dept);
+		aServ.newApprovalDate(aServ.createApprovalBean(form));
 		return "resources/html/filesAndGrades.html";
 	}
 	
@@ -94,7 +95,7 @@ public class FormController {
 		fServ.updateOptional(text);
 		fServ.updateEmail(hasEmail);
 		System.out.println("Inside has email- untested");
-		return "resources/html/applicationReceived.html";
+		return "resources/html/customer/applicationReceived.html";
 	}
 	
 	public static String submitGrade(HttpServletRequest req) {

@@ -20,7 +20,7 @@ public class CustomerController extends HttpServlet{
 		res.getWriter().write(new ObjectMapper().writeValueAsString(cus)); //write vill as JSON and add that to response
 	}
 	
-	public static void logoutSession(HttpServletRequest req, HttpServletResponse res) throws JsonProcessingException, IOException{
+	public static String logoutSession(HttpServletRequest req) throws JsonProcessingException, IOException{
 		 HttpSession session = req.getSession();
 		
 	  
@@ -30,5 +30,6 @@ public class CustomerController extends HttpServlet{
 	        session = req.getSession(false);
 	
 	        System.out.println("Session : " + session);
+	        return "resources/html/index.html";
 	}
 }

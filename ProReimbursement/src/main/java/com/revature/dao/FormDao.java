@@ -1,6 +1,7 @@
 package com.revature.dao;
 
 import java.sql.SQLException;
+import java.time.LocalDate;
 import java.util.List;
 
 import com.revature.beans.Form;
@@ -21,6 +22,6 @@ public interface FormDao {
 	
 	public void updateEmail(int formID, boolean email) throws SQLException;
 	
-	//public List<Form> findAllForms(int customerID) throws SQLException;
+	public LocalDate getDate(int formID) throws SQLException;
 
 }

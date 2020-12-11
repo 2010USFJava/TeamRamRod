@@ -9,6 +9,6 @@ public class HomeController {
 	}
 	
 	public static String adminHome(HttpServletRequest req) {
-		return "resources/html/adminHome.html";		
+		return "resources/html/admin/adminHome.html";		
 	}
 }

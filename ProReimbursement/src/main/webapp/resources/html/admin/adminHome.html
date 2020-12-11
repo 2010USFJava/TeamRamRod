@@ -7,7 +7,7 @@
 	<h4>Welcome Home, Admin!</h4>
 
 
-	<form method="post" action="/ProReimbursement/submitGrade.form">
+	<form method="post" action="/ProReimbursement/DIFFERENT">
 	<!-- Pass in employeeID of the current customer -->
 	<input placeholder="Enter form number" name="formNum">
 	<input type="submit" value="Enter Form Options/Submit Grade">
@@ -20,16 +20,13 @@
 <body>
     <p id='showData'></p>
     <br>
-    <form method="post" action="/ProReimbursement/newRequest.form">
-	<input type="submit" value="Create New Request">
-	</form>
 	<br>
 	<form method="post" action="/ProReimbursement/logout.json">
 	 <button value = "logout">Logout</button>
 	 </form>
 </body>
 
-<script type="text/javascript" src="resources/js/customerHome.js">
+<script type="text/javascript" src="resources/js/adminHome.js">
 </script>
 
 </body>

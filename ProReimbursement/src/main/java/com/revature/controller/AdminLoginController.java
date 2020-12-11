@@ -7,6 +7,7 @@ import com.revature.service.AdminService;
 
 public class AdminLoginController {
 	static AdminService aServ = new AdminService();
+	public static Manager currentAdmin;
 	
 	public static String login(HttpServletRequest req) {
 		if(!req.getMethod().equals("POST")) {
@@ -19,6 +20,7 @@ public class AdminLoginController {
 		if(ad == null) {
 			return "invalid.admin";
 		} else {
+			currentAdmin = ad;
 			req.getSession().setAttribute("currentad", ad);
 			return "home.admin";
 		}

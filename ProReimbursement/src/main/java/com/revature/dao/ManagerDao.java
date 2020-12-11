@@ -20,5 +20,7 @@ public interface ManagerDao {
 	
 	public List<Integer> departmentListLookUp(String department) throws SQLException;
 	
-	public List<Integer> findBlankInApprovalDate(int formID) throws SQLException;
-}
+	public String getTitle(int employeeID) throws SQLException;
+	
+	public List<Integer> findBlankInApprovalDate(int formID, String title) throws SQLException;
+} 

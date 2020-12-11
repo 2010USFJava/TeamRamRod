@@ -3,6 +3,22 @@ window.onload=function(){
 	getCustomerForm();
 }
 
+function getFormDates() {
+	let xhttp = new XMLHttpRequest();
+
+	xhttp.onreadystatechange = function() {
+		console.log("the ready state has changed");
+		if (xhttp.readyState == 4 && xhttp.status== 200) {
+			let dates = JSON.parse(xhttp.responseText);
+			
+			console.log(dates);
+
+		}
+	}
+	xhttp.open("GET", "http://localhost:8080/ProReimbursement/getDates.json");
+
+	xhttp.send();
+}
 
 function getCustomerForm() {
 	let xhttp = new XMLHttpRequest();
@@ -24,16 +40,36 @@ function getCustomerForm() {
 	xhttp.send();
 }
 
+function logout() {
+	let xhttp = new XMLHttpRequest();
+
+	xhttp.onreadystatechange = function() {
+		console.log("the ready state has changed");
+		if (xhttp.readyState == 4 && xhttp.status== 200) {
+			
+			form = JSON.parse(xhttp.responseText);
+			let test = xhttp.responseText;
+			console.log(test);
+		}
+	}
+	xhttp.open("GET", "http://localhost:8080/ProReimbursement/logout.json");
+
+	xhttp.send();
+}
+
 function tableFromJson(form) {
+	let dates = getFormDates();
 	console.log('inside tableFromJson: ' + form);
 	var myBooks =[];
 	var formNum = [];
+	var mydates = [];
 	for(i = 0; i < form.length; i++){
 		myBooks[i] = form[i];
 		formNum[i] = form[i].formID;
-		
-
-		
+				
+	}
+	for(i = 0; i < dates.length; i++){
+		mydates[i] = dates[i];
 	}
 	
 	// the json data. (you can change the values for output.)
@@ -46,7 +82,7 @@ function tableFromJson(form) {
 	var col = [];
 	for (var i = 0; i < myBooks.length; i++) {
 		for (var key in myBooks[i]) {
-				if (key !== 'date' && col.indexOf(key) === -1){
+				if (key !== 'date' && col.indexOf(key) === -1){ // take out first conditional
 					 	console.log(key)
 						col.push(key);
 					}
@@ -80,9 +116,9 @@ function tableFromJson(form) {
 				var tabCell = tr.insertCell(-1);
 				tabCell.innerHTML = myBooks[i][col[j]];
 				
-				if (j == col.length-3){
+				if (j == 1){
 					var tabCell = tr.insertCell(-1);
-					tabCell.innerHTML = 'link';
+					tabCell.innerHTML = 'date';
 				}
 		}
 	}

@@ -49,7 +49,7 @@ public class ManagerDaoImpl implements ManagerDao{
 		ResultSet rs = ps.executeQuery();
 		Manager a = null;
 		while(rs.next()) {
-			a = new Manager(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5), rs.getString(6));
+			a = new Manager(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5), rs.getString(6), rs.getString(7));
 		}
 		return a;
 	}
@@ -63,7 +63,7 @@ public class ManagerDaoImpl implements ManagerDao{
 		ResultSet rs = ps.executeQuery();
 		Manager a = null;
 		while(rs.next()) {
-			a = new Manager(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5), rs.getString(6));
+			a = new Manager(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5), rs.getString(6), rs.getString(7));
 		}
 		return a;
 	}
@@ -76,7 +76,7 @@ public class ManagerDaoImpl implements ManagerDao{
 		PreparedStatement ps = conn.prepareStatement(sql);
 		ResultSet rs = ps.executeQuery();
 		while(rs.next()) {
-			aList.add(new Manager(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5), rs.getString(6)));
+			aList.add(new Manager(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5), rs.getString(6), rs.getString(7)));
 		}
 		return aList;
 	}
@@ -101,7 +101,7 @@ public class ManagerDaoImpl implements ManagerDao{
 		ResultSet rs = ps.executeQuery();
 		String dept = null;
 		while(rs.next()) {
-			dept = rs.getString(7);
+			dept = rs.getString(1);
 		}
 		return dept;
 	}
@@ -119,5 +119,48 @@ public class ManagerDaoImpl implements ManagerDao{
 		}
 		return aList;
 	}
+
+	@Override
+	public String getTitle(int employeeID) throws SQLException {
+		Connection conn = DriverManager.getConnection(this.url, this.username, this.password);
+		String sql = "select title from manager where employee_id=?";
+		PreparedStatement ps = conn.prepareStatement(sql);
+		ps.setInt(1, employeeID);
+		ResultSet rs = ps.executeQuery();
+		String title = null;
+		while(rs.next()) {
+			title = rs.getString(1);
+		}
+		return title;
+	}
+
+	@Override
+	public List<Integer> findBlankInApprovalDate(int formID, String title) throws SQLException {
+		List<Integer> aList = new ArrayList<Integer>();
+		List<Integer> newList = new ArrayList<Integer>();
+		Connection conn = DriverManager.getConnection(this.url, this.username, this.password);
+		String dateColumn = null;
+		if(title.equals("direct supervisor")) {
+			dateColumn = "direct_supervisor_approval_date";
+		} else if(title.equals("department head")) {
+			dateColumn = "department_head_approval_date";
+		} else { //benco
+			dateColumn = "benco_approval_date";
+		}
+		String sql = "select form_id from approval_dates where " + dateColumn +" IS NULL";
+		PreparedStatement ps = conn.prepareStatement(sql);
+		ResultSet rs = ps.executeQuery();
+		while(rs.next()) {
+			aList.add(rs.getInt(1));
+		}
+		for(int a: aList) {
+			if(a == formID) {
+				newList.add(a);
+			}
+		}
+		return newList;
+	}
+
+	
 
 }

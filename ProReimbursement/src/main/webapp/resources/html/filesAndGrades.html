@@ -22,13 +22,20 @@
     	<option value="no">No</option>
     	</select>
     	<br>
-    	<label for="grade" id="gradeText" style="display:none;">Click here if you are submitting a grade. Don't forget to attach your files! </label>
+    	
+    	<label id="gradeText" style="display:none;">Click here if you are submitting a grade. Don't forget to attach your files! </label>
     	<input type="checkbox" value = "submit" id = "grade" style="display:none;"> 
    
     	<br><br>
-  
+  		<button onclick="change()" value = "submit">Submit</button>
+  		
+     
+   
+     <a  id="loginpage" href="http://localhost:8080/ProReimbursement/resources/html/index.html">Go back to Login page</a>
      </form>
-     <button onclick="change()" value = "submit">Submit</button>
+     <form method="post" action="/ProReimbursement/home.customer">
+      <button  id="customerHome" style="display:none;" >Go back to your Home Page</button>
+     </form>
      <br>
 	<a href= "https://47q0hbdvdj.execute-api.us-west-1.amazonaws.com/Prod" 
 	target="_blank">Enter files here, File name MUST include your employee number, or will be invalid</a>

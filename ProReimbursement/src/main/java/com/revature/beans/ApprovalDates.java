@@ -10,13 +10,14 @@ public class ApprovalDates {
 	private LocalDate dHeadApproval;
 	private LocalDate benCoApproval;
 	private boolean isApproved;
+	private double reimbursement;
 	
 	public ApprovalDates() {
 		super();
 	}
 
 	public ApprovalDates(int formID, LocalDate dateEntered, LocalDate dSuperApproval, LocalDate dHeadApproval, LocalDate benCoApproval,
-			boolean isApproved) {
+			boolean isApproved, double reimbursement) {
 		super();
 		this.formID = formID;
 		this.dateEntered = dateEntered;
@@ -24,6 +25,7 @@ public class ApprovalDates {
 		this.dHeadApproval = dHeadApproval;
 		this.benCoApproval = benCoApproval;
 		this.isApproved = isApproved;
+		this.reimbursement = reimbursement;
 	}
 
 	public int getFormID() {
@@ -74,10 +76,19 @@ public class ApprovalDates {
 		this.isApproved = isApproved;
 	}
 
+	public double getReimbursement() {
+		return reimbursement;
+	}
+
+	public void setReimbursement(double reimbursement) {
+		this.reimbursement = reimbursement;
+	}
+
 	@Override
 	public String toString() {
 		return "ApprovalDates [formID=" + formID + ", dateEntered=" + dateEntered + ", dSuperApproval=" + dSuperApproval
 				+ ", dHeadApproval=" + dHeadApproval + ", benCoApproval=" + benCoApproval + ", isApproved=" + isApproved
-				+ "]";
+				+ ", reimbursement=" + reimbursement + "]";
 	}
+
 }

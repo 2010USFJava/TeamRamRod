@@ -1,10 +1,9 @@
 window.onload=function(){
 	console.log("window");
-	getCustomerForm();
+	getAdminForm();
 }
 
-
-function getCustomerForm() {
+function getAdminForm() {
 	let xhttp = new XMLHttpRequest();
 
 	xhttp.onreadystatechange = function() {
@@ -19,7 +18,7 @@ function getCustomerForm() {
 			tableFromJson(form);
 		}
 	}
-	xhttp.open("GET", "http://localhost:8080/ProReimbursement/customerHome.json");
+	xhttp.open("GET", "http://localhost:8080/ProReimbursement/adminForms.json");
 
 	xhttp.send();
 }
