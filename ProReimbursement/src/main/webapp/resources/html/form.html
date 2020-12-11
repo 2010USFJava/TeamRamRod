@@ -2,40 +2,66 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<meta name="viewport"
-	content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-<!-- Bootstrap CSS -->
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+
+<style>
+.column {
+  float: left;
+  width: 35%;
+}
+
+/* Clear floats after the columns */
+.row:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+
+.content {
+  max-width: 500px;
+  margin: auto;
+}
+</style>
+
+</style>
+
+
 <link rel="stylesheet"
-	href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
-	integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
-	crossorigin="anonymous">
-	
-	<link type="text/css" rel= "stylesheet" href="resources/css/main.css">
-	
-<title>New Reimbursement Form</title>
-<link type="text/css" rel="stylesheet"
-	href="resources/bootstrap-4.3.1-dist/css/bootstrap.css">
+	href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+<link rel="stylesheet" href="/resources/demos/style.css">
 <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+
+
+
+
+<link type="text/css" rel="stylesheet" href="../css/main.css">
+
+<title>New Reimbursement Form</title>
+
 <script>
 	$(function() {
 		$("#datepicker").datepicker();
 	});
 </script>
+
 </head>
 
-<body>
+
+
+
+
+
+<body class = "content">
 	<div class="row">
-		<div class="col"></div>
-		<div class="col">
+		<div class="column">
 			<h3>Please enter your information</h3>
 			<form method="post" action="/ProReimbursement/optional.form">
-				<input type="text" placeholder="Choose date" id="datepicker"
-					name="eventdate"> <input placeholder="Enter event time"
-					name="eventtime"> <br> <br> <input
-					placeholder="Enter event location" name="eventlocation"> <input
-					placeholder="Enter description" name="description"> <br>
+				<input placeholder="Enter event location" name="eventlocation">
+				<input placeholder="Enter description" name="description"> <br>
 				<br> <input type="text" onchange="calculate()"
 					placeholder="Enter event cost" name="eventcost" id="cost">
 				<input placeholder="Enter grading format" name="gradingformat">
@@ -47,18 +73,48 @@
 					<option value="4">Certification</option>
 					<option value="5">Technical Training</option>
 					<option value="6">Other</option>
-				</select> <br> <br> <input placeholder="Enter department"
-					name="department"> <input placeholder="Enter justification"
-					name="justification"> <br> <br> <label
-					for="files">Will you attach files?</label> <select name="files"
-					id="files">
+				</select> <br> <br> <label for="files">Will you attach
+					files?</label> <select name="files" id="files">
 					<option value="yes">Yes</option>
 					<option value="no">No</option>
-				</select> <input type="submit" value="submit">
-			</form>
-			<p id="answer"></p>
+				</select> <br> <br> <label for="department">Enter
+					department:</label> <select onchange="calculate()" name="department"
+					id="department">
+					<option value="accounting">Accounting</option>
+					<option value="marketing">Marketing</option>
+					<option value="it">IT</option>
+					<option value="sales">Sales</option>
+					<option value="finance">Finance</option>
+					<option value="security">Security</option>
+				</select> <input placeholder="Enter justification" name="justification">
+				<br> <br>
+				<input type="text" placeholder="Choose date" id="datepicker"
+				name="eventdate">
+				<br>
+				<br>
+				<br>
+				<br>
+				<br>
+				<br>
+				<br>
+				<br>
+				<br>
+				<br>
+				<button value="submit">Submit</button>
+		
 		</div>
-		<div class="col"></div>
+	
+		<div class="column">
+				
+			<br>
+			<br>
+			 Choose a time
+			<embed type="text/html" src="test.html" id="eventtime">
+			
+			</form>
+			<p  id="answer"></p>
+			
+		</div>
 	</div>
 	<script>
 		var calc = [ .8, .6, .75, 1, .9, .3 ];
@@ -77,26 +133,14 @@
 
 			if (!isNaN(reimburse)) {
 				document.getElementById("answer").innerHTML = "Your projected reimbursement is $"
-						+ reimburse.pcsFormatNumber({
-							to_fixed : 2
-						});
+						+ reimburse;
 				console.log("inside print out");
 			}
 		}
 	</script>
-	<script src="//code.jquery.com/jquery.min.js"></script>
-	<script src="js/pcsFormatNumber.jquery.js"></script>
 
-	<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
-		integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
-		crossorigin="anonymous"></script>
-	<script
-		src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
-		integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
-		crossorigin="anonymous"></script>
-	<script
-		src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
-		integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
-		crossorigin="anonymous"></script>
+
+	</div>
+	</div>
 </body>
 </html>
