@@ -1,7 +1,14 @@
+
+var dates;
+
 window.onload=function(){
 	console.log("window");
+	getFormDates();
 	getCustomerForm();
+	
+	
 }
+
 
 function getFormDates() {
 	let xhttp = new XMLHttpRequest();
@@ -9,9 +16,9 @@ function getFormDates() {
 	xhttp.onreadystatechange = function() {
 		console.log("the ready state has changed");
 		if (xhttp.readyState == 4 && xhttp.status== 200) {
-			let dates = JSON.parse(xhttp.responseText);
-			
-			console.log(dates);
+			dates = JSON.parse(xhttp.responseText);
+			console.log()
+			console.log('Array of strings '+ dates);
 
 		}
 	}
@@ -58,7 +65,7 @@ function logout() {
 }
 
 function tableFromJson(form) {
-	let dates = getFormDates();
+	
 	console.log('inside tableFromJson: ' + form);
 	var myBooks =[];
 	var formNum = [];
@@ -71,7 +78,7 @@ function tableFromJson(form) {
 	for(i = 0; i < dates.length; i++){
 		mydates[i] = dates[i];
 	}
-	
+	console.log('mydates: ' + mydates);
 	// the json data. (you can change the values for output.)
 	
 		console.log('mybooks: '+myBooks);
@@ -82,7 +89,7 @@ function tableFromJson(form) {
 	var col = [];
 	for (var i = 0; i < myBooks.length; i++) {
 		for (var key in myBooks[i]) {
-				if (key !== 'date' && col.indexOf(key) === -1){ // take out first conditional
+				if (col.indexOf(key) === -1){
 					 	console.log(key)
 						col.push(key);
 					}
@@ -118,7 +125,7 @@ function tableFromJson(form) {
 				
 				if (j == 1){
 					var tabCell = tr.insertCell(-1);
-					tabCell.innerHTML = 'date';
+					tabCell.innerHTML = myDates[i];
 				}
 		}
 	}

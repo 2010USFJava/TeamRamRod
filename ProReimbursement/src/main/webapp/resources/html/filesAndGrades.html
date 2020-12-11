@@ -1,51 +1,75 @@
-<!DOCTYPE html>
-<html>
+<!doctype html>
+<html lang="en">
 <head>
-<meta charset="ISO-8859-1">
+<meta charset="utf-8">
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+<!-- Bootstrap CSS -->
+<link rel="stylesheet"
+	href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+	integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+	crossorigin="anonymous">
 <title>Optional and Files entered here</title>
 </head>
 <body>
 
-<div class="login-controller">
-	<h4>Submit Files and Optional Information Here</h4>
+	<div class="login-controller">
+		<div class="row">
+			<div class="col"></div>
+			<div class="col">
+				<h4>Submit Files and Optional Information Here</h4>
 
- 	<form method="post" action="/ProReimbursement/received.form">
-         Enter optional information here.
-         <br>
-         <textarea rows = "6" cols = "60" name = "optional">
+				<form method="post" action="/ProReimbursement/received.form">
+					Enter optional information here. <br>
+					<textarea rows="6" cols="60" name="optional">
             
-         </textarea><br>
-        
-         <label for="email">Will you attach an approval email?</label>
- 		<select name="email" id="email">
-    	<option value="yes">Yes</option>
-    	<option value="no">No</option>
-    	</select>
-    	<br>
-    	
-    	<label id="gradeText" style="display:none;">Click here if you are submitting a grade. Don't forget to attach your files! </label>
-    	<input type="checkbox" value = "submit" id = "grade" style="display:none;"> 
-   
-    	<br><br>
-  		<button onclick="change()" value = "submit">Submit</button>
-  		
-     
-   
-     <a  id="loginpage" href="http://localhost:8080/ProReimbursement/resources/html/index.html">Go back to Login page</a>
-     </form>
-     <form method="post" action="/ProReimbursement/home.customer">
-      <button  id="customerHome" style="display:none;" >Go back to your Home Page</button>
-     </form>
-     <br>
-	<a href= "https://47q0hbdvdj.execute-api.us-west-1.amazonaws.com/Prod" 
-	target="_blank">Enter files here, File name MUST include your employee number, or will be invalid</a>
+         </textarea>
+					<br> <label for="email">Will you attach an approval
+						email?</label> <select name="email" id="email">
+						<option value="yes">Yes</option>
+						<option value="no">No</option>
+					</select> <br> <label id="gradeText" style="display: none;">Click
+						here if you are submitting a grade. Don't forget to attach your
+						files! </label> <input type="checkbox" value="submit" id="grade"
+						style="display: none;"> <br> <br>
+					<button onclick="change()" value="submit">Submit</button>
 
-</div>
 
-<script type="text/javascript" src="resources/js/submitGrades.js"> 
-</script>
-<script src="https://smtpjs.com/v3/smtp.js"></script>  
-<script type="text/javascript" src="resources/js/email.js"> 
-</script>
+
+					<a id="loginpage"
+						href="http://localhost:8080/ProReimbursement/resources/html/index.html">Go
+						back to Login page</a>
+				</form>
+				<form method="post" action="/ProReimbursement/home.customer">
+					<button id="customerHome" style="display: none;">Go back
+						to your Home Page</button>
+				</form>
+				<br> <a
+					href="https://47q0hbdvdj.execute-api.us-west-1.amazonaws.com/Prod"
+					target="_blank">Enter files here, Filenames MUST include your
+					employee number, or will be invalid</a>
+
+
+			</div>
+			<div class="col"></div>
+		</div>
+		<script type="text/javascript" src="resources/js/submitGrades.js">
+			
+		</script>
+		<script src="https://smtpjs.com/v3/smtp.js"></script>
+		<script type="text/javascript" src="resources/js/email.js"></script>
+
+		<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+			integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+			crossorigin="anonymous"></script>
+		<script
+			src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+			integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+			crossorigin="anonymous"></script>
+		<script
+			src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+			integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+			crossorigin="anonymous"></script>
 </body>
 </html>
