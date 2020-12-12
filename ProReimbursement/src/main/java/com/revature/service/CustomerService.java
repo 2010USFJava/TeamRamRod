@@ -149,5 +149,17 @@ public class CustomerService {
 		}
 		return false;
 	}
+	
+	public Customer returnCustomer(int formID) {
+		Customer cus = null;
+		try {
+			int cusId = fdao.findCustomerIDByFormIDLookUp(formID);
+			cus = cusdao.getCustomerById(cusId);
+			CusLoginController.currentCustomer = cus;
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return cus;
+	}
 }
 

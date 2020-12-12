@@ -5,6 +5,7 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -135,30 +136,55 @@ public class ManagerDaoImpl implements ManagerDao{
 	}
 
 	@Override
-	public List<Integer> findBlankInApprovalDate(int formID, String title) throws SQLException {
-		List<Integer> aList = new ArrayList<Integer>();
-		List<Integer> newList = new ArrayList<Integer>();
+	public boolean findBlankInApprovalDateDirectS(int formID, String title) throws SQLException {
 		Connection conn = DriverManager.getConnection(this.url, this.username, this.password);
-		String dateColumn = null;
-		if(title.equals("direct supervisor")) {
-			dateColumn = "direct_supervisor_approval_date";
-		} else if(title.equals("department head")) {
-			dateColumn = "department_head_approval_date";
-		} else { //benco
-			dateColumn = "benco_approval_date";
-		}
-		String sql = "select form_id from approval_dates where " + dateColumn +" IS NULL";
+		String sql = "select direct_supervisor_approval_date from approval_dates where form_id=?";
 		PreparedStatement ps = conn.prepareStatement(sql);
+		ps.setInt(1, formID);
 		ResultSet rs = ps.executeQuery();
+		LocalDate date = null; 
 		while(rs.next()) {
-			aList.add(rs.getInt(1));
+			date = rs.getObject(1, LocalDate.class);
 		}
-		for(int a: aList) {
-			if(a == formID) {
-				newList.add(a);
-			}
+		if(date == null) {
+			return true;
 		}
-		return newList;
+		return false;
+	}
+
+	@Override
+	public boolean findBlankInApprovalDateDeptH(int formID, String title) throws SQLException {
+		Connection conn = DriverManager.getConnection(this.url, this.username, this.password);
+		String sql = "select dept_head_approval_date from approval_dates where form_id=?";
+		PreparedStatement ps = conn.prepareStatement(sql);
+		ps.setInt(1, formID);
+		ResultSet rs = ps.executeQuery();
+		LocalDate date = null;
+		while(rs.next()) {
+			date = rs.getObject(1, LocalDate.class);
+		}
+		if(date == null && !findBlankInApprovalDateDirectS(formID, "direct_supervisor")) {
+			return true;
+		}
+		return false;
+	
+	}
+
+	@Override
+	public boolean findBlankInApprovalDateBenco(int formID, String title) throws SQLException {	
+		Connection conn = DriverManager.getConnection(this.url, this.username, this.password);
+		String sql = "select benco_approval_date from approval_dates where form_id=?";
+		PreparedStatement ps = conn.prepareStatement(sql);
+		ps.setInt(1, formID);
+		ResultSet rs = ps.executeQuery();
+		LocalDate date = null;
+		while(rs.next()) {
+			date = rs.getObject(1, LocalDate.class);
+		}
+		if(date == null && !findBlankInApprovalDateDeptH(formID, "department_head")) {
+			return true;
+		}
+		return false;
 	}
 
 	

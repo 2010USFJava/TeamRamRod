@@ -10,6 +10,7 @@
 	href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
 	integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
 	crossorigin="anonymous">
+	<link type="text/css" rel="stylesheet" href="../css/main.css">
 <title>Optional and Files entered here</title>
 </head>
 <body>
@@ -23,16 +24,18 @@
 				<form method="post" action="/ProReimbursement/received.form">
 					Enter optional information here. <br>
 					<textarea rows="6" cols="60" name="optional">
-            
-         </textarea>
-					<br> <label for="email">Will you attach an approval
-						email?</label> <select name="email" id="email">
+         			</textarea>
+					<br> <label for="email">Will you attach an approval email?</label> 
+					<select name="email" id="email">
 						<option value="yes">Yes</option>
 						<option value="no">No</option>
-					</select> <br> <label id="gradeText" style="display: none;">Click
+					</select> 
+					<br> 
+					<label id="gradeText" style="display: none;">Click
 						here if you are submitting a grade. Don't forget to attach your
-						files! </label> <input type="checkbox" value="submit" id="grade"
-						style="display: none;"> <br> <br>
+						files! </label> 
+					<input type="checkbox" value="submit" id="grade" style="display: none;"> 
+					<br> <br>
 					<button onclick="change()" value="submit">Submit</button>
 
 

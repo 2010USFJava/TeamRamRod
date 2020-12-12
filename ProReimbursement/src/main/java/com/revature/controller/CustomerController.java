@@ -20,16 +20,17 @@ public class CustomerController extends HttpServlet{
 		res.getWriter().write(new ObjectMapper().writeValueAsString(cus)); //write vill as JSON and add that to response
 	}
 	
-	public static String logoutSession(HttpServletRequest req) throws JsonProcessingException, IOException{
-		 HttpSession session = req.getSession();
-		
-	  
-	        session.invalidate(); 
+	public static String logoutSession(HttpServletRequest req, HttpServletResponse res) throws JsonProcessingException, IOException{
+		//res.setHeader("Cache-Control", "no-cache, no-store, must-revalidate"); 
+		res.setHeader("Cache-Control", "no-cache");
+		res.setHeader("Cache-Control", "no-store");
+		res.setDateHeader("Expires", 0);
+		HttpSession session = req.getSession();
+
+	     session.invalidate(); 
+		 session = req.getSession(false);
 		 
-	        
-	        session = req.getSession(false);
-	
-	        System.out.println("Session : " + session);
-	        return "resources/html/index.html";
+	     System.out.println("Session : " + session);
+	     return "resources/html/index.html";
 	}
 }

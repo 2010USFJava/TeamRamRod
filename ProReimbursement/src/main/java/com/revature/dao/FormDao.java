@@ -23,5 +23,7 @@ public interface FormDao {
 	public void updateEmail(int formID, boolean email) throws SQLException;
 	
 	public LocalDate getDate(int formID) throws SQLException;
+	
+	public List<String> getEmailAndOptional(int formID) throws SQLException;
 
 }

@@ -6,57 +6,71 @@
 <meta charset="utf-8">
 <meta name="viewport"
 	content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<title>Customer Home</title>
+
 <!-- Bootstrap CSS -->
 <link rel="stylesheet"
 	href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
 	integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
 	crossorigin="anonymous">
 <link type="text/css" rel="stylesheet" href="resources/css/table.css">
-<link type="text/css" rel="stylesheet" href="../css/main.css">
+<link type="text/css" rel="stylesheet" href="resources/css/main.css">
+<title>Admin Options</title>
 </head>
+
 <body>
-
-	<div class="login-controller">
+	<div>
 		<div class="row">
-			<div class="col" style="margin:auto">
-			<form method="post" action="/ProReimbursement/newRequest.form">
-				<input type="submit" value="Create New Request">
-			</form>
-			</div>
-			
 			<div class="col">
-				<h4>Welcome Home, Customer!</h4>
-
-
-				<form method="post" action="/ProReimbursement/submitGrade.form">
-					<!-- Pass in employeeID of the current customer -->
-					<input placeholder="Enter form number" name="formNum"> <input
-						type="submit" value="Enter Form Options/Submit Grade">
-				</form>
-				<h3>Submitted Forms:</h3>
-
-			</div>
-
-
-
-			<p id='showData'></p>
-			<br>
 			
+			<form method="post" action="/ProReimbursement/home.admin">
+			<button>Go back to your Home Page</button>
+			</form>
+			
+			</div>
+			<div class="col">
+				<h4>Admin Decision Page</h4>
+				
+					
+
+
+				<h3>Submitted Information:</h3>
+				
+				<p id='showData'></p>
+				<br>
+				<p id='showCus'></p>
+				<br>
+			<p id='showOptional'>Optional</p>
 			<br>
+			<p id='showEmail'>Email</p>
+			<br>
+			<select name="isApproved" id="isApproved">
+			<option value="yes">Approve</option>
+			<option value="no">Disapprove</option>
+			</select>
+			<button id="isApproved" value="submit">Submit</button>
+			<br> <br>
+			Click here if you would like to ask for more information. <br>
+			<input onchange="displayBox()" type="checkbox" value="check" name="forEmail" id="displayBox">
+			<textarea placeholder="Request for more information here" name="forEmail" id="forEmail" rows="6" cols="60" style="display:none;" ></textarea>
+			<button value="submit">Send Email</button>
+			</div>
+					
+
+			<br> <br>
 			<form method="post" action="/ProReimbursement/index.customer">
 				<button onclick="logout()" value="logout">Logout</button>
 			</form>
-
-			<div class="col"></div>
+	
+			
+			<div class="col">			
+			</div>
 		</div>
-	</div>
 </body>
 
-<script type="text/javascript" src="resources/js/customerHome.js">
+<script type="text/javascript" src="resources/js/adminOptions.js">
 	
 </script>
-<!-- jQuery first, then Popper.js, then Bootstrap JS -->
+
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
 	integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
 	crossorigin="anonymous"></script>

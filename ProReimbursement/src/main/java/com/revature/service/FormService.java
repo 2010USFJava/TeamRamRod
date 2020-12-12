@@ -19,6 +19,7 @@ public class FormService {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
+		System.out.println("inside get form NULL");
 		return null;
 	}
 	
@@ -70,6 +71,22 @@ public class FormService {
 		}
 	}
 	
+	public void updateOptionalForm(String optional) {
+		try {
+			form.updateOptional(CusLoginController.currentForm.getFormID(), optional);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}
+	
+	public void updateEmailForm(boolean email) {
+		try {
+			form.updateEmail(CusLoginController.currentForm.getFormID(), email);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}
+	
 	public List<Form> getAllForm(int customerID){
 		List<Form> forms = new ArrayList<Form>();
 		try {
@@ -97,5 +114,16 @@ public class FormService {
 				e.printStackTrace();
 			}
 		return returnDates;
+	}
+	
+	public List<String> getEmailAndOptional(int formID){
+		List<String> eoList = new ArrayList<String>();
+		try {
+			eoList = form.getEmailAndOptional(formID);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		System.out.println("email and optional list: "+ eoList);
+		return eoList;
 	}
 }

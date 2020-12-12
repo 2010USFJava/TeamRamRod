@@ -3,11 +3,46 @@ var dates;
 
 window.onload=function(){
 	console.log("window");
-	getFormDates();
-	getCustomerForm();
 	
+	getCustomerForm();
+	/*asyncCall();
+	asyncCall2();*/
 	
 }
+
+function resolveAfter4Seconds() {
+  return new Promise(resolve => {
+    setTimeout(() => {
+      resolve(getFormDates());
+    },3000);
+  });
+}
+
+async function asyncCall() {
+  console.log('calling');
+  const result = await resolveAfter4Seconds();
+  console.log(result);
+  getFormDates();
+  // expected output: "resolved"
+}
+
+function resolveAfter3Seconds() {
+  return new Promise(resolve => {
+    setTimeout(() => {
+      resolve(getCustomerForm());
+    }, 3000);
+  });
+}
+
+async function asyncCall2() {
+  console.log('calling');
+  const result = await resolveAfter3Seconds();
+  console.log(result);
+  getFormDates();
+  // expected output: "resolved"
+}
+	
+
 
 
 function getFormDates() {
@@ -75,9 +110,12 @@ function tableFromJson(form) {
 		formNum[i] = form[i].formID;
 				
 	}
+	/*
 	for(i = 0; i < dates.length; i++){
 		mydates[i] = dates[i];
-	}
+	}*/
+	
+	//
 	console.log('mydates: ' + mydates);
 	// the json data. (you can change the values for output.)
 	
@@ -89,7 +127,7 @@ function tableFromJson(form) {
 	var col = [];
 	for (var i = 0; i < myBooks.length; i++) {
 		for (var key in myBooks[i]) {
-				if (col.indexOf(key) === -1){
+				if (key !== 'date' && col.indexOf(key) === -1){
 					 	console.log(key)
 						col.push(key);
 					}
@@ -123,10 +161,10 @@ function tableFromJson(form) {
 				var tabCell = tr.insertCell(-1);
 				tabCell.innerHTML = myBooks[i][col[j]];
 				
-				if (j == 1){
+				/*if (j == 1){
 					var tabCell = tr.insertCell(-1);
 					tabCell.innerHTML = myDates[i];
-				}
+				}*/
 		}
 	}
 

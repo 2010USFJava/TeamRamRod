@@ -134,4 +134,32 @@ public class FormDaoImpl implements FormDao {
 		return date;
 	}
 
+	@Override
+	public List<String> getEmailAndOptional(int formID) throws SQLException {
+		List<String> emailAndOption = new ArrayList<String>();
+		Connection conn = DriverManager.getConnection(this.url, this.username, this.password);
+		String sql = "select has_email from form where form_id=?";
+		PreparedStatement ps = conn.prepareStatement(sql);
+		ps.setInt(1, formID);
+		boolean hasEmail = false;
+		ResultSet rs = ps.executeQuery();
+		while(rs.next()) {
+			hasEmail = rs.getBoolean(1);
+			if (hasEmail)
+				emailAndOption.add("True");
+			else
+				emailAndOption.add("False");
+		sql = "select optional from form where form_id=?";
+		ps = conn.prepareStatement(sql);
+		ps.setInt(1, formID);
+		String optional = null;
+		ResultSet rs2 = ps.executeQuery();
+		while(rs2.next()) {
+			optional = rs2.getString(1);
+			emailAndOption.add(optional);
+		}
+		
+	}
+		return emailAndOption;
+}
 }

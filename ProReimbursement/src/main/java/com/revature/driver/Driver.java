@@ -18,12 +18,11 @@ public class Driver {
 		ApprovalDatesService apServ = new ApprovalDatesService();
 		CustomerService cServ = new CustomerService();
 		ManagerDao m = new ManagerDaoImpl();
-		try {
-			System.out.println(m.findBlankInApprovalDate(3333, "direct supervisor"));
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		/*
+		 * // try { // System.out.println(m.findBlankInApprovalDate(3333,
+		 * "direct supervisor")); // } catch (SQLException e) { // TODO Auto-generated
+		 * catch block e.printStackTrace(); }
+		 */
 //		try {
 //			System.out.println(c.getCustomerById(0));
 //		} catch (SQLException e) {

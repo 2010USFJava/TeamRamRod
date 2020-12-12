@@ -1,90 +1,87 @@
 
-var dates;
-
-
-
 window.onload=function(){
 	console.log("window");
 	
 	getAdminForm();
-	//asyncCall();
-	//asyncCall2();
-	//getFormDates();
+	getOptional();
+	getCustomerInfo();
 	
-	
-}
-
-function resolveAfter3Seconds() {
-  return new Promise(resolve => {
-    setTimeout(() => {
-      resolve();
-    }, 3000);
-  });
-}
-
-async function asyncCall() {
-  console.log('calling');
-  const result = await resolveAfter3Seconds();
-  console.log(result);
-  getFormDates();
-  // expected output: "resolved"
-}
-
-function resolveAfter4Seconds() {
-  return new Promise(resolve => {
-    setTimeout(() => {
-      resolve(getAdminForm());
-    }, 3000);
-  });
-}
-
-async function asyncCall2() {
-  console.log('calling');
-  const result = await resolveAfter4Seconds();
-  console.log(result);
-  getFormDates();
-  // expected output: "resolved"
-}
-
-
-
-
-function getFormDates() {
-	let xhttp = new XMLHttpRequest();
-
-	xhttp.onreadystatechange = function() {
-		console.log("the ready state has changed dates");
-		if (xhttp.readyState == 4 && xhttp.status== 200) {
-			dates = JSON.parse(xhttp.responseText);
-			console.log()
-			console.log('Array of dates: '+ dates);
-
-		}
-	}
-	xhttp.open("GET", "http://localhost:8080/ProReimbursement/getDates.json");
-
-	xhttp.send();
 }
 
 function getAdminForm() {
-	//console.log('Array of strings '+ dates);
 	let xhttp = new XMLHttpRequest();
 
 	xhttp.onreadystatechange = function() {
-		console.log("the ready state has changed form");
+		console.log("the ready state has changed form in getAdmin");
 		if (xhttp.readyState == 4 && xhttp.status== 200) {
-			let form = JSON.parse(xhttp.responseText);
+			let form = JSON.parse(xhttp.responseText);	
 			let test = xhttp.responseText;
-			console.log(test);
-			console.log('this is test');
-			//console.log('Description: '+ form[0].description);
-			//console.log('FormID: ' + form[0].formID);
+			console.log('this is test '+ test);
+			
 			tableFromJson(form);
 		}
 	}
-	xhttp.open("GET", "http://localhost:8080/ProReimbursement/adminForms.json");
+	xhttp.open("GET", "http://localhost:8080/ProReimbursement/adminOptions.json");
 
 	xhttp.send();
+}
+
+function getCustomerInfo() {
+	let xhttp = new XMLHttpRequest();
+
+	xhttp.onreadystatechange = function() {
+		console.log("the ready state has changed form in getAdmin");
+		if (xhttp.readyState == 4 && xhttp.status== 200) {
+			let customer = JSON.parse(xhttp.responseText);	
+			let test = xhttp.responseText;
+			console.log('this is test customer: '+ test);
+			
+			tableFromJson(customer);
+		}
+	}
+	xhttp.open("GET", "http://localhost:8080/ProReimbursement/customerInfo.json");
+
+	xhttp.send();
+}
+
+
+function getOptional() {
+	let xhttp = new XMLHttpRequest();
+
+	xhttp.onreadystatechange = function() {
+		console.log("the ready state has changed form in getAdmin");
+		if (xhttp.readyState == 4 && xhttp.status== 200) {
+			let optional = JSON.parse(xhttp.responseText);	
+			let test = xhttp.responseText;
+			console.log('this is test '+ test);
+			console.log(optional);
+			printOptional(optional);
+		}
+	}
+	xhttp.open("GET", "http://localhost:8080/ProReimbursement/printOptional.json");
+
+	xhttp.send();
+}
+
+function printOptional(emailOptional){
+	let array = [];
+	for(i = 0; i < emailOptional.length; i++){
+		array[i] = emailOptional[i];
+	}
+	let email = array[0];
+	let optional = array[1];
+	
+	var hasEmail;
+	if(email == 'True'){
+		hasEmail = 'An email may be attached.';
+	} else {
+		hasEmail = 'There are no emails attached.';	
+	}
+	
+	document.getElementById('showEmail').innerHTML = hasEmail;
+	console.log('hasEmail: ' + hasEmail);
+	document.getElementById('showOptional').innerHTML = optional;
+	console.log('divOptional: ' + divOptional);
 }
 
 function logout() {
@@ -95,8 +92,7 @@ function logout() {
 		if (xhttp.readyState == 4 && xhttp.status== 200) {
 			
 			let form = JSON.parse(xhttp.responseText);
-			let test = xhttp.responseText;
-			console.log(test);
+			
 		}
 	}
 	xhttp.open("GET", "http://localhost:8080/ProReimbursement/logout.json");
@@ -105,18 +101,16 @@ function logout() {
 }
 
 function tableFromJson(form) {
+
 	//console.log('Array of strings '+ dates);
 	console.log('inside tableFromJson: ' + form);
-	var myBooks =[];
 	
 	
-	var mydates = [];
-	for(i = 0; i < form.length; i++){
-		myBooks[i] = form[i];
-		
-				
-	}
+	var myBooks =[form];
 	
+		console.log('form 0 : '+ form);
+		console.log('mybooks: '+myBooks);
+
 //	var acdate = myBooks[1].date.toString();
 //	
 //	console.log('THIS IS THE DATE'+acdate);
@@ -151,7 +145,7 @@ function tableFromJson(form) {
 	// Create table header row using the extracted headers above.
 	var tr = table.insertRow(-1);                   // table row.
 
-	for (var i = 0; i < col.length-2; i++) {
+	for (var i = 0; i < col.length; i++) {
 			
 		
 				var th = document.createElement("th");      // table header.
@@ -170,7 +164,7 @@ function tableFromJson(form) {
 		
 			tr = table.insertRow(-1);
 
-			for (var j = 0; j < col.length-2; j++) {
+			for (var j = 0; j < col.length; j++) {
 				var tabCell = tr.insertCell(-1);
 				tabCell.innerHTML = myBooks[i][col[j]];
 				
@@ -181,11 +175,22 @@ function tableFromJson(form) {
 				}*/
 		}
 	}
-
-	// Now, add the newly created table with json data, to a container.
-	var divShowData = document.getElementById('showData');
-	divShowData.innerHTML = "";
-	divShowData.appendChild(table);
-
 	
+	// Now, add the newly created table with json data, to a container.
+	if(col[0] == 'formID'){
+		var divShowData = document.getElementById('showData');
+		divShowData.innerHTML = "";
+		divShowData.appendChild(table);
+	} else {
+		var divShowData = document.getElementById('showCus');
+		divShowData.innerHTML = "";
+		divShowData.appendChild(table);
+	}
+	
+}
+
+function displayBox(){
+//document.getElementsByName("forEmail").style.display = "block";
+console.log('inside displayBox');
+document.getElementById("forEmail").style.display = "block";
 }

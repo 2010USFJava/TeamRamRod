@@ -7,6 +7,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.revature.controller.AdminController;
 import com.revature.controller.AdminLoginController;
 import com.revature.controller.CusLoginController;
 import com.revature.controller.CustomerController;
@@ -40,12 +41,29 @@ public class JsonRequestHelper {
 		
 		case "/ProReimbursement/logout.json":
 			System.out.println("in logout json rhelper");
-			CustomerController.logoutSession(req);
+			CustomerController.logoutSession(req, res);
 			break;
 		
 		case "/ProReimbursement/adminForms.json":
 			System.out.println("in adminForms json rhelper");
 			res.getWriter().write(new ObjectMapper().writeValueAsString(aServ.getAdminList(AdminLoginController.currentAdmin.getEmployee_ID())));
+			break;
+			
+		case "/ProReimbursement/adminOptions.json":
+			System.out.println("in adminOptions json rhelper");
+			System.out.println("before: " + CusLoginController.currentForm.getFormID());
+			res.getWriter().write(new ObjectMapper().writeValueAsString(fServ.getForm(CusLoginController.currentForm.getFormID())));
+			System.out.println("after: " + CusLoginController.currentForm.getFormID());
+			break;
+			
+		case "/ProReimbursement/printOptional.json":
+			System.out.println("in printOptional json rhelper");
+			res.getWriter().write(new ObjectMapper().writeValueAsString(fServ.getEmailAndOptional(CusLoginController.currentForm.getFormID())));
+			break;
+			
+		case "/ProReimbursement/customerInfo.json":
+			System.out.println("in customerInfo json rhelper");
+			res.getWriter().write(new ObjectMapper().writeValueAsString(cServ.returnCustomer(CusLoginController.currentForm.getFormID())));
 			break;
 		
 		default:

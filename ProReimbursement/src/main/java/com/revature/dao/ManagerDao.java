@@ -22,5 +22,9 @@ public interface ManagerDao {
 	
 	public String getTitle(int employeeID) throws SQLException;
 	
-	public List<Integer> findBlankInApprovalDate(int formID, String title) throws SQLException;
+	public boolean findBlankInApprovalDateDirectS(int formID, String title) throws SQLException;
+	
+	public boolean findBlankInApprovalDateDeptH(int formID, String title) throws SQLException;
+	
+	public boolean findBlankInApprovalDateBenco(int formID, String title) throws SQLException;
 } 

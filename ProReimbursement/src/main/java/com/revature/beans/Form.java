@@ -13,14 +13,14 @@ public class Form {
 	private String gradeFormat;
 	private int eventNum;
 	private String justification;
-	private String dialogBox;
+	private String hasFiles;
 	private boolean isAttached;
 	
 	public Form() {
 		super();
 	}
 	public Form(int formID, LocalDate date, String time, String location, String description, double cost, String gradeFormat, int eventNum,
-			String justification, String dialogBox, boolean isAttached) {
+			String justification, String hasFiles, boolean isAttached) {
 		super();
 		this.date = date;
 		this.time = time;
@@ -31,7 +31,7 @@ public class Form {
 		this.gradeFormat = gradeFormat;
 		this.eventNum = eventNum;
 		this.justification = justification;
-		this.dialogBox = dialogBox;
+		this.hasFiles = hasFiles;
 		this.isAttached = isAttached;
 	}
 	public LocalDate getDate() {
@@ -88,11 +88,11 @@ public class Form {
 	public void setJustification(String justification) {
 		this.justification = justification;
 	}
-	public String getDialogBox() {
-		return dialogBox;
+	public String gethasFiles() {
+		return hasFiles;
 	}
-	public void setDialogBox(String dialogBox) {
-		this.dialogBox = dialogBox;
+	public void sethasFiles(String hasFiles) {
+		this.hasFiles = hasFiles;
 	}
 	public boolean isAttached() {
 		return isAttached;
@@ -104,7 +104,7 @@ public class Form {
 	public String toString() {
 		return "Form [formID=" + formID + ", date=" + date + ", time=" + time + ", location=" + location
 				+ ", description=" + description + ", cost=" + cost + ", gradeFormat=" + gradeFormat + ", eventNum="
-				+ eventNum + ", justification=" + justification + ", dialogBox=" + dialogBox + ", isAttached="
+				+ eventNum + ", justification=" + justification + ", hasFiles=" + hasFiles + ", isAttached="
 				+ isAttached + "]";
 	}
 	

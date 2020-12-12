@@ -69,6 +69,7 @@ public class FormController {
 		Form form = new Form(1, eventDate, req.getParameter("eventtime"), req.getParameter("eventlocation"),
 				req.getParameter("description"), eventCost, req.getParameter("gradingformat"), 
 				eventNum, req.getParameter("justification"), "", hasFiles);
+		System.out.println(req.getParameter("eventtime"));
 		
 		CusLoginController.currentForm = form;
 		fServ.insertNewForm(form);
@@ -92,8 +93,10 @@ public class FormController {
 		boolean hasEmail = false;
 		if (email.equals("yes"))
 			hasEmail=true;
-		fServ.updateOptional(text);
-		fServ.updateEmail(hasEmail);
+		
+		fServ.updateOptionalForm(text);
+		fServ.updateEmailForm(hasEmail);
+		
 		System.out.println("Inside has email- untested");
 		return "resources/html/customer/applicationReceived.html";
 	}
@@ -101,10 +104,14 @@ public class FormController {
 	public static String submitGrade(HttpServletRequest req) {
 		int formNum = Integer.parseInt(req.getParameter("formNum"));
 		CusLoginController.currentForm = fServ.getForm(formNum);
+		System.out.println("inside submitGrade, formNum: " + formNum);
 		return "resources/html/filesAndGrades.html";		
 	}
 	
 	public static String newRequest(HttpServletRequest req) {
+		
 		return "resources/html/form.html";		
 	}
+	
+	
 }
