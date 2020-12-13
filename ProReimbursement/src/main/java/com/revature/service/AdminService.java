@@ -74,14 +74,12 @@ public class AdminService {
 		try {
 			String title = addao.getTitle(employeeID);
 			System.out.println("title: " + title);
-		
-			String dept = addao.getDepartment(employeeID);
-			System.out.println("dept:" + dept);
-			List<Integer> cList = addao.departmentListLookUp(dept);
 			
-			if(title.equals("benco")) {
-				thirdList = cList;
-			} else {
+			if(!title.equals("benco")) {
+				String dept = addao.getDepartment(employeeID);
+				System.out.println("dept:" + dept);
+				List<Integer> cList = addao.departmentListLookUp(dept);
+				
 				for(int cid: cList) {
 					System.out.println("cid from dept_lookup: " + cid);
 					fList = fdao.findAllFormIDsLookUp(cid);
@@ -90,12 +88,21 @@ public class AdminService {
 					}
 					System.out.println(thirdList);
 				}
+			} else { //benco
+				List<Integer> allIds = fdao.getAllFormIDs();
+				int temp = 0;
+				for(int a: allIds) {
+					if(addao.findBlankInApprovalDate(a, title) == 3) {
+						fourthList.add(a);
+						System.out.println("benco id:" + a);
+					}
+				}
 			}
 			
 			if(title.equals("direct supervisor")) {
 				for(int fid: thirdList) {
 					System.out.println("fid from ds: " + fid);
-					if(addao.findBlankInApprovalDateDirectS(fid, title)) {
+					if(addao.findBlankInApprovalDate(fid, title) == 1) {
 						fourthList.add(fid);
 					}
 				}
@@ -104,7 +111,7 @@ public class AdminService {
 			if(title.equals("department head")) {
 				for(int fid: thirdList) {
 					System.out.println("fid from dh: " + fid);
-					if(addao.findBlankInApprovalDateDeptH(fid, title)) {
+					if(addao.findBlankInApprovalDate(fid, title) == 2) {
 						fourthList.add(fid);
 					}
 				}
@@ -113,14 +120,14 @@ public class AdminService {
 			if(title.equals("superhead")) {
 				for(int fid: thirdList) {
 					String dsTitle = "direct supervisor";
-					if(addao.findBlankInApprovalDateDirectS(fid, dsTitle)) {
+					if(addao.findBlankInApprovalDate(fid, dsTitle) == 1) {
 						System.out.println("in superhead DS: " + fid);
 						fourthList.add(fid);
 					}
 				}
 				for(int x: thirdList) {
 					String dhTitle = "department head";
-					if(addao.findBlankInApprovalDateDeptH(x, dhTitle)) {
+					if(addao.findBlankInApprovalDate(x, dhTitle) == 2) {
 					System.out.println("in superhead dh: " + tempId);
 					for(int fid: fourthList) {
 						if(fid != x) {

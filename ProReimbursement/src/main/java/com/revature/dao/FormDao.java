@@ -25,5 +25,7 @@ public interface FormDao {
 	public LocalDate getDate(int formID) throws SQLException;
 	
 	public List<String> getEmailAndOptional(int formID) throws SQLException;
+	
+	public List<Integer> getAllFormIDs() throws SQLException;
 
 }

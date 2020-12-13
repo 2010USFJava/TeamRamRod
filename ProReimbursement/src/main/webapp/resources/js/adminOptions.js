@@ -107,6 +107,7 @@ function tableFromJson(form) {
 	
 	
 	var myBooks =[form];
+
 	
 		console.log('form 0 : '+ form);
 		console.log('mybooks: '+myBooks);

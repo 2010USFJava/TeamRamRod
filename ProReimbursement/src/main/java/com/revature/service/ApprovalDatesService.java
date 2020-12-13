@@ -43,17 +43,50 @@ public class ApprovalDatesService {
 		return null;
 	}
 	
-	// updates initial date and tuition
-	public void updateInitialDate(int formID) {
+	// updates initial date and reimbursement
+	public void updateInitialDate(int formID, String title) {
 		try {
-			addao.updateApprovalDate(formID);
+			addao.updateApprovalDate(formID, title);
 			CusLoginController.currentForm = fdao.findFormByID(formID);
 			int employeeID = fdao.findCustomerIDByFormIDLookUp(formID);
 			CusLoginController.currentCustomer = cdao.getCustomerById(employeeID);
-			cServ.updateTuition();
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
+	}
+	
+	public void setUpdateApproval(int formID, boolean decision) {
+		try {
+			addao.approvalInitial(formID, decision);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}
+	
+	public void insertFirstDate(int formID) {
+		try {
+			addao.enterFirstDate(formID);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}
+	
+	public void updateInitialApprovalTuition(int formID, double reimburse) {
+		try {
+			addao.updateReimbursement(formID, reimburse);;
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}
+	
+	public double findReimbursement(int formID) {
+		double reimburse = 0.0;
+		try {
+			reimburse = addao.getReimbursement(formID);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return reimburse;
 	}
 
 }

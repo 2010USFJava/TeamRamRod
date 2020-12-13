@@ -162,4 +162,17 @@ public class FormDaoImpl implements FormDao {
 	}
 		return emailAndOption;
 }
+
+	@Override
+	public List<Integer> getAllFormIDs() throws SQLException {
+		List<Integer> fList = new ArrayList<Integer>();
+		Connection conn = DriverManager.getConnection(this.url, this.username, this.password);
+		String sql = "select form_id from form";
+		PreparedStatement ps = conn.prepareStatement(sql);
+		ResultSet rs = ps.executeQuery();
+		while(rs.next()) {
+			fList.add(rs.getInt(1));
+		}
+		return fList;
+	}
 }

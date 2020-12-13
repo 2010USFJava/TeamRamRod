@@ -93,17 +93,17 @@ public class CustomerService {
 		}
 	}
 	
-	public void updateTuition() {
-		double cost = CusLoginController.currentForm.getCost(); 
-		int eventNum = CusLoginController.currentForm.getEventNum();
-		double finalReimbursement = calc.setModifyTuition(calculateReimbursementByEventNum(cost, eventNum));
-		CusLoginController.currentCustomer.setTuition(finalReimbursement);
-		try {
-			cusdao.updateTuition(CusLoginController.currentCustomer);
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
-	}
+//	public void updateTuition() {
+//		double cost = CusLoginController.currentForm.getCost(); 
+//		int eventNum = CusLoginController.currentForm.getEventNum();
+//		double finalReimbursement = calc.setModifyTuition(calculateReimbursementByEventNum(cost, eventNum));
+//		CusLoginController.currentCustomer.setTuition(finalReimbursement);
+//		try {
+//			cusdao.updateTuition(CusLoginController.currentCustomer);
+//		} catch (SQLException e) {
+//			e.printStackTrace();
+//		}
+//	}
 	
 	public double calculateReimbursementByEventNum(double cost, int eventNum) {
 		double reimbursement = 0;
@@ -160,6 +160,28 @@ public class CustomerService {
 			e.printStackTrace();
 		}
 		return cus;
+	}
+	
+	public void updateNewTuition(int formID, double tuition) {
+		try {
+			int cusID = fdao.findCustomerIDByFormIDLookUp(formID);
+			cusdao.updateTuition(cusID, tuition);			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}
+	
+	public double findTuition(int formID) {
+		int cusID = 0;
+		double tuition = 0.0;
+		try {
+			cusID = fdao.findCustomerIDByFormIDLookUp(formID);
+			Customer cus = cusdao.getCustomerById(cusID);
+			tuition = cusdao.getTuition(cus.getEmployeeID());
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return tuition;
 	}
 }
 

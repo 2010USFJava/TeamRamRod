@@ -43,16 +43,20 @@
 			<br>
 			<p id='showEmail'>Email</p>
 			<br>
+			
+			<form method="post" action="/ProReimbursement/decision.approval">
 			<select name="isApproved" id="isApproved">
 			<option value="yes">Approve</option>
 			<option value="no">Disapprove</option>
 			</select>
 			<button id="isApproved" value="submit">Submit</button>
+			</form>
+			
 			<br> <br>
 			Click here if you would like to ask for more information. <br>
 			<input onchange="displayBox()" type="checkbox" value="check" name="forEmail" id="displayBox">
 			<textarea placeholder="Request for more information here" name="forEmail" id="forEmail" rows="6" cols="60" style="display:none;" ></textarea>
-			<button value="submit">Send Email</button>
+			<button id="forEmail" value="submit">Send Email</button>
 			</div>
 					
 

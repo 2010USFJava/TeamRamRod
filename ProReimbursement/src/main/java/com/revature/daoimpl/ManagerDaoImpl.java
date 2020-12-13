@@ -136,57 +136,31 @@ public class ManagerDaoImpl implements ManagerDao{
 	}
 
 	@Override
-	public boolean findBlankInApprovalDateDirectS(int formID, String title) throws SQLException {
+	public int findBlankInApprovalDate(int formID, String title) throws SQLException {
 		Connection conn = DriverManager.getConnection(this.url, this.username, this.password);
-		String sql = "select direct_supervisor_approval_date from approval_dates where form_id=?";
+		String sql = "select * from approval_dates where form_id=?";
 		PreparedStatement ps = conn.prepareStatement(sql);
 		ps.setInt(1, formID);
 		ResultSet rs = ps.executeQuery();
-		LocalDate date = null; 
+		LocalDate direct = null;
+		LocalDate head = null;
+		LocalDate benco = null;
+		
 		while(rs.next()) {
-			date = rs.getObject(1, LocalDate.class);
+			direct = rs.getObject(3, LocalDate.class);
+			head = rs.getObject(4, LocalDate.class);
+			benco = rs.getObject(5, LocalDate.class);
 		}
-		if(date == null) {
-			return true;
+		if(direct == null) {
+			 return 1;
 		}
-		return false;
+		if(direct != null && head == null) {
+			return 2;
+		}
+		if(direct != null && head!=null && benco==null) {
+			return 3;
+		}
+		
+		return -1;
 	}
-
-	@Override
-	public boolean findBlankInApprovalDateDeptH(int formID, String title) throws SQLException {
-		Connection conn = DriverManager.getConnection(this.url, this.username, this.password);
-		String sql = "select dept_head_approval_date from approval_dates where form_id=?";
-		PreparedStatement ps = conn.prepareStatement(sql);
-		ps.setInt(1, formID);
-		ResultSet rs = ps.executeQuery();
-		LocalDate date = null;
-		while(rs.next()) {
-			date = rs.getObject(1, LocalDate.class);
-		}
-		if(date == null && !findBlankInApprovalDateDirectS(formID, "direct_supervisor")) {
-			return true;
-		}
-		return false;
-	
-	}
-
-	@Override
-	public boolean findBlankInApprovalDateBenco(int formID, String title) throws SQLException {	
-		Connection conn = DriverManager.getConnection(this.url, this.username, this.password);
-		String sql = "select benco_approval_date from approval_dates where form_id=?";
-		PreparedStatement ps = conn.prepareStatement(sql);
-		ps.setInt(1, formID);
-		ResultSet rs = ps.executeQuery();
-		LocalDate date = null;
-		while(rs.next()) {
-			date = rs.getObject(1, LocalDate.class);
-		}
-		if(date == null && !findBlankInApprovalDateDeptH(formID, "department_head")) {
-			return true;
-		}
-		return false;
-	}
-
-	
-
 }

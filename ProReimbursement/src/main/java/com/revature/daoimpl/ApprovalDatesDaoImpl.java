@@ -61,14 +61,68 @@ public class ApprovalDatesDaoImpl implements ApprovalDatesDao {
 	}
 
 	@Override
-	public void updateApprovalDate(int formID) throws SQLException {
+	public void updateApprovalDate(int formID, String title) throws SQLException {
+		String col = null;
+		System.out.println("in approvaldao formID: " + formID);
+		if(title.equals("benco")) {
+			col = "benco_approval_date";
+		} else if(title.equals("direct supervisor")) {
+			col = "direct_supervisor_approval_date";
+		} else if(title.equals("department head")) {
+			col = "dept_head_approval_date";
+		} 	
 		Connection conn = DriverManager.getConnection(this.url, this.username, this.password);
-		String sql = "update approval_dates set benco_approval_date=? where form_id=?";
+		String sql = "update approval_dates set " + col + "=? where form_id=?";
+		PreparedStatement ps = conn.prepareStatement(sql); 
+		ps.setObject(1, todayLocalDate);
+		ps.setInt(2, formID); 
+		ps.executeUpdate();	
+	}
+
+	@Override
+	public void approvalInitial(int formID, boolean decision) throws SQLException {
+		Connection conn = DriverManager.getConnection(this.url, this.username, this.password);
+		String sql = "update approval_dates set is_approved=? where form_id=?";
+		PreparedStatement ps = conn.prepareStatement(sql); 
+		ps.setObject(1, decision);
+		ps.setInt(2, formID); 
+		ps.executeUpdate();	
+		
+	}
+
+	@Override
+	public void enterFirstDate(int formID) throws SQLException {
+		Connection conn = DriverManager.getConnection(this.url, this.username, this.password);
+		String sql = "update approval_dates set date_entered=? where form_id=?";
 		PreparedStatement ps = conn.prepareStatement(sql); 
 		ps.setObject(1, todayLocalDate);
 		ps.setInt(2, formID); 
 		ps.executeUpdate();	
 		
+	}
+
+	@Override
+	public double getReimbursement(int formID) throws SQLException {
+		Connection conn = DriverManager.getConnection(this.url, this.username, this.password);
+		String sql = "select reimbursement from approval_dates where form_id=?";
+		PreparedStatement ps = conn.prepareStatement(sql); 
+		ps.setInt(1, formID);
+		ResultSet rs = ps.executeQuery();
+		double reimburse = 0.0;
+		while(rs.next()) {
+			reimburse = rs.getDouble(1);
+		}
+		return reimburse;
+	}
+
+	@Override
+	public void updateReimbursement(int formID, double reimburse) throws SQLException {
+		Connection conn = DriverManager.getConnection(this.url, this.username, this.password);
+		String sql = "update approval_dates set reimbursement=? where form_id=?";
+		PreparedStatement ps = conn.prepareStatement(sql); 
+		ps.setInt(1, formID);
+		ps.setDouble(2, reimburse);
+		ps.executeUpdate();		
 	}
 
 

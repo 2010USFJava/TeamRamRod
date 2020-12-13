@@ -10,8 +10,14 @@ public interface ApprovalDatesDao {
 	
 	public ApprovalDates getApprovalDate(int formID) throws SQLException;
 	
-	public void updateApprovalDate(int formID) throws SQLException;
+	public void enterFirstDate(int formID) throws SQLException;
 	
+	public void updateApprovalDate(int formID, String title) throws SQLException;
 	
+	public void approvalInitial(int formID, boolean decision) throws SQLException;
+	
+	public double getReimbursement(int formID) throws SQLException;
+	
+	public void updateReimbursement(int formID, double reimburse) throws SQLException;
 
 }

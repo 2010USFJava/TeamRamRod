@@ -84,12 +84,12 @@ public class CustomerDaoImpl implements CustomerDao{
 	}
 
 	@Override
-	public void updateTuition(Customer c) throws SQLException {
+	public void updateTuition(int customerID, double tuition) throws SQLException {
 		Connection conn = DriverManager.getConnection(this.url, this.username, this.password);
 		String sql = "update customer set tuition=? where customer_id=?";
 		PreparedStatement ps = conn.prepareStatement(sql);
-		ps.setDouble(1, c.getTuition());
-		ps.setInt(2, c.getEmployeeID());
+		ps.setDouble(1, tuition);
+		ps.setInt(2, customerID);
 		ps.executeUpdate();
 	}
 
@@ -100,6 +100,20 @@ public class CustomerDaoImpl implements CustomerDao{
 		PreparedStatement ps = conn.prepareStatement(sql);
 		ps.setInt(1, c.getEmployeeID());
 		ps.executeUpdate();		
+	}
+
+	@Override
+	public double getTuition(int customerID) throws SQLException {
+		Connection conn = DriverManager.getConnection(this.url, this.username, this.password);
+		String sql = "select tuition from customer where customer_id=?";
+		PreparedStatement ps = conn.prepareStatement(sql);
+		ps.setInt(1, customerID);
+		ResultSet rs = ps.executeQuery();
+		double tuition = 0.0;
+		while(rs.next()) {
+			tuition = rs.getDouble(1);
+		}
+		return tuition;
 	}
 
 }

@@ -1,4 +1,4 @@
-
+var test;
 var dates;
 
 
@@ -74,7 +74,7 @@ function getAdminForm() {
 		console.log("the ready state has changed form");
 		if (xhttp.readyState == 4 && xhttp.status== 200) {
 			let form = JSON.parse(xhttp.responseText);
-			let test = xhttp.responseText;
+			test = xhttp.responseText;
 			console.log(test);
 			console.log('this is test');
 			//console.log('Description: '+ form[0].description);
@@ -109,6 +109,11 @@ function tableFromJson(form) {
 	console.log('inside tableFromJson: ' + form);
 	var myBooks =[];
 	
+	console.log('test in table: ' + test);
+	if(!(Array.isArray(test) && test.length)){
+		let noForm = 'There are no forms at this time.';
+		document.getElementById('noForms').innerHTML = noForm;
+	}
 	
 	var mydates = [];
 	for(i = 0; i < form.length; i++){
