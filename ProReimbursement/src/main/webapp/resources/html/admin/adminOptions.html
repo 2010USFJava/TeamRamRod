@@ -22,8 +22,7 @@
 
 <script src="https://smtpjs.com/v3/smtp.js"></script>  
 
-<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
-<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+
 
 <title>Admin Options</title>
 </head>
@@ -68,13 +67,9 @@
 			<textarea placeholder="Request for more information here" name="forEmail" id="forEmail" rows="6" cols="60" style="display:none;" ></textarea>
 			<button onclick="sendEmail()" id="forEmail" value="submit">Send Email</button>
 
-				<button type="button" id="formButton">Toggle Form!</button>
+			
 
-				<form id="form1">
-					<b>First Name:</b> <input type="text" name="firstName"> <b>Last
-						Name: </b><input type="text" name="lastName">
-					<button type="button" id="submit">Submit</button>
-				</form>
+			
 
 				<br><br>
 			
@@ -94,13 +89,7 @@
 			</div>
 		</div>
 </body>
-<script>
-$(document).ready(function() {
-  $("#formButton").click(function() {
-    $("#form1").toggle();
-  });
-});
-</script>
+
 
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
 	integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"

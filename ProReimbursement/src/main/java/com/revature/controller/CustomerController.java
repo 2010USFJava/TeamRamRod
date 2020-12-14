@@ -20,7 +20,7 @@ public class CustomerController extends HttpServlet{
 
 	public static void getSessionCustomer(HttpServletRequest req, HttpServletResponse res) throws JsonProcessingException, IOException{
 		Customer cus = (Customer) req.getSession().getAttribute("currentcus");
-		res.getWriter().write(new ObjectMapper().writeValueAsString(cus)); //write vill as JSON and add that to response
+		res.getWriter().write(new ObjectMapper().writeValueAsString(cus)); 
 	}
 	
 	public static String logoutSession(HttpServletRequest req, HttpServletResponse res) throws JsonProcessingException, IOException{

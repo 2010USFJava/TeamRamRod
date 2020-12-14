@@ -75,9 +75,8 @@ function getOptional() {
 			let optional = JSON.parse(xhttp.responseText);	
 			let test = xhttp.responseText;
 			let array = [optional];
-			if (array[1] == null)
-				optional[1] = '';
-			console.log('this is changed optional'+optional[1] + ' end ')
+	
+		
 			
 			console.log('this is test '+ test);
 			console.log(optional);
@@ -217,9 +216,7 @@ function tableFromJson(form) {
 		divShowData.innerHTML = "";
 		divShowData.appendChild(table);
 		
-		document.getElementById("forEmail").style.display = "block"; 
-		document.getElementById("forText").style.display = "block";
-		document.getElementById("box").style.display = "block";
+	
 	}else {
 		var divShowData = document.getElementById('showCus');
 		divShowData.innerHTML = "";
