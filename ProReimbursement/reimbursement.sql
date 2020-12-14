@@ -63,3 +63,10 @@ is_approved boolean,
 reimbursement double precision
 );
 alter sequence reimbursement.approval_dates_form_id_seq restart with 100 increment by 1;
+
+create table final_approval(
+form_id serial primary key,
+decision boolean,
+initial_approval boolean
+);
+alter sequence reimbursement.final_approval_form_id_seq restart with 100 increment by 1;

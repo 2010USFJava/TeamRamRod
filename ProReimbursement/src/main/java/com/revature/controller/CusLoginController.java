@@ -5,6 +5,7 @@ import javax.servlet.http.HttpServletRequest;
 import com.revature.beans.Customer;
 import com.revature.beans.Form;
 import com.revature.service.CustomerService;
+import com.revature.util.LogThis;
 
 public class CusLoginController {
 	static CustomerService cServ = new CustomerService();
@@ -21,10 +22,12 @@ public class CusLoginController {
 ;
 		Customer cus = cServ.logGetCustomer(email, password);
 		if(cus == null) {
+			LogThis.LogIt("info", cus.getEmail() + ", user has failed to logged in");
 			return "invalid.customer";
 		} else {
 			currentCustomer = cus;
 			req.getSession().setAttribute("currentcus", cus);
+			LogThis.LogIt("info", cus.getEmail() + ", user has logged in");
 			return "home.customer";
 		}
 	}
@@ -32,5 +35,6 @@ public class CusLoginController {
 	public static String index(HttpServletRequest req) {
 		return "resources/html/index.html";
 	}
+	
 	
 }

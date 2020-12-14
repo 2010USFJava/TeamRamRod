@@ -156,6 +156,44 @@ public class AdminService {
 			
 		return allForms;
 		}
+	
+	public List<Form> getInitialFormList(){
+		List<Integer> approvedIDs = null;
+		List<Form> approvedForms = new ArrayList<Form>();
+		try {
+			approvedIDs = addao.getInitialApproved();
+			List<Integer> trueList = addao.getFinalDecisionTrue(); //check!
+			for(int a: approvedIDs) {
+				for(int t: trueList) {
+					if(a != t) {
+						approvedForms.add(fdao.findFormByID(a));
+					}
+				}
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return approvedForms;
+	}
+	
+	public List<Integer> getInitialIDs(){
+		List<Integer> approvedIDs = null;
+		try {
+			approvedIDs = addao.getInitialApproved();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return approvedIDs;
+	}
+	
+	public void addFormIdToFinalApproval(int formID) {
+		try {
+			addao.addFinalApproval(formID);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}
+	
 }
 
 

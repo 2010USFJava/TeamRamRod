@@ -1,21 +1,44 @@
 //When someone needs more info, they send the email to whoever needs to give that info
+var cusEmail= []; 
+
+
+
+function getCusEmail() {
+	let xhttp = new XMLHttpRequest();
+
+	xhttp.onreadystatechange = function() {
+		console.log("the ready state has changed form in getAdmin");
+		if (xhttp.readyState == 4 && xhttp.status== 200) {
+			let email = JSON.parse(xhttp.responseText);	
+			let test = xhttp.responseText;
+			console.log('this is cus email '+ test);
+			cusEmail= [email];
+			console.log('cusEmail= '+cusEmail);
+		}
+	}
+	xhttp.open("GET", "http://localhost:8080/ProReimbursement/getCustomerEmail.json");
+
+	xhttp.send();
+}
 
 function sendEmail() {
+	console.log('this is the body '+  document.getElementById('forEmail').value) 
+	console.log('inside sendEmail cusemail: ' + cusEmail);
 	Email.send({
 	Host: "smtp.gmail.com",
 	Username : "revmikejones13@gmail.com",
 	Password : "3tyme4be",
-	To : document.getElementById('receipient'),
-	From : document.getElementById('sender'),
+	To : cusEmail,
+	From :  "revmikejones13@gmail.com",
 	Subject : "Reimbursement App",
-	Body : document.getElementById('emailMessage'),
+	Body : document.getElementById('forEmail').value,
 	}).then(
 		message => alert("mail sent successfully")
 	);
 }
 
 //To Benco Supervisor, when 3rd approval date missed 
-function sendEmail() {
+function sendBenEmail() {
 	Email.send({
 	Host: "smtp.gmail.com",
 	Username : "revmikejones13@gmail.com",

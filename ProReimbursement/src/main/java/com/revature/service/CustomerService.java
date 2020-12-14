@@ -183,5 +183,17 @@ public class CustomerService {
 		}
 		return tuition;
 	}
+	
+	public String getCusEmail(int formID) {
+		String email = null;
+		try {
+			int cusID = fdao.findCustomerIDByFormIDLookUp(formID);
+			Customer c = cusdao.getCustomerById(cusID);
+			email = c.getEmail();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return email;
+	}
 }
 

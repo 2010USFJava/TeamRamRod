@@ -38,12 +38,16 @@
 					<br> <br>
 					<button onclick="change()" value="submit">Submit</button>
 
-
-
-					<a id="loginpage"
-						href="http://localhost:8080/ProReimbursement/resources/html/index.html">Go
-						back to Login page</a>
+					<div>
+					Status: 
+					<p id='showStatus'></p>
+					</div>
 				</form>
+				
+				<form method="post" action="/ProReimbursement/index.customer">
+					<button onclick="logout()" value="logout">Logout</button>
+				</form>
+					
 				<form method="post" action="/ProReimbursement/home.customer">
 					<button id="customerHome" style="display: none;">Go back
 						to your Home Page</button>

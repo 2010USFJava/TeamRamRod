@@ -125,6 +125,50 @@ public class ApprovalDatesDaoImpl implements ApprovalDatesDao {
 		ps.executeUpdate();		
 	}
 
+	@Override
+	public void updateFinalApproval(int formID, boolean decision) throws SQLException {
+		Connection conn = DriverManager.getConnection(this.url, this.username, this.password);
+		String sql = "update final_approval set decision=? where form_id=?";
+		PreparedStatement ps = conn.prepareStatement(sql); 
+		ps.setBoolean(1, decision);
+		ps.setInt(2, formID);
+		ps.executeUpdate();	
+		
+	}
+
+	@Override
+	public boolean grabPending(int formID) throws SQLException {
+		Connection conn = DriverManager.getConnection(this.url, this.username, this.password);
+		String sql = "select is_approved from approval_dates where form_id=?";
+		PreparedStatement ps = conn.prepareStatement(sql); 
+		ps.setInt(1, formID);
+		ResultSet rs = ps.executeQuery();
+		boolean b = false;
+		while(rs.next()) {
+			b = rs.getBoolean(1);
+		}
+		return b;		
+	}
+
+	@Override
+	public void updateInitalApprovalInFinal(int formID) throws SQLException {
+		Connection conn = DriverManager.getConnection(this.url, this.username, this.password);
+		String sql = "update final_approval set initial_approval=TRUE where form_id=?";
+		PreparedStatement ps = conn.prepareStatement(sql);
+		ps.setInt(1, formID);
+		ps.executeUpdate();
+	}
+
+//	@Override
+//	public void rejectRequest(int formID) throws SQLException {
+//		Connection conn = DriverManager.getConnection(this.url, this.username, this.password);
+//		String sql = "update final_approval set decision=FALSE where form_id=?";
+//		PreparedStatement ps = conn.prepareStatement(sql); 
+//		ps.setInt(1, formID);
+//		ps.executeUpdate();	
+// 		
+//	}
+
 
 
 }

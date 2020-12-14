@@ -10,6 +10,7 @@ import com.revature.service.AdminService;
 import com.revature.service.ApprovalDatesService;
 import com.revature.service.CustomerService;
 import com.revature.service.FormService;
+import com.revature.util.LogThis;
 
 public class FormController {
 	static CustomerService cServ = new CustomerService();
@@ -26,7 +27,7 @@ public class FormController {
 		
 		CusLoginController.currentCustomer = cus;
 		System.out.println(cus);
-		
+		LogThis.LogIt("info", cus.getEmail() + ", user has been created");
 		return "resources/html/form.html";		
 	}
 	
@@ -80,6 +81,9 @@ public class FormController {
 		cServ.insertCustomerIdLookUp(CusLoginController.currentCustomer);
 		adServ.addDepartment(CusLoginController.currentCustomer.getEmployeeID(), dept);
 		aServ.newApprovalDate(aServ.createApprovalBean(form));
+		adServ.addFormIdToFinalApproval(CusLoginController.currentForm.getFormID());
+		
+		LogThis.LogIt("info", "A form has been created for user, " + CusLoginController.currentCustomer.getEmail());
 		return "resources/html/filesAndGrades.html";
 	}
 	

@@ -1,5 +1,7 @@
 package com.revature.controller;
 
+import java.util.List;
+
 import javax.servlet.http.HttpServletRequest;
 
 import com.revature.service.AdminService;
@@ -17,6 +19,12 @@ public class AdminController {
 		System.out.println("formNum: line 17= " + req.getParameter("formNum"));
 		int printForm = Integer.parseInt(req.getParameter("formNum"));
 		CusLoginController.currentForm = fServ.getForm(printForm);
+		List<Integer> approvedIDs = aServ.getInitialIDs(); //isApproved is true
+		for(int a: approvedIDs) {
+			if(printForm == a) {
+				return "resources/html/finalBenco.html";
+			}
+		}
 		return "resources/html/admin/adminOptions.html"; 
 	}
 }

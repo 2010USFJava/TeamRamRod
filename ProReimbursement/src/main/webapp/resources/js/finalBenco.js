@@ -1,15 +1,10 @@
-var title;
 
 window.onload=function(){
-	console.log("adminOptions");
+	console.log("window");
 	
-	getTitle();
-	
-	console.log('title in options '+ title);+
 	getAdminForm();
 	getOptional();
 	getCustomerInfo();
-	getCusEmail();
 }
 
 function getAdminForm() {
@@ -26,23 +21,6 @@ function getAdminForm() {
 		}
 	}
 	xhttp.open("GET", "http://localhost:8080/ProReimbursement/adminOptions.json");
-
-	xhttp.send();
-}
-
-function getTitle() {
-	let xhttp = new XMLHttpRequest();
-
-	xhttp.onreadystatechange = function() {
-		console.log("the ready state has changed title");
-		if (xhttp.readyState == 4 && xhttp.status== 200) {
-			title = JSON.parse(xhttp.responseText);
-			console.log()
-			console.log('Title: '+ title);
-
-		}
-	}
-	xhttp.open("GET", "http://localhost:8080/ProReimbursement/getTitle.json");
 
 	xhttp.send();
 }
@@ -74,11 +52,6 @@ function getOptional() {
 		if (xhttp.readyState == 4 && xhttp.status== 200) {
 			let optional = JSON.parse(xhttp.responseText);	
 			let test = xhttp.responseText;
-			let array = [optional];
-			if (array[1] == null)
-				optional[1] = '';
-			console.log('this is changed optional'+optional[1] + ' end ')
-			
 			console.log('this is test '+ test);
 			console.log(optional);
 			printOptional(optional);
@@ -107,7 +80,7 @@ function printOptional(emailOptional){
 	document.getElementById('showEmail').innerHTML = hasEmail;
 	console.log('hasEmail: ' + hasEmail);
 	document.getElementById('showOptional').innerHTML = optional;
-	console.log('optional: ' + optional);
+	console.log('divOptional: ' + divOptional);
 }
 
 function logout() {
@@ -203,36 +176,15 @@ function tableFromJson(form) {
 		}
 	}
 	
-	var adminTitle = [title];
-	
 	// Now, add the newly created table with json data, to a container.
 	if(col[0] == 'formID'){
 		var divShowData = document.getElementById('showData');
 		divShowData.innerHTML = "";
 		divShowData.appendChild(table);
-	} else if(adminTitle == 'benco'){
-	
-		console.log('inside else if admintitle ' + adminTitle);
-		var divShowData = document.getElementById('showCus');
-		divShowData.innerHTML = "";
-		divShowData.appendChild(table);
-		
-		document.getElementById("forEmail").style.display = "block"; 
-		document.getElementById("forText").style.display = "block";
-		document.getElementById("box").style.display = "block";
-	}else {
+	} else {
 		var divShowData = document.getElementById('showCus');
 		divShowData.innerHTML = "";
 		divShowData.appendChild(table);
 	}
 	
-}
-
-function displayBox(){
-document.getElementById("forEmail").style.display = "block";
-}
-
-function displayReason(){
-
-document.getElementById("sendEmail").style.display = "block";
 }

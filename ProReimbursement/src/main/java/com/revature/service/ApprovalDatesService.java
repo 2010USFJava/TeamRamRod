@@ -8,15 +8,19 @@ import com.revature.controller.CusLoginController;
 import com.revature.dao.ApprovalDatesDao;
 import com.revature.dao.CustomerDao;
 import com.revature.dao.FormDao;
+import com.revature.dao.ManagerDao;
 import com.revature.daoimpl.ApprovalDatesDaoImpl;
 import com.revature.daoimpl.CustomerDaoImpl;
 import com.revature.daoimpl.FormDaoImpl;
+import com.revature.daoimpl.ManagerDaoImpl;
+import com.revature.util.LogThis;
 
 public class ApprovalDatesService {
 	ApprovalDatesDao addao = new ApprovalDatesDaoImpl();
 	FormDao fdao = new FormDaoImpl();
 	CustomerService cServ = new CustomerService();
 	CustomerDao cdao = new CustomerDaoImpl();
+	ManagerDao man = new ManagerDaoImpl();
 	
 	public void newApprovalDate(ApprovalDates ad) {
 		try {
@@ -30,7 +34,12 @@ public class ApprovalDatesService {
 		ApprovalDates appdate = new ApprovalDates();
 		appdate.setFormID(f.getFormID());
 		appdate.setDateEntered(f.getDate());
-		appdate.setReimbursement(cServ.calculateReimbursementByEventNum(f.getCost(), f.getEventNum()));
+		double newReimbursement = cServ.calculateReimbursementByEventNum(f.getCost(), f.getEventNum());
+		if(newReimbursement > 1000) {
+			newReimbursement = 1000;
+		}
+		appdate.setReimbursement(newReimbursement);
+		LogThis.LogIt("info", "Reimbursement for form: " + f.getFormID() + ", is " + newReimbursement);
 		return appdate;
 	}
 	
@@ -88,5 +97,45 @@ public class ApprovalDatesService {
 		}
 		return reimburse;
 	}
+	
+	public void updateFinalDecision(int formID, boolean decision) {
+		try {
+			addao.updateFinalApproval(formID, decision);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}
+	
+	public String ifPending(int formID) {
+		try {
+			if(!addao.grabPending(formID)) {
+				return "pending";
+			} else if(man.getFinalApprovalInFinalTrue(formID)) { 
+				return "approved";
+			} else {
+				return "rejected";
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return null;
+	}
+	
+	public void setInitialInFinal(int formID) {
+		try {
+			addao.updateInitalApprovalInFinal(formID);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}
+	
+//	public void rejectDecision(int formID) {
+//		try {
+//			addao.rejectRequest(formID);
+//		} catch (SQLException e) {
+//			e.printStackTrace();
+//		}
+//	}
 
 }

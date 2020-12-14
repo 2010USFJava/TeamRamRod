@@ -24,4 +24,13 @@ public interface ManagerDao {
 	
 	public int findBlankInApprovalDate(int formID, String title) throws SQLException;
 	
+	public List<Integer> getInitialApproved() throws SQLException;
+	
+	public void addFinalApproval(int formID) throws SQLException;
+	
+	public List<Integer> getFinalDecisionTrue() throws SQLException;
+	
+	public boolean getFinalApprovalInFinalTrue(int formID) throws SQLException;
+	
+	public boolean getFinalApprovalInFinalFalse(int formID) throws SQLException;
 } 

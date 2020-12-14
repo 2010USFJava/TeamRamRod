@@ -3,64 +3,11 @@ var dates;
 
 window.onload=function(){
 	console.log("window");
-	
 	getCustomerForm();
-	/*asyncCall();
-	asyncCall2();*/
 	
 }
 
-function resolveAfter4Seconds() {
-  return new Promise(resolve => {
-    setTimeout(() => {
-      resolve(getFormDates());
-    },3000);
-  });
-}
 
-async function asyncCall() {
-  console.log('calling');
-  const result = await resolveAfter4Seconds();
-  console.log(result);
-  getFormDates();
-  // expected output: "resolved"
-}
-
-function resolveAfter3Seconds() {
-  return new Promise(resolve => {
-    setTimeout(() => {
-      resolve(getCustomerForm());
-    }, 3000);
-  });
-}
-
-async function asyncCall2() {
-  console.log('calling');
-  const result = await resolveAfter3Seconds();
-  console.log(result);
-  getFormDates();
-  // expected output: "resolved"
-}
-	
-
-
-
-function getFormDates() {
-	let xhttp = new XMLHttpRequest();
-
-	xhttp.onreadystatechange = function() {
-		console.log("the ready state has changed");
-		if (xhttp.readyState == 4 && xhttp.status== 200) {
-			dates = JSON.parse(xhttp.responseText);
-			console.log()
-			console.log('Array of strings '+ dates);
-
-		}
-	}
-	xhttp.open("GET", "http://localhost:8080/ProReimbursement/getDates.json");
-
-	xhttp.send();
-}
 
 function getCustomerForm() {
 	let xhttp = new XMLHttpRequest();

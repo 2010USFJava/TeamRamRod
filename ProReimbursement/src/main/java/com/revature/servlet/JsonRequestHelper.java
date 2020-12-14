@@ -7,12 +7,12 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.revature.controller.AdminController;
 import com.revature.controller.AdminLoginController;
 import com.revature.controller.CusLoginController;
 import com.revature.controller.CustomerController;
 import com.revature.controller.HomeController;
 import com.revature.service.AdminService;
+import com.revature.service.ApprovalDatesService;
 import com.revature.service.CustomerService;
 import com.revature.service.FormService;
 
@@ -20,6 +20,7 @@ public class JsonRequestHelper {
 	static CustomerService cServ = new CustomerService();
 	static FormService fServ = new FormService();
 	static AdminService aServ = new AdminService();
+	static ApprovalDatesService apServ = new ApprovalDatesService();
 	
 	public static void process(HttpServletRequest req, HttpServletResponse res) throws JsonProcessingException, IOException{
 		switch(req.getRequestURI()) {
@@ -65,10 +66,29 @@ public class JsonRequestHelper {
 			System.out.println("in customerInfo json rhelper");
 			res.getWriter().write(new ObjectMapper().writeValueAsString(cServ.returnCustomer(CusLoginController.currentForm.getFormID())));
 			break;
+			
+		case "/ProReimbursement/getTitle.json":
+			System.out.println("in getTitle json rhelper");
+			res.getWriter().write(new ObjectMapper().writeValueAsString(AdminLoginController.currentAdmin.getTitle()));
+			break;
+			
+		case "/ProReimbursement/getFinalApproval.json":
+			System.out.println("in getFinalApproval json rhelper");
+			res.getWriter().write(new ObjectMapper().writeValueAsString(aServ.getInitialFormList()));
+			break;
+			
+		case "/ProReimbursement/getCustomerEmail.json":
+			System.out.println("in getCustomerEmail json rhelper");
+			res.getWriter().write(new ObjectMapper().writeValueAsString(cServ.getCusEmail(CusLoginController.currentForm.getFormID())));
+			break;
+		
+		case "/ProReimbursement/customerStatus.json":
+			System.out.println("in pending json rhelper");
+			res.getWriter().write(new ObjectMapper().writeValueAsString(apServ.ifPending(CusLoginController.currentForm.getFormID())));
+			break;
 		
 		default:
 			System.out.println("in default case");
-			//res.getWriter().write(new ObjectMapper().writeValueAsString(vill));
 		}
 		
 	}

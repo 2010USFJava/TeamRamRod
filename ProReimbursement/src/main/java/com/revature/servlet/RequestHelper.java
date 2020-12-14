@@ -71,6 +71,10 @@ public class RequestHelper {
 			System.out.println("in decision approval form rhelper");
 			return ApprovalDatesController.updateDecision(req);
 			
+		case "/ProReimbursement/final.approval":
+			System.out.println("in decision approval form rhelper");
+			return ApprovalDatesController.updateFinalChoice(req);
+			
 		default:
 			System.out.println("in default case");
 			return "resources/html/unsuccessfullogin.html";

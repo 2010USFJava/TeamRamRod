@@ -163,4 +163,75 @@ public class ManagerDaoImpl implements ManagerDao{
 		
 		return -1;
 	}
+
+	@Override
+	public List<Integer> getInitialApproved() throws SQLException {
+		List<Integer> approvedList = new ArrayList<Integer>();
+		Connection conn = DriverManager.getConnection(this.url, this.username, this.password);
+		String sql = "select form_id from approval_dates where is_approved=TRUE";
+		PreparedStatement ps = conn.prepareStatement(sql);
+		ResultSet rs = ps.executeQuery();
+		while(rs.next()) {
+			approvedList.add(rs.getInt(1));
+		}
+		return approvedList;
+	}
+
+	@Override
+	public void addFinalApproval(int formID) throws SQLException {
+		Connection conn = DriverManager.getConnection(this.url, this.username, this.password);
+		String sql = "insert into final_approval values(default)";
+		PreparedStatement ps = conn.prepareStatement(sql);
+		ps.executeUpdate();
+		
+	}
+
+	@Override
+	public List<Integer> getFinalDecisionTrue() throws SQLException {
+		List<Integer> trueList = new ArrayList<Integer>();
+		Connection conn = DriverManager.getConnection(this.url, this.username, this.password);
+		String sql = "select form_id from final_approval where decision=TRUE";
+		PreparedStatement ps = conn.prepareStatement(sql);
+		ResultSet rs = ps.executeQuery();
+		while(rs.next()) {
+			trueList.add(rs.getInt(1));
+		}
+		return trueList;
+	}
+
+	@Override
+	public boolean getFinalApprovalInFinalTrue(int formID) throws SQLException {
+		Connection conn = DriverManager.getConnection(this.url, this.username, this.password);
+		String sql = "select form_id from final_approval where decision = true";
+		PreparedStatement ps = conn.prepareStatement(sql);
+		ResultSet rs = ps.executeQuery();
+		int fid = 0;
+		while(rs.next()) {
+			fid = rs.getInt(1);
+			if(fid == formID) {
+				return true;
+			}
+		}
+		return false; 
+	}
+	
+	@Override
+	public boolean getFinalApprovalInFinalFalse(int formID) throws SQLException {
+		Connection conn = DriverManager.getConnection(this.url, this.username, this.password);
+		String sql = "select form_id from final_approval where decision = false";
+		PreparedStatement ps = conn.prepareStatement(sql);
+		ResultSet rs = ps.executeQuery();
+		int fid = 0;
+		while(rs.next()) {
+			fid = rs.getInt(1);
+			if(fid == formID) {
+				return true;
+			}
+		}
+		return false; 
+	}
+
+	
+	
+	
 }

@@ -19,5 +19,13 @@ public interface ApprovalDatesDao {
 	public double getReimbursement(int formID) throws SQLException;
 	
 	public void updateReimbursement(int formID, double reimburse) throws SQLException;
+	
+	public void updateFinalApproval(int formID, boolean decision) throws SQLException;
+	
+	//public void rejectRequest(int formID) throws SQLException;
+	
+	public boolean grabPending(int formID) throws SQLException;
+	
+	public void updateInitalApprovalInFinal(int formID) throws SQLException;
 
 }

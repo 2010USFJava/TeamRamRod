@@ -1,70 +1,54 @@
 var test;
-var dates;
-
+var title;
 
 
 window.onload=function(){
-	console.log("window");
+	console.log("adminHome");
+	
+	getTitle();
 	
 	getAdminForm();
-	//asyncCall();
-	//asyncCall2();
-	//getFormDates();
-	
+	getFinalApproval();
 	
 }
 
-function resolveAfter3Seconds() {
-  return new Promise(resolve => {
-    setTimeout(() => {
-      resolve();
-    }, 3000);
-  });
-}
 
-async function asyncCall() {
-  console.log('calling');
-  const result = await resolveAfter3Seconds();
-  console.log(result);
-  getFormDates();
-  // expected output: "resolved"
-}
-
-function resolveAfter4Seconds() {
-  return new Promise(resolve => {
-    setTimeout(() => {
-      resolve(getAdminForm());
-    }, 3000);
-  });
-}
-
-async function asyncCall2() {
-  console.log('calling');
-  const result = await resolveAfter4Seconds();
-  console.log(result);
-  getFormDates();
-  // expected output: "resolved"
-}
-
-
-
-
-function getFormDates() {
+function getTitle() {
 	let xhttp = new XMLHttpRequest();
 
 	xhttp.onreadystatechange = function() {
-		console.log("the ready state has changed dates");
+		console.log("the ready state has changed title");
 		if (xhttp.readyState == 4 && xhttp.status== 200) {
-			dates = JSON.parse(xhttp.responseText);
+			title = JSON.parse(xhttp.responseText);
 			console.log()
-			console.log('Array of dates: '+ dates);
+			console.log('Title: '+ title);
 
 		}
 	}
-	xhttp.open("GET", "http://localhost:8080/ProReimbursement/getDates.json");
+	xhttp.open("GET", "http://localhost:8080/ProReimbursement/getTitle.json");
 
 	xhttp.send();
 }
+
+function getFinalApproval() {
+	let xhttp = new XMLHttpRequest();
+
+	xhttp.onreadystatechange = function() {
+		console.log("the ready state has changed final");
+		if (xhttp.readyState == 4 && xhttp.status== 200) {
+			let final = JSON.parse(xhttp.responseText);
+			console.log()
+			console.log('Final: '+ final);
+			tableFromJsonFinal(final);
+
+		}
+	}
+	xhttp.open("GET", "http://localhost:8080/ProReimbursement/getFinalApproval.json");
+
+	xhttp.send();
+}
+
+
 
 function getAdminForm() {
 	//console.log('Array of strings '+ dates);
@@ -109,11 +93,8 @@ function tableFromJson(form) {
 	console.log('inside tableFromJson: ' + form);
 	var myBooks =[];
 	
-	console.log('test in table: ' + test);
-	if(!(Array.isArray(test) && test.length)){
-		let noForm = 'There are no forms at this time.';
-		document.getElementById('noForms').innerHTML = noForm;
-	}
+	
+
 	
 	var mydates = [];
 	for(i = 0; i < form.length; i++){
@@ -186,11 +167,115 @@ function tableFromJson(form) {
 				}*/
 		}
 	}
-
+	var adminTitle = [title];
+	console.log('admin title: '+adminTitle);
+	
 	// Now, add the newly created table with json data, to a container.
-	var divShowData = document.getElementById('showData');
-	divShowData.innerHTML = "";
-	divShowData.appendChild(table);
+	
+		
+		var divShowData = document.getElementById('showData');
+		divShowData.innerHTML = "";
+		divShowData.appendChild(table);
+}
+		
+function tableFromJsonFinal(form) {
+	//console.log('Array of strings '+ dates);
+	console.log('inside tableFromJson: ' + form);
+	var myBooks =[];
+	
+	
 
 	
-}
+	var mydates = [];
+	for(i = 0; i < form.length; i++){
+		myBooks[i] = form[i];
+		
+				
+	}
+	
+//	var acdate = myBooks[1].date.toString();
+//	
+//	console.log('THIS IS THE DATE'+acdate);
+	
+	/*for(i = 0; i < dates.length; i++){
+		mydates[i] = dates[i];
+	}
+	console.log('mydates: ' + mydates);*/
+	// the json data. (you can change the values for output.)
+	
+		console.log('mybooks: '+myBooks);
+
+
+	// Extract value from table header. 
+	// ('Book ID', 'Book Name', 'Category' and 'Price')
+	var col = [];
+	for (var i = 0; i < myBooks.length; i++) {
+		for (var key in myBooks[i]) {
+				if (key !== 'date' && col.indexOf(key) === -1){
+					 	console.log(key)
+						col.push(key);
+					}
+			
+		}
+			
+		}
+	
+
+	// Create a table.
+	var table = document.createElement("table");
+
+	// Create table header row using the extracted headers above.
+	var tr = table.insertRow(-1);                   // table row.
+
+	for (var i = 0; i < col.length-2; i++) {
+			
+		
+				var th = document.createElement("th");      // table header.
+				th.innerHTML = col[i];
+				tr.appendChild(th);
+				
+			/*	if (i ==0){
+					var th = document.createElement("th");      // table header.
+					th.innerHTML = 'Date';
+					tr.appendChild(th);
+				}*/
+	}
+
+	// add json data to the table as rows.
+	for (var i = 0; i < myBooks.length; i++) {
+		
+			tr = table.insertRow(-1);
+
+			for (var j = 0; j < col.length-2; j++) {
+				var tabCell = tr.insertCell(-1);
+				tabCell.innerHTML = myBooks[i][col[j]];
+				
+				
+				/*if (j == 0){
+					var tabCell = tr.insertCell(-1);
+					tabCell.innerHTML = mydates[i];
+				}*/
+		}
+	}
+	var adminTitle = [title];
+	console.log('admin title: '+adminTitle);
+	
+	// Now, add the newly created table with json data, to a container.
+	
+		
+		if (adminTitle == 'benco'){ 
+			console.log('title indeed is benco')
+			var showFinalApproval = document.getElementById('showFinal');
+			showFinalApproval.innerHTML = "";
+			showFinalApproval.appendChild(table);
+			document.getElementById("finalTitle").style.display = "block";
+			
+			
+		}
+	
+		
+	}  
+	
+
+
+
