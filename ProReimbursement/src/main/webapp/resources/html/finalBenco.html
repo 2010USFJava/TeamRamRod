@@ -1,0 +1,93 @@
+<!doctype html>
+<html lang="en">
+<head>
+
+<!-- Required meta tags -->
+<meta charset="utf-8">
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+<!-- Bootstrap CSS -->
+<link rel="stylesheet"
+	href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+	integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+	crossorigin="anonymous">
+<link type="text/css" rel="stylesheet" href="resources/css/table.css">
+<link type="text/css" rel="stylesheet" href="resources/css/main.css">
+
+<script type="text/javascript" src="resources/js/adminOptions.js"></script>
+<script type="text/javascript" src="resources/js/email.js"></script>
+<script src="https://smtpjs.com/v3/smtp.js"></script>  
+
+
+<title>Benco Options</title>
+</head>
+
+<body>
+	<div>
+		<div class="row">
+			<div class="col">
+			
+			<form method="post" action="/ProReimbursement/home.admin">
+			<button>Go back to your Home Page</button>
+			</form>
+			
+			</div>
+			<div class="col">
+				<h4>Benco Decision Page</h4>
+				
+					
+
+
+				<h3>Submitted Information:</h3>
+				
+				<p id='showData'></p>
+				<br>
+				<p id='showCus'></p>
+				<br>
+			<p id='showOptional'>Optional</p>
+			<br>
+			
+			
+			
+			<form method="post" action="/ProReimbursement/final.approval">
+			<select name="isApproved" id="isApproved">
+			<option value="yes">Final Approval</option>
+			<option value="no">Reject</option>
+			</select>
+			<button value="submit">Submit</button>
+			</form>
+			
+			<br> <br>
+			</div>
+					
+
+			<br> <br>
+			<form method="post" action="/ProReimbursement/index.customer">
+				<button onclick="logout()" value="logout">Logout</button>
+			</form>
+	
+			
+			<div class="col">			
+			</div>
+		</div>
+</body>
+
+<script type="text/javascript" src="resources/js/finalBenco.js">
+	
+</script>
+
+
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+	integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+	crossorigin="anonymous"></script>
+<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+	integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+	crossorigin="anonymous"></script>
+<script
+	src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+	integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+	crossorigin="anonymous"></script>
+</body>
+</html>

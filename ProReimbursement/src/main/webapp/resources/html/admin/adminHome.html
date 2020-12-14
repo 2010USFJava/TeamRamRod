@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="en">
+<head>
+
+<!-- Required meta tags -->
+<meta charset="utf-8">
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+
+<link type="text/css" rel="stylesheet" href="resources/css/table.css">
+<link type="text/css" rel="stylesheet" href="resources/css/main.css">
+
+<title>Admin Home</title>
+</head>
+
+<body>
+	<div class="login-controller">
+		<div class="row">
+			<div class="column"></div>
+			<div class="column">
+				<h1>Welcome Home, Admin!</h1>
+
+
+				<form method="post" action="/ProReimbursement/options.admin">
+					<input placeholder="Enter form number" name="formNum"> 
+					<input type="submit" value="Choose Form">
+				</form>
+				<h2>Submitted Forms:</h2>
+
+			</div>
+			
+			<h4>Initial Approval Forms: </h4>
+			<p id='showData'></p> 
+			
+			<h4 id="finalTitle" style="display:none;">Final Approval Forms:</h4>
+			<p id='showFinal'></p>
+			
+			
+			
+			<br>
+			<div class="column"></div>
+			<form method="post" action="/ProReimbursement/index.customer">
+				<button onclick="logout()" value="logout">Logout</button>
+			</form>
+			
+			
+			</div>
+		</div>
+</body>
+
+<script type="text/javascript" src="resources/js/adminHome.js">
+	
+</script>
+
+
+</body>
+</html>

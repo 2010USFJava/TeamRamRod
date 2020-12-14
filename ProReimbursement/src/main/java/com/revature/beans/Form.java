@@ -1,34 +1,50 @@
 package com.revature.beans;
 
+import java.time.LocalDate;
+
 public class Form {
 
 	private int formID;
-	// private date
-	// time
+	private LocalDate date;
+	private String time;
 	private String location;
 	private String description;
 	private double cost;
 	private String gradeFormat;
-	private String eventType;
+	private int eventNum;
 	private String justification;
-	private String dialogBox;
+	private String hasFiles;
 	private boolean isAttached;
 	
 	public Form() {
 		super();
 	}
-	public Form(int formID, String location, String description, double cost, String gradeFormat, String eventType,
-			String justification, String dialogBox, boolean isAttached) {
+	public Form(int formID, LocalDate date, String time, String location, String description, double cost, String gradeFormat, int eventNum,
+			String justification, String hasFiles, boolean isAttached) {
 		super();
+		this.date = date;
+		this.time = time;
 		this.formID = formID;
 		this.location = location;
 		this.description = description;
 		this.cost = cost;
 		this.gradeFormat = gradeFormat;
-		this.eventType = eventType;
+		this.eventNum = eventNum;
 		this.justification = justification;
-		this.dialogBox = dialogBox;
+		this.hasFiles = hasFiles;
 		this.isAttached = isAttached;
+	}
+	public LocalDate getDate() {
+		return date;
+	}
+	public void setDate(LocalDate date) {
+		this.date = date;
+	}
+	public String getTime() {
+		return time;
+	}
+	public void setTime(String time) {
+		this.time = time;
 	}
 	public int getFormID() {
 		return formID;
@@ -60,11 +76,11 @@ public class Form {
 	public void setGradeFormat(String gradeFormat) {
 		this.gradeFormat = gradeFormat;
 	}
-	public String getEventType() {
-		return eventType;
+	public int getEventNum() {
+		return eventNum;
 	}
-	public void setEventType(String eventType) {
-		this.eventType = eventType;
+	public void setEventNum(int eventNum) {
+		this.eventNum = eventNum;
 	}
 	public String getJustification() {
 		return justification;
@@ -72,11 +88,11 @@ public class Form {
 	public void setJustification(String justification) {
 		this.justification = justification;
 	}
-	public String getDialogBox() {
-		return dialogBox;
+	public String gethasFiles() {
+		return hasFiles;
 	}
-	public void setDialogBox(String dialogBox) {
-		this.dialogBox = dialogBox;
+	public void sethasFiles(String hasFiles) {
+		this.hasFiles = hasFiles;
 	}
 	public boolean isAttached() {
 		return isAttached;
@@ -86,10 +102,13 @@ public class Form {
 	}
 	@Override
 	public String toString() {
-		return "Form [formID=" + formID + ", location=" + location + ", description=" + description + ", cost=" + cost
-				+ ", gradeFormat=" + gradeFormat + ", eventType=" + eventType + ", justification=" + justification
-				+ ", dialogBox=" + dialogBox + ", isAttached=" + isAttached + "]";
+		return "Form [formID=" + formID + ", date=" + date + ", time=" + time + ", location=" + location
+				+ ", description=" + description + ", cost=" + cost + ", gradeFormat=" + gradeFormat + ", eventNum="
+				+ eventNum + ", justification=" + justification + ", hasFiles=" + hasFiles + ", isAttached="
+				+ isAttached + "]";
 	}
+	
+	
 	
 	
 }

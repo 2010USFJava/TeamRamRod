@@ -1,23 +1,27 @@
 package com.revature.beans;
 
-public class Customer {
+import java.io.Serializable;
+
+public class Customer implements Serializable {
 	private int employeeID;
 	private String fName;
 	private String lName;
 	private String email;
 	private String password;
+	private double tuition;
 	
 	public Customer() {
 		super();
 	}
 	
-	public Customer(int employeeID, String fName, String lName, String email, String password) {
+	public Customer(int employeeID, String fName, String lName, String email, String password, double tuition) {
 		super();
 		this.employeeID = employeeID;
 		this.fName = fName;
 		this.lName = lName;
 		this.email = email;
 		this.password = password;
+		this.tuition = tuition;
 	}
 
 	public int getEmployeeID() {
@@ -60,12 +64,18 @@ public class Customer {
 		this.password = password;
 	}
 
+	public double getTuition() {
+		return tuition;
+	}
+
+	public void setTuition(double tuition) {
+		this.tuition = tuition;
+	}
+
 	@Override
 	public String toString() {
-		return "Customer: employeeID: " + employeeID + ", fName: " + fName + ", lName: " + lName + ", email: " + email
-				+ ", password: " + password;
+		return "Customer [employeeID=" + employeeID + ", fName=" + fName + ", lName=" + lName + ", email=" + email
+				+ ", password=" + password + ", tuition=" + tuition + "]";
 	}
-	
-	
 
 }

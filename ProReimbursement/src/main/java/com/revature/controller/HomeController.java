@@ -4,8 +4,11 @@ import javax.servlet.http.HttpServletRequest;
 
 public class HomeController {
 	
-	public static String home(HttpServletRequest req) {
-		return "resources/html/home.html";		
+	public static String customerHome(HttpServletRequest req) {
+		return "resources/html/customerHome.html";		
 	}
-
+	
+	public static String adminHome(HttpServletRequest req) {
+		return "resources/html/admin/adminHome.html";		
+	}
 }

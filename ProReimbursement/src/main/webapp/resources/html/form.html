@@ -1,0 +1,130 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+
+
+
+
+<link rel="stylesheet"
+	href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+<link rel="stylesheet" href="/resources/demos/style.css">
+<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+
+
+
+
+<link type="text/css" rel="stylesheet" href="../css/main.css">
+
+<title>New Reimbursement Form</title>
+
+<script>
+	$(function() {
+		$("#datepicker").datepicker();
+	});
+</script>
+
+</head>
+
+
+
+
+
+
+<body class = "content">
+	<div class="row">
+		<div class="column">
+			<h3>Please enter your information</h3>
+			<form method="post" action="/ProReimbursement/optional.form">
+				<input placeholder="Enter event location" name="eventlocation">
+				<input placeholder="Enter description" name="description"> <br>
+				<br> <input type="text" onchange="calculate()"
+					placeholder="Enter event cost" name="eventcost" id="cost">
+				<input placeholder="Enter grading format" name="gradingformat">
+				<br> <br> <label for="event">Select an event:</label> <select
+					onchange="calculate()" name="event" id="event">
+					<option value="1">University Course</option>
+					<option value="2">Seminar</option>
+					<option value="3">Certification Preparation Class</option>
+					<option value="4">Certification</option>
+					<option value="5">Technical Training</option>
+					<option value="6">Other</option>
+				</select> <br> <br> 
+					<label for="files">Will you attach files?</label> 
+					<select name="files" id="files">
+					<option value="yes">Yes</option>
+					<option value="no">No</option>
+					</select>
+					<br> <br> <label for="department">Enter
+					department:</label> <select onchange="calculate()" name="department"
+					id="department">
+					<option value="accounting">Accounting</option>
+					<option value="marketing">Marketing</option>
+					<option value="it">IT</option>
+					<option value="sales">Sales</option>
+					<option value="finance">Finance</option>
+					<option value="security">Security</option>
+				</select> <input placeholder="Enter justification" name="justification">
+				<br> <br>
+				<input type="text" placeholder="Choose date" id="datepicker"
+				name="eventdate">
+				<br>
+				<br>
+				<br>
+				<br>
+				<br>
+				<br>
+				<br>
+				<br>
+				<br>
+				<br>
+				<button value="submit">Submit</button>
+				<p  id="answer"></p>
+		</div>
+	
+		<div class="column">
+				
+			<br>
+			<br>
+			 Choose a time
+			<embed type="text/html" src="resources/html/time.html" id="eventtime">
+			
+			</form>
+			<br>
+			<br>
+				
+			
+		</div>
+	</div>
+	<script>
+		var calc = [ .8, .6, .75, 1, .9, .3 ];
+
+		function calculate() {
+			var field1 = document.getElementById("cost").value;
+			var field2 = document.getElementById("event").value - 1;
+			console.log(field1);
+			console.log(field2);
+
+			console.log(calc[field2]);
+			let reimburse = parseFloat(calc[field2]) * parseFloat(field1);
+
+			console.log(reimburse);
+			console.log("inside calculate");
+
+			if (!isNaN(reimburse)) {
+				document.getElementById("answer").innerHTML = "Your projected reimbursement is $"
+						+ reimburse;
+				console.log("inside print out");
+			}
+		}
+	</script>
+
+
+	</div>
+	</div>
+</body>
+</html>

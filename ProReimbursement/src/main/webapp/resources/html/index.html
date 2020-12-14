@@ -1,29 +1,69 @@
-<!DOCTYPE html>
-<html>
+<!doctype html>
+<html lang="en">
 <head>
-<meta charset="ISO-8859-1">
+<meta charset="utf-8">
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+
+<!-- Bootstrap CSS -->
+<link rel="stylesheet"
+	href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+	integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+	crossorigin="anonymous">
+	<link type="text/css" rel= "stylesheet" href="resources/css/main.css">
 <title>Login</title>
+
 </head>
-<body>
+<body class="bg-dark text-white">
 
-<div class="login-container">
-	<h3>Customer Login</h3>
-	<form method="post" action="/ProReimbursement/customer.change">
-		<p>Please login </p>
-		<input placeholder="Enter email" name="email">
-		<input placeholder="Enter password" name="password">
-		<input type="submit" value="login">
-	</form>
-</div>
+	<div class="row">
+		<div class="col"></div>
 
-<div class="login-container">
-	<h3>Admin Login</h3>
-	<form method="post" action="/ProReimbursement/admin.change">
-		<p>Please login </p>
-		<input placeholder="Enter email" name="email">
-		<input placeholder="Enter password" name="password">
-		<input type="submit" value="login">
-	</form>
-</div>
+		<div class="col">
+			<h3>Create New Reimbursement Request</h3>
+
+			<form  method="post" action="/ProReimbursement/form.change">
+				<input type="submit" value="New Request">
+			</form>
+
+			<br>
+			<br>
+			<br>
+			<div  class="login-container">
+				<h3>Customer Login</h3>
+				<form class="border border-secondary" method="post" action="/ProReimbursement/customer.change">
+					<p>Please login</p>
+					<input placeholder="Enter email" name="email"> 
+					<input placeholder="Enter password" name="password"> 
+					<input type="submit" value="login">
+				</form>
+			</div>
+			<br>
+			<div class="login-container">
+				<h3>Admin Login</h3>
+				<form class="border border-secondary" method="post" action="/ProReimbursement/admin.change">
+					<p>Please login</p>
+					<input placeholder="Enter email" name="email"> <input
+						placeholder="Enter password" name="password"> <input
+						type="submit" value="login">
+				</form>
+			</div>
+			
+		</div>
+		<div class="col"></div>
+	</div>
+
+	<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+		integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+		crossorigin="anonymous"></script>
+	<script
+		src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+		integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+		crossorigin="anonymous"></script>
+	<script
+		src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+		integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+		crossorigin="anonymous"></script>
 </body>
 </html>

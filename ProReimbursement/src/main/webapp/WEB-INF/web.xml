@@ -5,30 +5,57 @@
     <welcome-file>index.html</welcome-file>
   </welcome-file-list>
   <servlet>
-        <servlet-name>MasterServlet</servlet-name>
-        <servlet-class>com.revature.servlet.MasterServlet</servlet-class>
-    </servlet>
+    <servlet-name>MasterServlet</servlet-name>
+    <servlet-class>com.revature.servlet.MasterServlet</servlet-class>
+  </servlet>
   <servlet-mapping>
-  		<servlet-name>MasterServlet</servlet-name>
-  		<url-pattern>*.change</url-pattern>
-  		<url-pattern>/api/*</url-pattern>
+    <servlet-name>MasterServlet</servlet-name>
+    <url-pattern>*.change</url-pattern>
+    <url-pattern>/api/*</url-pattern>
   </servlet-mapping>
-    <servlet>
-        <servlet-name>CustomerServlet</servlet-name>
-        <servlet-class>com.revature.servlet.CustomerServlet</servlet-class>
-    </servlet>
+  <servlet>
+    <servlet-name>CustomerServlet</servlet-name>
+    <servlet-class>com.revature.servlet.CustomerServlet</servlet-class>
+  </servlet>
   <servlet-mapping>
-  		<servlet-name>CustomerServlet</servlet-name>
-  		<url-pattern>*.customer</url-pattern>
+    <servlet-name>CustomerServlet</servlet-name>
+    <url-pattern>*.customer</url-pattern>
   </servlet-mapping>
-   <servlet>
-        <servlet-name>AdminServlet</servlet-name>
-        <servlet-class>com.revature.servlet.AdminServlet</servlet-class>
-    </servlet>
+  <servlet>
+    <servlet-name>AdminServlet</servlet-name>
+    <servlet-class>com.revature.servlet.AdminServlet</servlet-class>
+  </servlet>
   <servlet-mapping>
-  		<servlet-name>AdminServlet</servlet-name>
-  		<url-pattern>*.admin</url-pattern>
+    <servlet-name>AdminServlet</servlet-name>
+    <url-pattern>*.admin</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <display-name>FormServlet</display-name>
+    <servlet-name>FormServlet</servlet-name>
+    <servlet-class>com.revature.servlet.FormServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>FormServlet</servlet-name>
+    <url-pattern>*.form</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>ApprovalDatesServlet</display-name>
+    <servlet-name>ApprovalDatesServlet</servlet-name>
+    <servlet-class>com.revature.servlet.ApprovalDatesServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ApprovalDatesServlet</servlet-name>
+    <url-pattern>*.approval</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>JsonMasterServlet</display-name>
+    <servlet-name>JsonMasterServlet</servlet-name>
+    <servlet-class>com.revature.servlet.JsonMasterServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>JsonMasterServlet</servlet-name>
+    <url-pattern>*.json</url-pattern>
   </servlet-mapping>
 </web-app>
-
-
