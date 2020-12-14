@@ -57,3 +57,25 @@
 [INFO ] 2020-12-13 23:51:32.959 [http-nio-8080-exec-7] LogThis - revmikejones13@gmail.com, admin has logged in
 [INFO ] 2020-12-13 23:53:18.169 [http-nio-8080-exec-2] LogThis - revmikejones13@gmail.com, admin has logged in
 [INFO ] 2020-12-14 00:04:18.967 [http-nio-8080-exec-8] LogThis - revmikejones13@gmail.com, admin has logged in
+[INFO ] 2020-12-14 01:04:19.663 [http-nio-8080-exec-4] LogThis - a, user has been created
+[INFO ] 2020-12-14 01:08:17.743 [http-nio-8080-exec-3] LogThis - mikejones1367@protonmail.com, user has logged in
+[INFO ] 2020-12-14 01:12:59.202 [http-nio-8080-exec-9] LogThis - User has logged out
+[INFO ] 2020-12-14 01:23:45.982 [http-nio-8080-exec-4] LogThis - d, user has been created
+[INFO ] 2020-12-14 01:26:59.903 [http-nio-8080-exec-8] LogThis - mikejones1367@protonmail.com, user has logged in
+[INFO ] 2020-12-14 01:28:46.868 [http-nio-8080-exec-2] LogThis - hhenderson@gmail.com, admin has logged in
+[INFO ] 2020-12-14 01:29:37.833 [http-nio-8080-exec-10] LogThis - User has logged out
+[INFO ] 2020-12-14 01:29:47.290 [http-nio-8080-exec-4] LogThis - sthomas@gmail.com, admin has logged in
+[INFO ] 2020-12-14 01:30:10.656 [http-nio-8080-exec-10] LogThis - User has logged out
+[INFO ] 2020-12-14 01:31:59.607 [http-nio-8080-exec-9] LogThis - revmikejones13@gmail.com, admin has logged in
+[INFO ] 2020-12-14 01:35:00.791 [http-nio-8080-exec-6] LogThis - User has logged out
+[INFO ] 2020-12-14 01:35:37.594 [http-nio-8080-exec-4] LogThis - mikejones1367@protonmail.com, user has logged in
+[INFO ] 2020-12-14 01:36:04.910 [http-nio-8080-exec-9] LogThis - User has logged out
+[INFO ] 2020-12-14 01:43:47.374 [http-nio-8080-exec-5] LogThis - mikejones1367@protonmail.com, user has logged in
+[INFO ] 2020-12-14 01:44:33.302 [http-nio-8080-exec-5] LogThis - User has logged out
+[INFO ] 2020-12-14 01:50:27.501 [http-nio-8080-exec-6] LogThis - revmikejones13@gmail.com, admin has logged in
+[INFO ] 2020-12-14 01:57:05.299 [http-nio-8080-exec-5] LogThis - revmikejones13@gmail.com, admin has logged in
+[INFO ] 2020-12-14 01:58:54.434 [http-nio-8080-exec-8] LogThis - User has logged out
+[INFO ] 2020-12-14 01:59:15.289 [http-nio-8080-exec-10] LogThis - jw@gmail.com, admin has logged in
+[INFO ] 2020-12-14 02:00:44.805 [http-nio-8080-exec-4] LogThis - User has logged out
+[INFO ] 2020-12-14 02:04:15.833 [http-nio-8080-exec-3] LogThis - mj@gmail.com, admin has logged in
+[INFO ] 2020-12-14 02:05:50.880 [http-nio-8080-exec-7] LogThis - mj@gmail.com, admin has logged in
